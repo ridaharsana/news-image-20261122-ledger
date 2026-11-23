@@ -259,6 +259,11 @@ def art_cop(x, y, w, h):
         d.rectangle([hx - 2, ty - 9, hx + 12, ty - 7], fill=INK2)
         d.rectangle([hx + 1, ty - 6, hx + 9, ty - 3],
                     fill=(252, 250, 244))
+    # three delegates with a hand raised — the vote that failed
+    for i in (0, 2, 4):
+        hx = tx0 + 12 + i * 30
+        d.line([(hx + 13, ty - 10), (hx + 19, ty - 21)], fill=INK, width=2)
+        d.ellipse([hx + 17, ty - 24, hx + 22, ty - 19], fill=INK)
     # the chair's gavel, raised at the head of the table
     gx, gy = tx1 + 8, ty - 22
     d.line([(gx, gy + 12), (gx + 9, gy)], fill=INK, width=3)
@@ -278,6 +283,10 @@ def art_drone(x, y, w, h):
         d.line([(cx - 13, cy - 8), (cx + 13, cy + 8)], fill=INK, width=3)
         d.line([(cx - 13, cy + 8), (cx + 13, cy - 8)], fill=INK, width=3)
         d.rectangle([cx - 6, cy - 4, cx + 6, cy + 4], fill=INK)
+    for (cx, cy) in [(x + 88, y + 33), (x + 178, y + 35)]:
+        d.line([(cx - 8, cy - 5), (cx + 8, cy + 5)], fill=INK, width=2)
+        d.line([(cx - 8, cy + 5), (cx + 8, cy - 5)], fill=INK, width=2)
+        d.rectangle([cx - 4, cy - 2, cx + 4, cy + 2], fill=INK)
     bx, by = x + 16, y + h - 6
     d.polygon([(bx, by), (bx, by - 44), (bx + 26, by - 44), (bx + 34, by - 30),
                (bx + 58, by - 38), (bx + 58, by)], fill=INK)
@@ -300,6 +309,9 @@ def art_drone(x, y, w, h):
     d.line([(mx + 48, y + 22), (mx + 48, by - 18)], fill=INK, width=1)
     d.line([(mx + 43, by - 18), (mx + 53, by - 18)], fill=INK, width=2)
     d.rectangle([mx - 8, by - 3, mx + 8, by], fill=INK)
+    # searchlight beams sweeping up from the rescue line
+    d.line([(bx + 128, by - 2), (x + 146, y + 6)], fill=GOLD, width=2)
+    d.line([(bx + 142, by - 2), (x + 196, y + 10)], fill=GOLD, width=2)
     lx, ly = x + w - 56, y + h - 26
     d.ellipse([lx - 9, ly - 9, lx + 9, ly + 9], fill=GOLD)
     for a in range(0, 360, 45):
@@ -367,82 +379,169 @@ def art_radar(x, y, w, h):
 LEAD_ART = [art_cop, art_drone, art_radar]
 
 
-def icon(kind, cx, cy):
-    """Tiny bold pictograms for the card art strips (centre cx, cy)."""
+def scene(kind, x, y, w, h):
+    """Panoramic mini-scenes for the card art strips (strip x, y, w, h)."""
+    gy = y + h - 4
+
+    def figure(fx, fy):
+        d.ellipse([fx - 3, fy - 13, fx + 3, fy - 7], fill=INK)
+        d.rectangle([fx - 3, fy - 7, fx + 3, fy], fill=INK)
+
     if kind == "ballot":
-        d.rectangle([cx - 13, cy + 1, cx + 13, cy + 11], outline=INK, width=2)
-        d.rectangle([cx - 7, cy - 11, cx + 5, cy + 2], fill=(252, 250, 244),
-                    outline=INK, width=2)
-        d.line([(cx - 8, cy + 1), (cx + 8, cy + 1)], fill=RED, width=2)
+        for bx, bh in [(10, 13), (28, 17), (48, 11)]:
+            d.rectangle([x + bx, gy - bh, x + bx + 12, gy], fill=INK2)
+            d.rectangle([x + bx + 3, gy - bh + 4, x + bx + 6, gy - bh + 7],
+                        fill=GOLD)
+        d.rectangle([x + 148, gy - 10, x + 176, gy], fill=INK)
+        d.rectangle([x + 144, gy - 12, x + 180, gy - 10], fill=INK)
+        d.rectangle([x + 158, gy - 17, x + 168, gy - 11],
+                    fill=(252, 250, 244), outline=INK)
+        for i in range(3):
+            figure(x + 200 + i * 13, gy)
     elif kind == "cricket":
-        d.polygon([(cx - 4, cy - 12), (cx + 3, cy - 12), (cx + 6, cy + 6),
-                   (cx + 1, cy + 12), (cx - 6, cy + 6)], fill=GOLD,
-                  outline=INK)
-        d.ellipse([cx + 8, cy + 2, cx + 18, cy + 12], fill=RED)
+        d.ellipse([x + 198, y + 3, x + 210, y + 15], fill=GOLD)
+        for sx_ in (28, 34, 40):
+            d.rectangle([x + sx_, gy - 12, x + sx_ + 2, gy], fill=GOLD,
+                        outline=INK)
+        figure(x + 118, gy)
+        d.polygon([(x + 122, gy - 9), (x + 137, gy - 1), (x + 140, gy - 4),
+                   (x + 126, gy - 12)], fill=INK)
+        d.arc([x + 138, gy - 20, x + 176, gy - 2], start=200, end=330,
+              fill=INK2, width=1)
+        d.ellipse([x + 172, gy - 13, x + 177, gy - 8], fill=RED)
+        d.line([(x + 8, gy), (x + w - 8, gy)], fill=INK2, width=1)
     elif kind == "race":
+        for bx, bh in [(8, 10), (24, 15), (42, 8)]:
+            d.rectangle([x + bx, gy - bh, x + bx + 11, gy], fill=INK2)
+        for cxx, col in [(x + 86, INK), (x + 140, RED)]:
+            d.polygon([(cxx, gy - 6), (cxx + 10, gy - 10), (cxx + 30, gy - 10),
+                       (cxx + 40, gy - 6), (cxx + 40, gy - 3), (cxx, gy - 3)],
+                      fill=col)
+            d.rectangle([cxx + 30, gy - 13, cxx + 36, gy - 10], fill=col)
+            d.ellipse([cxx + 6, gy - 4, cxx + 13, gy + 2], fill=INK)
+            d.ellipse([cxx + 28, gy - 4, cxx + 35, gy + 2], fill=INK)
         for i in range(4):
             for j in range(2):
                 if (i + j) % 2 == 0:
-                    d.rectangle([cx - 16 + i * 8, cy - 12 + j * 8,
-                                 cx - 8 + i * 8, cy - 4 + j * 8], fill=INK)
-        d.rectangle([cx - 14, cy + 3, cx + 12, cy + 9], fill=RED)
-        d.ellipse([cx - 10, cy + 7, cx - 3, cy + 13], fill=INK)
-        d.ellipse([cx + 5, cy + 7, cx + 12, cy + 13], fill=INK)
+                    d.rectangle([x + 206 + i * 6, y + 2 + j * 6,
+                                 x + 212 + i * 6, y + 8 + j * 6], fill=INK)
+        d.line([(x + 206, y + 2), (x + 206, gy)], fill=INK, width=2)
     elif kind == "football":
-        d.ellipse([cx - 11, cy - 11, cx + 11, cy + 11], outline=INK, width=2)
-        d.polygon([(cx, cy - 5), (cx + 5, cy - 1), (cx + 3, cy + 5),
-                   (cx - 3, cy + 5), (cx - 5, cy - 1)], fill=INK)
+        d.arc([x + 30, y - 6, x + 150, y + 34], start=180, end=360,
+              fill=INK, width=2)
+        for fx in (44, 128):
+            d.line([(x + fx, y + 8), (x + fx, gy)], fill=INK, width=2)
+            d.ellipse([x + fx - 4, y + 2, x + fx + 4, y + 9], fill=GOLD)
+        d.rectangle([x + 176, gy - 14, x + 208, gy], outline=(252, 250, 244),
+                    width=2)
+        d.rectangle([x + 176, gy - 14, x + 208, gy], outline=INK, width=1)
+        d.ellipse([x + 96, gy - 8, x + 104, gy], fill=(252, 250, 244),
+                  outline=INK)
+        d.line([(x + 8, gy), (x + w - 8, gy)], fill=(52, 96, 66), width=2)
     elif kind == "tennis":
-        d.ellipse([cx - 11, cy - 11, cx + 11, cy + 11], fill=(168, 178, 74))
-        d.arc([cx - 11, cy - 11, cx + 3, cy + 11], start=90, end=270,
-              fill=(252, 250, 244), width=2)
-        d.arc([cx - 3, cy - 11, cx + 11, cy + 11], start=270, end=90,
-              fill=(252, 250, 244), width=2)
+        d.line([(x + 20, gy - 8), (x + w - 20, gy - 8)], fill=INK, width=2)
+        for nx in range(28, w - 24, 12):
+            d.line([(x + nx, gy - 8), (x + nx, gy)], fill=INK2, width=1)
+        figure(x + 52, gy)
+        d.ellipse([x + 56, gy - 16, x + 66, gy - 8], outline=INK, width=2)
+        figure(x + w - 52, gy)
+        d.ellipse([x + w - 66, gy - 16, x + w - 56, gy - 8], outline=INK,
+                  width=2)
+        d.arc([x + 66, gy - 24, x + w - 66, gy - 6], start=200, end=340,
+              fill=INK2, width=1)
+        d.ellipse([x + w // 2 - 2, gy - 21, x + w // 2 + 2, gy - 17],
+                  fill=(168, 178, 74))
     elif kind == "factory":
-        d.rectangle([cx - 14, cy - 2, cx + 12, cy + 11], fill=INK)
-        d.rectangle([cx + 6, cy - 12, cx + 12, cy - 2], fill=INK)
-        d.polygon([(cx - 2, cy - 13), (cx + 3, cy - 5), (cx - 1, cy - 2),
-                   (cx - 6, cy - 6)], fill=RED)
-        d.polygon([(cx - 1, cy - 9), (cx + 2, cy - 5), (cx - 1, cy - 3),
-                   (cx - 4, cy - 6)], fill=GOLD)
+        d.rectangle([x + 20, gy - 12, x + 84, gy], fill=INK)
+        d.rectangle([x + 66, gy - 20, x + 74, gy - 12], fill=INK)
+        for r_ in range(2):
+            d.ellipse([x + 62 + r_ * 7, gy - 27 + r_ * 2,
+                       x + 70 + r_ * 7, gy - 21 + r_ * 2], fill=INK2)
+        d.polygon([(x + 34, gy - 13), (x + 39, gy - 5), (x + 35, gy - 2),
+                   (x + 29, gy - 7)], fill=RED)
+        d.polygon([(x + 35, gy - 10), (x + 38, gy - 5), (x + 35, gy - 3),
+                   (x + 32, gy - 7)], fill=GOLD)
+        for bx_ in (120, 148, 176):
+            d.line([(x + bx_, gy), (x + bx_ - 8, y + 3)], fill=GOLD, width=2)
+        figure(x + 206, gy)
+        figure(x + 220, gy)
     elif kind == "basket":
-        d.ellipse([cx - 11, cy - 11, cx + 11, cy + 11], fill=(206, 118, 44))
-        d.line([(cx - 11, cy), (cx + 11, cy)], fill=INK, width=1)
-        d.line([(cx, cy - 11), (cx, cy + 11)], fill=INK, width=1)
-        d.arc([cx - 17, cy - 11, cx - 1, cy + 11], start=90, end=270,
-              fill=INK, width=1)
-        d.arc([cx + 1, cy - 11, cx + 17, cy + 11], start=270, end=90,
-              fill=INK, width=1)
-    elif kind == "power":
-        d.polygon([(cx + 2, cy - 12), (cx - 7, cy + 2), (cx - 1, cy + 2),
-                   (cx - 3, cy + 12), (cx + 8, cy - 3), (cx + 1, cy - 3)],
-                  fill=GOLD, outline=INK)
-    elif kind == "medical":
-        d.ellipse([cx - 11, cy - 11, cx + 11, cy + 11],
-                  fill=(252, 250, 244), outline=INK, width=2)
-        d.rectangle([cx - 2, cy - 7, cx + 2, cy + 7], fill=RED)
-        d.rectangle([cx - 7, cy - 2, cx + 7, cy + 2], fill=RED)
-    elif kind == "ship":
-        d.polygon([(cx - 15, cy + 3), (cx + 15, cy + 3), (cx + 10, cy + 11),
-                   (cx - 11, cy + 11)], fill=INK)
-        d.rectangle([cx - 8, cy - 3, cx + 6, cy + 3], fill=INK2)
-        d.polygon([(cx + 2, cy - 13), (cx + 7, cy - 4), (cx + 3, cy - 2),
-                   (cx - 2, cy - 6)], fill=RED)
-    elif kind == "aid":
-        d.rectangle([cx - 15, cy - 8, cx + 4, cy + 5], fill=(252, 250, 244),
+        d.rectangle([x + 150, y + 2, x + 182, y + 14], fill=(252, 250, 244),
                     outline=INK, width=2)
-        d.rectangle([cx - 10, cy - 4, cx - 4, cy + 2], fill=RED)
-        d.rectangle([cx - 13, cy - 1, cx - 2, cy + 2], fill=RED)
-        d.polygon([(cx + 4, cy - 3), (cx + 11, cy - 3), (cx + 14, cy + 5),
-                   (cx + 4, cy + 5)], fill=INK2)
-        d.ellipse([cx - 10, cy + 4, cx - 4, cy + 10], fill=INK)
-        d.ellipse([cx + 6, cy + 4, cx + 12, cy + 10], fill=INK)
+        d.ellipse([x + 158, y + 13, x + 174, y + 19], outline=RED, width=2)
+        d.line([(x + 166, y + 14), (x + 166, gy)], fill=INK, width=2)
+        figure(x + 84, gy)
+        d.line([(x + 86, gy - 10), (x + 104, gy - 17)], fill=INK, width=3)
+        d.ellipse([x + 102, gy - 22, x + 110, gy - 14], fill=(206, 118, 44),
+                  outline=INK)
+        d.line([(x + 8, gy), (x + w - 8, gy)], fill=INK2, width=1)
+    elif kind == "power":
+        for px_ in (36, 108):
+            d.polygon([(x + px_ - 10, gy), (x + px_, gy - 20),
+                       (x + px_ + 10, gy)], outline=INK, width=2)
+            d.line([(x + px_ - 13, gy - 15), (x + px_ + 13, gy - 15)],
+                   fill=INK, width=2)
+        d.arc([x + 46, gy - 24, x + 98, gy - 8], start=20, end=160,
+              fill=INK, width=1)
+        for hx, lit in [(168, True), (192, False), (216, True)]:
+            d.rectangle([x + hx, gy - 9, x + hx + 14, gy], fill=INK)
+            d.rectangle([x + hx + 4, gy - 7, x + hx + 8, gy - 3],
+                        fill=GOLD if lit else INK2)
+    elif kind == "medical":
+        d.rectangle([x + 26, gy - 18, x + 62, gy], fill=(252, 250, 244),
+                    outline=INK, width=2)
+        d.rectangle([x + 40, gy - 15, x + 48, gy - 7], fill=RED)
+        d.rectangle([x + 36, gy - 11, x + 52, gy - 11 + 0], fill=RED)
+        d.rectangle([x + 37, gy - 12, x + 51, gy - 10], fill=RED)
+        d.rectangle([x + 120, gy - 9, x + 168, gy], fill=(252, 250, 244),
+                    outline=INK, width=2)
+        d.polygon([(x + 168, gy - 7), (x + 180, gy - 7), (x + 184, gy),
+                   (x + 168, gy)], fill=INK2)
+        d.rectangle([x + 140, gy - 7, x + 146, gy - 1], fill=RED)
+        d.rectangle([x + 138, gy - 5, x + 148, gy - 3], fill=RED)
+        d.ellipse([x + 128, gy - 2, x + 134, gy + 3], fill=INK)
+        d.ellipse([x + 168, gy - 2, x + 174, gy + 3], fill=INK)
+        figure(x + 206, gy)
+        figure(x + 220, gy)
+    elif kind == "ship":
+        d.polygon([(x + 60, gy - 4), (x + 190, gy - 4), (x + 178, gy + 3),
+                   (x + 70, gy + 3)], fill=INK)
+        d.rectangle([x + 84, gy - 10, x + 150, gy - 4], fill=INK2)
+        d.rectangle([x + 152, gy - 14, x + 164, gy - 4], fill=INK)
+        d.polygon([(x + 156, gy - 22), (x + 162, gy - 13), (x + 157, gy - 11),
+                   (x + 151, gy - 15)], fill=RED)
+        d.polygon([(x + 157, gy - 19), (x + 160, gy - 13), (x + 157, gy - 12),
+                   (x + 154, gy - 15)], fill=GOLD)
+        d.ellipse([x + 148, gy - 27, x + 158, gy - 21], fill=INK2)
+        d.ellipse([x + 158, gy - 29, x + 170, gy - 22], fill=INK2)
+        for wx_ in range(16, w - 20, 30):
+            d.arc([x + wx_, gy + 1, x + wx_ + 14, gy + 6], start=0, end=180,
+                  fill=INK2, width=1)
+    elif kind == "aid":
+        d.rectangle([x + 24, gy - 13, x + 76, gy - 2], fill=(252, 250, 244),
+                    outline=INK, width=2)
+        d.rectangle([x + 44, gy - 10, x + 52, gy - 4], fill=RED)
+        d.rectangle([x + 42, gy - 8, x + 54, gy - 6], fill=RED)
+        d.polygon([(x + 76, gy - 9), (x + 90, gy - 9), (x + 96, gy - 2),
+                   (x + 76, gy - 2)], fill=INK2)
+        d.ellipse([x + 32, gy - 3, x + 39, gy + 3], fill=INK)
+        d.ellipse([x + 78, gy - 3, x + 85, gy + 3], fill=INK)
+        d.rectangle([x + 140, gy - 8, x + 158, gy], fill=INK2)
+        d.rectangle([x + 143, gy - 14, x + 155, gy - 8], fill=INK2)
+        d.rectangle([x + 147, gy - 12, x + 151, gy - 6], fill=RED)
+        figure(x + 196, gy)
+        d.rectangle([x + 200, gy - 10, x + 212, gy - 4], fill=INK2)
     elif kind == "pope":
-        d.pieslice([cx - 12, cy - 10, cx + 12, cy + 14], start=180, end=360,
+        d.pieslice([x + 30, gy - 24, x + 74, gy + 2], start=180, end=360,
                    fill=GOLD, outline=INK)
-        d.rectangle([cx - 13, cy + 2, cx + 13, cy + 5], fill=INK)
-        d.line([(cx, cy - 15), (cx, cy - 8)], fill=INK, width=2)
-        d.line([(cx - 3, cy - 13), (cx + 3, cy - 13)], fill=INK, width=2)
+        d.line([(x + 52, gy - 27), (x + 52, gy - 21)], fill=INK, width=2)
+        d.line([(x + 49, gy - 25), (x + 55, gy - 25)], fill=INK, width=2)
+        d.rectangle([x + 24, gy - 2, x + 80, gy], fill=INK)
+        d.rectangle([x + 110, gy - 5, x + 210, gy - 2], fill=INK)
+        for i in range(4):
+            hx = x + 118 + i * 24
+            d.ellipse([hx, gy - 14, hx + 8, gy - 6], fill=INK)
+        d.rectangle([x + 150, gy - 5, x + 158, gy - 2], fill=(252, 250, 244))
 
 
 # ---- dotted world map + numbered pins --------------------------------------
@@ -592,7 +691,7 @@ for idx, (n, loc, tag, head, deck, art) in enumerate(CARDS):
     x = M + (idx % 4) * (card_w + 8)
     y = cy0 + (idx // 4) * (card_h + 4)
     panel(x, y, card_w, 26, [TINT, TINT2, TINT3][idx % 3])
-    icon(art, x + card_w / 2, y + 13)
+    scene(art, x, y, card_w, 26)
     ry = y + 30
     numb(x, ry, n, r=7)
     d.text((x + 18, ry + 1), loc, font=F("bold", 8.5), fill=INK)
