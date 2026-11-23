@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>THE SUNDAY LEDGER — Sunday 22 November 2026</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1024px; height:1024px; overflow:hidden; }
+  body {
+    background:#FAF6EE; color:#0F172A;
+    font-family:'Inter','Liberation Sans','DejaVu Sans',sans-serif;
+    padding:10px 14px 8px 14px;
+    display:flex; flex-direction:column;
+  }
+  .serif { font-family:'Playfair Display','Georgia','Liberation Serif','Times New Roman',serif; }
+  /* ---------- Layer 1: masthead ---------- */
+  .meta { display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9.5px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; }
+  .meta .l { color:#B91C1C; }
+  .meta .r { color:#0F172A; }
+  .date { font-size:60px; font-weight:900; text-align:center; color:#0F172A;
+    letter-spacing:-0.8px; line-height:1.02; margin:3px 0 6px 0; }
+  .mast-rule { border-bottom:2px solid #0F172A; }
+  .strap { text-align:center; font-size:10.5px; font-weight:800; letter-spacing:0.7px;
+    color:#991B1B; text-transform:uppercase; padding:4px 0 5px 0; }
+  /* ---------- Layer 2: UTC strip ---------- */
+  .utc { display:flex; border-bottom:1px solid #C8BFA8; padding:4px 0 5px 0; }
+  .utc .lab { width:54px; flex:none; background:#B91C1C; color:#FFF; font-size:7.8px;
+    font-weight:800; text-align:center; padding:3px 4px; line-height:1.15; border-radius:2px;
+    display:flex; align-items:center; justify-content:center; }
+  .utc .cell { flex:1; text-align:center; border-left:1px solid #D4CBB8; padding:0 2px; }
+  .utc .t { font-size:10.5px; font-weight:700; color:#991B1B; }
+  .utc .e { font-size:8.6px; color:#334155; margin-top:1px; }
+  /* ---------- Layer 3: numbers strip ---------- */
+  .nums { display:flex; background:#F2ECE1; border-bottom:1px solid #C8BFA8; padding:5px 0 6px 0; }
+  .nums .lab { width:54px; flex:none; font-size:7.5px; font-weight:800; color:#991B1B;
+    line-height:1.12; display:flex; align-items:center; justify-content:center; text-align:center; }
+  .nums .cell { flex:1; text-align:center; border-left:1px solid #D4CBB8; padding:0 2px; }
+  .nums .f { font-size:15.5px; font-weight:800; color:#0F172A; }
+  .nums .c { font-size:8.6px; color:#475569; margin-top:1px; }
+  /* ---------- shared card bits ---------- */
+  .badge { font-size:7.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.4px;
+    padding:1.5px 5px; border-radius:2px; white-space:nowrap; }
+  .b-conf { background:#ECFDF5; border:1px solid #15803D; color:#166534; }
+  .b-off  { background:#FEF3C7; border:1px solid #B45309; color:#92400E; }
+  .b-rep  { background:#F1F5F9; border:1px solid #475569; color:#334155; }
+  .b-for  { background:#E0F2FE; border:1px solid #0284C7; color:#0369A1; }
+  .dot { border-radius:50%; color:#FFF; font-weight:800; display:flex; flex:none;
+    align-items:center; justify-content:center; }
+  .eu { background:#1D4ED8; } .me { background:#6D28D9; } .as { background:#047857; }
+  .am { background:#B91C1C; } .af { background:#B45309; } .oc { background:#0E7490; }
+  .c-eu { color:#1D4ED8; } .c-me { color:#6D28D9; } .c-as { color:#047857; }
+  .c-am { color:#B91C1C; } .c-af { color:#B45309; } .c-oc { color:#0E7490; }
+  /* ---------- Layer 4: leads ---------- */
+  .leads { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:10px 0 9px 0; }
+  .lead .scene { width:100%; height:124px; border:1px solid #C8BFA8; background:#EDE6D6; }
+  .mrow { display:flex; justify-content:space-between; align-items:center; margin:5px 0 3px 0; }
+  .kick { display:flex; align-items:center; gap:5px; font-size:9px; font-weight:800; letter-spacing:0.4px; }
+  .kick .dot { width:15px; height:15px; font-size:9.5px; }
+  .lead h2 { font-size:16px; font-weight:800; line-height:1.12; color:#0F172A; }
+  .lead p { font-size:9.6px; line-height:1.34; color:#334155; margin-top:3px; }
+  /* ---------- Layer 5: tier-2 cards ---------- */
+  .tier2 { border-top:1px solid #C8BFA8; padding-top:9px;
+    display:grid; grid-template-columns:repeat(5,1fr); column-gap:10px; row-gap:11px; }
+  .card .scene { width:100%; height:70px; border:1px solid #C8BFA8; }
+  .card .mrow { margin:4px 0 2px 0; }
+  .card .kick { font-size:8.2px; gap:4px; }
+  .card .kick .dot { width:13.5px; height:13.5px; font-size:8.5px; }
+  .card h3 { font-size:11.8px; font-weight:800; line-height:1.14; color:#0F172A; }
+  .card p { font-size:8.9px; line-height:1.28; color:#475569; margin-top:2px; }
+  /* ---------- Layer 6: map + briefs ---------- */
+  .tier3 { border-top:1.5px solid #991B1B; padding-top:8px; margin-top:9px;
+    display:grid; grid-template-columns:245px 1fr; gap:14px; }
+  .t3h { font-size:9.5px; font-weight:800; color:#991B1B; letter-spacing:0.6px; margin-bottom:5px; }
+  .mapbox { width:245px; height:142px; background:#DDE5ED; border:1px solid #C8BFA8; }
+  .legend { font-size:8.4px; font-weight:700; color:#1E293B; line-height:1.6; margin-top:5px; }
+  .briefs { display:grid; grid-template-columns:repeat(3,1fr); column-gap:10px; row-gap:5px; }
+  .brief { display:flex; align-items:center; gap:5px; font-size:9.8px; line-height:1.2;
+    white-space:nowrap; overflow:hidden; }
+  .brief .dot { width:14px; height:14px; font-size:8.5px; }
+  .brief b { font-weight:800; }
+  .brief span { color:#1E293B; }
+  /* ---------- Layer 7: date check ---------- */
+  .dcheck { margin-top:9px; padding:10px 8px; background:#F2ECE1; border-top:1px solid #C8BFA8;
+    border-bottom:1px solid #C8BFA8; display:flex; align-items:center; gap:8px; }
+  .dcheck .tag { background:#B91C1C; color:#FFF; font-size:8px; font-weight:800; padding:3px 6px;
+    border-radius:2px; white-space:nowrap; letter-spacing:0.5px; }
+  .dcheck p { font-size:9px; line-height:1.34; color:#334155; }
+  /* ---------- Layer 8: footer ---------- */
+  .foot { display:flex; justify-content:space-between; align-items:center; padding-top:4px;
+    font-size:8px; color:#475569; margin-top:auto; }
+  .foot .mini { font-size:6.8px; padding:1px 4px; }
+</style>
+</head>
+<body>
+  <!-- LAYER 1 · MASTHEAD -->
+  <div class="meta">
+    <div class="l">The World on One Page</div>
+    <div class="r">37 Stories · 7 Regions · 10 Fields · Every One From This Sunday</div>
+  </div>
+  <div class="date serif">Sunday 22 November 2026</div>
+  <div class="mast-rule"></div>
+  <div class="strap">COP31 ends with no deal · Liverpool 4–0 in Pochettino's debut · Alcaraz takes the ATP Finals</div>
+
+  <!-- LAYER 2 · THE DAY IN UTC -->
+  <div class="utc">
+    <div class="lab">THE DAY<br>IN UTC</div>
+    <div class="cell"><div class="t serif">Overnight</div><div class="e">186 drones; Dymer hit</div></div>
+    <div class="cell"><div class="t serif">06:30 WIB</div><div class="e">Cikande fire out</div></div>
+    <div class="cell"><div class="t serif">Asia day</div><div class="e">Hong Kong votes</div></div>
+    <div class="cell"><div class="t serif">14:30 UTC</div><div class="e">24 body bags counted</div></div>
+    <div class="cell"><div class="t serif">16:30 UTC</div><div class="e">Liverpool 4–0 United</div></div>
+    <div class="cell"><div class="t serif">17:00 UTC</div><div class="e">Alcaraz champion</div></div>
+    <div class="cell"><div class="t serif">Evening</div><div class="e">Antalya: no deal</div></div>
+  </div>
+
+  <!-- LAYER 3 · THE DAY IN NUMBERS -->
+  <div class="nums">
+    <div class="lab">THE DAY<br>IN<br>NUMBERS</div>
+    <div class="cell"><div class="f serif">NO DEAL</div><div class="c">COP31 adopts nothing at Antalya</div></div>
+    <div class="cell"><div class="f serif">186 / 161</div><div class="c">drones fired at Ukraine / downed</div></div>
+    <div class="cell"><div class="f serif">98.79%</div><div class="c">Hong Kong turnout, a record</div></div>
+    <div class="cell"><div class="f serif">720/9</div><div class="c">India's highest total in NZ</div></div>
+    <div class="cell"><div class="f serif">4–0</div><div class="c">Liverpool over Man Utd, Anfield</div></div>
+    <div class="cell"><div class="f serif">6-2 7-6(7)</div><div class="c">Alcaraz over Zverev, Turin</div></div>
+  </div>
+
+  <!-- LAYER 4 · TOP 3 LEADS -->
+  <div class="leads">
+    <div class="lead">
+      <svg class="scene" viewBox="0 0 321 104" preserveAspectRatio="none">
+        <rect width="321" height="104" fill="#EDE6D6"/>
+        <rect width="321" height="20" fill="#0F172A"/>
+        <text x="10" y="14" font-family="Liberation Sans" font-size="9" font-weight="800" fill="#FFFFFF" letter-spacing="1">ANTALYA · FINAL PLENARY</text>
+        <rect x="96" y="28" width="128" height="44" fill="#1E293B"/>
+        <line x1="112" y1="38" x2="208" y2="62" stroke="#B91C1C" stroke-width="6"/>
+        <line x1="208" y1="38" x2="112" y2="62" stroke="#B91C1C" stroke-width="6"/>
+        <rect x="30" y="34" width="34" height="26" fill="#DFD3C3"/><rect x="257" y="34" width="34" height="26" fill="#DFD3C3"/>
+        <g fill="#334155"><circle cx="52" cy="86" r="6"/><circle cx="86" cy="90" r="6"/><circle cx="120" cy="86" r="6"/><circle cx="160" cy="90" r="6"/><circle cx="200" cy="86" r="6"/><circle cx="234" cy="90" r="6"/><circle cx="268" cy="86" r="6"/></g>
+        <rect x="118" y="76" width="86" height="13" fill="#991B1B"/><text x="161" y="86" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">NO TEXT ADOPTED</text>
+      </svg>
+      <div class="mrow">
+        <div class="kick c-eu"><span class="dot eu">1</span>EUROPE · ANTALYA</div>
+        <span class="badge b-rep">Reported · Reuters</span>
+      </div>
+      <h2 class="serif">COP31 ends with no deal</h2>
+      <p>Kurum concedes: “There is no agreement on this text.” The draft, silent on fossil fuels, is rejected — a first since The Hague in 2000; the rest rolls to COP32.</p>
+    </div>
+    <div class="lead">
+      <svg class="scene" viewBox="0 0 321 104" preserveAspectRatio="none">
+        <rect width="321" height="104" fill="#131C2E"/>
+        <g fill="#F8FAFC"><circle cx="30" cy="14" r="1.4"/><circle cx="90" cy="9" r="1.2"/><circle cx="200" cy="12" r="1.4"/><circle cx="280" cy="8" r="1.2"/><circle cx="150" cy="18" r="1"/></g>
+        <polygon points="196,104 236,30 252,30 226,104" fill="#FDE68A" opacity="0.35"/>
+        <polygon points="60,104 96,44 108,44 92,104" fill="#FDE68A" opacity="0.28"/>
+        <rect x="120" y="38" width="64" height="66" fill="#1E293B"/>
+        <polygon points="120,38 152,20 184,38" fill="#0B1220"/>
+        <g fill="#FBBF24"><rect x="130" y="48" width="9" height="11"/><rect x="148" y="48" width="9" height="11"/><rect x="130" y="68" width="9" height="11"/><rect x="166" y="68" width="9" height="11"/></g>
+        <rect x="157" y="47" width="12" height="14" fill="#0B1220"/>
+        <g stroke="#94A3B8" stroke-width="2" fill="none"><line x1="238" y1="104" x2="238" y2="34"/><line x1="238" y1="40" x2="206" y2="52"/></g>
+        <g fill="#E2E8F0"><path d="M52 26 l10 4 -10 4 -3 -4 z"/><path d="M262 20 l10 4 -10 4 -3 -4 z"/></g>
+        <rect x="8" y="82" width="98" height="13" fill="#047857"/><text x="57" y="92" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">BOY OF 7 · OUT ALIVE</text>
+      </svg>
+      <div class="mrow">
+        <div class="kick c-eu"><span class="dot eu">2</span>EUROPE · KYIV REGION</div>
+        <span class="badge b-rep">Reported · SES</span>
+      </div>
+      <h2 class="serif">A boy of seven, out of the rubble alive</h2>
+      <p>186 drones overnight, 72 of them jet-powered; 161 downed, 18 places hit. In Dymer the boy is freed after some 14 hours; 14 people remain unaccounted for.</p>
+    </div>
+    <div class="lead">
+      <svg class="scene" viewBox="0 0 321 104" preserveAspectRatio="none">
+        <rect width="321" height="104" fill="#F59E0B" opacity="0.35"/>
+        <rect y="58" width="321" height="46" fill="#0E7490"/>
+        <g stroke="#FFF" stroke-width="1" opacity="0.5"><line x1="20" y1="72" x2="90" y2="72"/><line x1="180" y1="84" x2="260" y2="84"/><line x1="60" y1="94" x2="150" y2="94"/></g>
+        <circle cx="66" cy="34" r="7" fill="#334155"/>
+        <path d="M66 41 L58 58 L74 58 Z" fill="#334155"/>
+        <g fill="none" stroke="#991B1B" stroke-width="2.4"><path d="M76 30 a14 14 0 0 1 10 12"/><path d="M82 22 a24 24 0 0 1 16 20"/><path d="M88 14 a34 34 0 0 1 22 28"/></g>
+        <g fill="#0F172A"><rect x="216" y="66" width="66" height="9"/><polygon points="226,66 236,58 262,58 272,66"/><rect x="244" y="50" width="5" height="9"/></g>
+        <g fill="#1E293B"><rect x="24" y="76" width="46" height="7"/><polygon points="30,76 36,70 58,70 64,76"/></g>
+        <rect x="196" y="8" width="112" height="13" fill="#6D28D9"/><text x="252" y="18" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">CLAIM vs DENIAL</text>
+      </svg>
+      <div class="mrow">
+        <div class="kick c-me"><span class="dot me">3</span>MIDDLE EAST · BAHRAIN</div>
+        <span class="badge b-off">Officials · Iran</span>
+      </div>
+      <h2 class="serif">Claim against denial over Bahrain</h2>
+      <p>Iran says its strike hit two Patriot radars, at Riffa and Awali. Bahrain denies it — a civilian site, a fire, no injuries. Two tankers were also hit near Khasab.</p>
+    </div>
+  </div>
+
+  <!-- LAYER 5 · TIER 2: STORIES 4-13 -->
+  <div class="tier2">
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#ECFDF5"/><rect x="18" y="14" width="52" height="34" fill="#FFF" stroke="#047857" stroke-width="2"/><path d="M28 31 l8 8 l16 -18" stroke="#047857" stroke-width="4" fill="none"/><rect x="86" y="20" width="84" height="13" fill="#047857"/><text x="128" y="30" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">723 OF 856 SEATS</text></svg>
+      <div class="mrow"><div class="kick c-as"><span class="dot as">4</span>HONG KONG</div><span class="badge b-rep">Reported · Press</span></div>
+      <h3 class="serif">Hong Kong elects its Election Committee</h3>
+      <p>Record turnout of 98.79%: 5,640 voters fill 723 of 856 seats; two by lot.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#FEF3C7"/><rect x="70" y="6" width="44" height="44" fill="#FDE68A"/><line x1="92" y1="10" x2="92" y2="46" stroke="#B45309" stroke-width="2"/><circle cx="130" cy="18" r="5" fill="#B91C1C"/><rect x="8" y="34" width="30" height="5" fill="#92400E" transform="rotate(-24 45 36)"/><rect x="8" y="6" width="88" height="13" fill="#B45309"/><text x="52" y="16" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">720/9 DECLARED</text></svg>
+      <div class="mrow"><div class="kick c-oc"><span class="dot oc">5</span>NEW ZEALAND</div><span class="badge b-conf">Confirmed · ESPNcricinfo</span></div>
+      <h3 class="serif">India declare on 720/9</h3>
+      <p>Rahul 136, Pant 128; 50+ for every one of the first seven stands. NZ 119/2.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#1E293B"/><path d="M8 44 Q70 8 120 30 T182 22" stroke="#F8FAFC" stroke-width="5" fill="none"/><rect x="38" y="30" width="17" height="8" rx="3" fill="#B91C1C"/><rect x="128" y="18" width="17" height="8" rx="3" fill="#F59E0B"/><rect x="42" y="6" width="100" height="13" fill="#B91C1C"/><text x="92" y="16" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">35 LEAD CHANGES</text></svg>
+      <div class="mrow"><div class="kick c-am"><span class="dot am">6</span>LAS VEGAS</div><span class="badge b-conf">Confirmed · FIA</span></div>
+      <h3 class="serif">Verstappen takes Las Vegas</h3>
+      <p>By 0.639s; 35 lead changes. Piastri 17th to 3rd; Antonelli 6th on a penalty.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#047857"/><line x1="92" y1="4" x2="92" y2="52" stroke="#FFF" stroke-width="2"/><circle cx="92" cy="28" r="11" fill="none" stroke="#FFF" stroke-width="2"/><circle cx="52" cy="34" r="6" fill="#FFF"/><rect x="118" y="8" width="58" height="13" fill="#0F172A"/><text x="147" y="18" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">4–0 ANFIELD</text></svg>
+      <div class="mrow"><div class="kick c-eu"><span class="dot eu">7</span>ANFIELD</div><span class="badge b-rep">Reported · Press</span></div>
+      <h3 class="serif">Liverpool rout United 4–0</h3>
+      <p>Yoro off 8'; Szoboszlai, Wirtz, Ngumoha, Muñoz score. United stay 19th.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#2563EB"/><line x1="0" y1="28" x2="184" y2="28" stroke="#FFF" stroke-width="2"/><line x1="92" y1="6" x2="92" y2="50" stroke="#FFF" stroke-width="1.4" stroke-dasharray="4 3"/><circle cx="140" cy="14" r="5" fill="#FDE047"/><rect x="20" y="8" width="66" height="13" fill="#0F172A"/><text x="53" y="18" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">A 5–0 WEEK</text></svg>
+      <div class="mrow"><div class="kick c-eu"><span class="dot eu">8</span>TURIN</div><span class="badge b-conf">Confirmed · ATP</span></div>
+      <h3 class="serif">Alcaraz takes the ATP Finals</h3>
+      <p>6-2 7-6(7) over Zverev: maiden title, a 5–0 week, record $5.17m prize.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#F1F5F9"/><rect x="16" y="26" width="66" height="24" fill="#64748B"/><polygon points="16,26 34,14 52,26 66,14 82,26" fill="#475569"/><rect x="92" y="18" width="8" height="32" fill="#475569"/><path d="M96 16 q6 -8 0 -13 q-6 5 0 13" fill="#94A3B8" opacity="0.7"/><rect x="106" y="34" width="72" height="13" fill="#334155"/><text x="142" y="44" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">OUT 06:30 WIB</text></svg>
+      <div class="mrow"><div class="kick c-as"><span class="dot as">9</span>CIKANDE</div><span class="badge b-rep">Reported · Basarnas</span></div>
+      <h3 class="serif">Cikande: the search goes on</h3>
+      <p>Out at 06:30 WIB; 24 body bags by nightfall, 32 missing, toll unconfirmed.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#FFF7ED"/><rect x="118" y="8" width="34" height="5" fill="#B45309"/><path d="M122 13 v10 M148 13 v10" stroke="#B45309" stroke-width="2"/><circle cx="135" cy="30" r="8" fill="none" stroke="#B45309" stroke-width="2"/><circle cx="52" cy="16" r="7" fill="#EA580C"/><rect x="14" y="36" width="52" height="13" fill="#B45309"/><text x="40" y="46" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">50 POINTS</text></svg>
+      <div class="mrow"><div class="kick c-am"><span class="dot am">10</span>NEW ORLEANS</div><span class="badge b-rep">Reported · Press</span></div>
+      <h3 class="serif">Wembanyama's 50 sinks New Orleans</h3>
+      <p>50 points, 19 rebounds and 5 blocks in a 114–91 Spurs win.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#F5F3FF"/><path d="M30 50 L44 14 L58 50 M37 32 h14" stroke="#6D28D9" stroke-width="3" fill="none"/><path d="M110 50 L124 14 L138 50 M117 32 h14" stroke="#6D28D9" stroke-width="3" fill="none"/><line x1="44" y1="18" x2="124" y2="18" stroke="#6D28D9" stroke-width="1.6"/><polygon points="88,10 78,28 88,28 82,44 98,24 89,24" fill="#F59E0B"/><rect x="140" y="6" width="40" height="13" fill="#6D28D9"/><text x="160" y="16" font-family="Liberation Sans" font-size="7.5" font-weight="800" fill="#FFF" text-anchor="middle">2H CUTS</text></svg>
+      <div class="mrow"><div class="kick c-me"><span class="dot me">11</span>IRAN</div><span class="badge b-off">Officials · Govt</span></div>
+      <h3 class="serif">Iran begins rationing power</h3>
+      <p>Rolling two-hour cuts begin as rationing starts.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#FEF2F2"/><path d="M14 40 q14 -14 28 0 t28 0 t28 0 t28 0 t28 0" stroke="#B91C1C" stroke-width="2.4" fill="none"/><rect x="76" y="10" width="30" height="10" fill="#B91C1C"/><rect x="86" y="5" width="10" height="20" fill="#B91C1C"/><rect x="126" y="30" width="46" height="13" fill="#334155"/><text x="149" y="40" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">STABLE</text></svg>
+      <div class="mrow"><div class="kick c-am"><span class="dot am">12</span>BRASÍLIA</div><span class="badge b-rep">Reported · Press</span></div>
+      <h3 class="serif">Bolsonaro in intensive care</h3>
+      <p>The former president is treated for a bowel obstruction and is stable.</p>
+    </div>
+    <div class="card">
+      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#EFF6FF"/><rect y="38" width="184" height="18" fill="#0E7490"/><rect x="52" y="28" width="76" height="10" fill="#334155"/><rect x="82" y="20" width="16" height="8" fill="#475569"/><path d="M104 20 q5 -9 0 -15 q-6 6 0 15" fill="#F97316"/><path d="M112 22 q4 -7 0 -11 q-4 5 0 11" fill="#FBBF24"/><rect x="10" y="8" width="66" height="13" fill="#0E7490"/><text x="43" y="18" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">16 CREW OFF</text></svg>
+      <div class="mrow"><div class="kick c-eu"><span class="dot eu">13</span>THE BALTIC</div><span class="badge b-rep">Reported · Press</span></div>
+      <h3 class="serif">Tanker Sparta II still burning</h3>
+      <p>All 16 crew are safely off; Finland suspects a Ukrainian strike.</p>
+    </div>
+  </div>
+
+  <!-- LAYER 6 · MAP + BRIEFS 14-37 -->
+  <div class="tier3">
+    <div>
+      <div class="t3h">WHERE IT HAPPENED</div>
+      <svg class="mapbox" viewBox="0 0 245 118" preserveAspectRatio="none">
+        <rect width="245" height="118" fill="#DDE5ED"/>
+        <g fill="#DFD3C3" stroke="#C8BFA8" stroke-width="0.7">
+          <polygon points="10,18 70,13 79,29 62,44 36,43 15,33"/>
+          <polygon points="73,61 94,57 99,75 87,103 75,84"/>
+          <polygon points="111,15 141,11 147,25 129,35 113,28"/>
+          <polygon points="115,43 147,41 151,65 139,93 121,78 113,57"/>
+          <polygon points="147,13 217,9 233,29 215,51 189,45 169,53 155,33 145,25"/>
+          <polygon points="205,83 235,79 239,96 213,101"/>
+        </g>
+        <g font-family="Liberation Sans" font-weight="800" fill="#FFF" text-anchor="middle">
+          <circle cx="131" cy="39" r="5.5" fill="#1D4ED8"/><text x="131" y="41.5" font-size="6.5">1</text>
+          <circle cx="141" cy="24" r="5.5" fill="#1D4ED8"/><text x="141" y="26.5" font-size="6.5">2</text>
+          <circle cx="147" cy="47" r="5.5" fill="#6D28D9"/><text x="147" y="49.5" font-size="6.5">3</text>
+          <circle cx="192" cy="47" r="5.5" fill="#047857"/><text x="192" y="49.5" font-size="6.5">4</text>
+          <circle cx="233" cy="92" r="5.5" fill="#0E7490"/><text x="233" y="94.5" font-size="6.5">5</text>
+          <circle cx="37" cy="37" r="5.5" fill="#B91C1C"/><text x="37" y="39.5" font-size="6.5">6</text>
+          <circle cx="110" cy="25" r="5.5" fill="#1D4ED8"/><text x="110" y="27.5" font-size="6.5">7</text>
+          <circle cx="117" cy="33" r="5.5" fill="#1D4ED8"/><text x="117" y="35.5" font-size="6.5">8</text>
+          <circle cx="187" cy="66" r="5.5" fill="#047857"/><text x="187" y="68.5" font-size="6.5">9</text>
+          <circle cx="54" cy="41" r="5.5" fill="#B91C1C"/><text x="54" y="43.5" font-size="6.5">10</text>
+          <circle cx="158" cy="38" r="5.5" fill="#6D28D9"/><text x="158" y="40.5" font-size="6.5">11</text>
+          <circle cx="82" cy="73" r="5.5" fill="#B91C1C"/><text x="82" y="75.5" font-size="6.5">12</text>
+          <circle cx="123" cy="15" r="5.5" fill="#1D4ED8"/><text x="123" y="17.5" font-size="6.5">13</text>
+        </g>
+        <g>
+          <circle cx="197" cy="42" r="3.5" fill="#047857"/><circle cx="72" cy="66" r="3.5" fill="#B91C1C"/>
+          <circle cx="48" cy="33" r="3.5" fill="#B91C1C"/><circle cx="143" cy="52" r="3.5" fill="#6D28D9"/>
+          <circle cx="124" cy="38" r="3.5" fill="#1D4ED8"/><circle cx="172" cy="44" r="3.5" fill="#047857"/>
+          <circle cx="133" cy="20" r="3.5" fill="#1D4ED8"/><circle cx="118" cy="19" r="3.5" fill="#1D4ED8"/>
+          <circle cx="152" cy="62" r="3.5" fill="#B45309"/><circle cx="139" cy="57" r="3.5" fill="#B45309"/>
+          <circle cx="145" cy="30" r="3.5" fill="#1D4ED8"/><circle cx="186" cy="39" r="3.5" fill="#047857"/>
+          <circle cx="168" cy="39" r="3.5" fill="#047857"/><circle cx="199" cy="37" r="3.5" fill="#047857"/>
+          <circle cx="207" cy="35" r="3.5" fill="#047857"/><circle cx="238" cy="8" r="3.5" fill="#0E7490"/>
+          <circle cx="106" cy="29" r="3.5" fill="#1D4ED8"/><circle cx="103" cy="19" r="3.5" fill="#1D4ED8"/>
+          <circle cx="59" cy="35" r="3.5" fill="#B91C1C"/><circle cx="161" cy="19" r="3.5" fill="#1D4ED8"/>
+          <circle cx="151" cy="53" r="3.5" fill="#6D28D9"/><circle cx="29" cy="29" r="3.5" fill="#B91C1C"/>
+          <circle cx="136" cy="53" r="3.5" fill="#B45309"/><circle cx="127" cy="28" r="3.5" fill="#1D4ED8"/>
+        </g>
+      </svg>
+      <div class="legend">
+        <span class="c-eu">●</span> Europe 13&nbsp;&nbsp;<span class="c-me">●</span> Middle East 4&nbsp;&nbsp;<span class="c-as">●</span> Asia 8<br>
+        <span class="c-am">●</span> N. America 5&nbsp;&nbsp;<span class="c-af">●</span> Africa 3&nbsp;&nbsp;<span class="c-am">●</span> S. America 2<br>
+        <span class="c-oc">●</span> Oceania &amp; Space 2&nbsp;&nbsp;— 37 stories in all
+      </div>
+    </div>
+    <div>
+      <div class="t3h">ALSO ON SUNDAY 22 NOVEMBER</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);column-gap:10px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="brief"><span class="dot as">14</span><b class="c-as">Manipur:</b><span>toll 18; 1,130 screened</span></div>
+          <div class="brief"><span class="dot am">15</span><b class="c-am">Peru count:</b><span>1 dead, 853 displaced</span></div>
+          <div class="brief"><span class="dot am">16</span><b class="c-am">FBI:</b><span>probes hack of crime database</span></div>
+          <div class="brief"><span class="dot me">17</span><b class="c-me">Gaza:</b><span>four die in aid-vehicle strikes</span></div>
+          <div class="brief"><span class="dot eu">18</span><b class="c-eu">Vatican:</b><span>1,300 poor lunch with Leo XIV</span></div>
+          <div class="brief"><span class="dot as">19</span><b class="c-as">Delhi:</b><span>Nepal PM's first visit lands</span></div>
+          <div class="brief"><span class="dot eu">20</span><b class="c-eu">Estonia:</b><span>shuts 5 Russia crossings Dec 1</span></div>
+          <div class="brief"><span class="dot eu">21</span><b class="c-eu">Denmark:</b><span>expels a Russian attaché</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="brief"><span class="dot af">22</span><b class="c-af">Somalia:</b><span>expels the UAE envoy</span></div>
+          <div class="brief"><span class="dot af">23</span><b class="c-af">El-Fasher:</b><span>MSF counts the missing</span></div>
+          <div class="brief"><span class="dot eu">24</span><b class="c-eu">Zelenskyy:</b><span>bridge strikes “a fair response”</span></div>
+          <div class="brief"><span class="dot as">25</span><b class="c-as">Beijing:</b><span>hits back at US carrier ban</span></div>
+          <div class="brief"><span class="dot as">26</span><b class="c-as">Ladakh:</b><span>70% vote, first since 2019</span></div>
+          <div class="brief"><span class="dot as">27</span><b class="c-as">Seoul:</b><span>minister quits in AI scandal</span></div>
+          <div class="brief"><span class="dot as">28</span><b class="c-as">Fukushima:</b><span>snow strands 1,500</span></div>
+          <div class="brief"><span class="dot oc">29</span><b class="c-oc">BepiColombo:</b><span>reaches Mercury orbit</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="brief"><span class="dot am">30</span><b class="c-am">Rugby:</b><span>England 37–12 New Zealand</span></div>
+          <div class="brief"><span class="dot eu">31</span><b class="c-eu">Arsenal:</b><span>held 2–2 by Newcastle</span></div>
+          <div class="brief"><span class="dot am">32</span><b class="c-am">Columbus Crew:</b><span>beat Messi's Miami 3–0</span></div>
+          <div class="brief"><span class="dot eu">33</span><b class="c-eu">Russia:</b><span>170 drones downed — CLAIM</span></div>
+          <div class="brief"><span class="dot me">34</span><b class="c-me">Saudi:</b><span>downs Houthi missile — CLAIM</span></div>
+          <div class="brief"><span class="dot am">35</span><b class="c-am">Markets:</b><span>gold $5,555; Bitcoin $60k+</span></div>
+          <div class="brief"><span class="dot af">36</span><b class="c-af">Khartoum:</b><span>drone strikes reported</span></div>
+          <div class="brief"><span class="dot eu">37</span><b class="c-eu">Riemann:</b><span>AI proof claimed — REPORTED</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 7 · DATE CHECK -->
+  <div class="dcheck">
+    <div class="tag">DATE CHECK</div>
+    <p><b>Left out on purpose, first reported before Sunday:</b> the ICJ's Myanmar ruling (Thu 19 Nov) · EU–Indonesia CEPA signed in Brussels (Sat 21) · ‘El Chapo Isidro’ captured (Fri 20) · Bayelsa funeral boat capsized (Fri 20) · Geneva's killer-robot talks ended (Sat) · the 400-drone barrage was Thu–Fri night. <b>Not yet:</b> the COP's unresolved items roll to COP32 in Addis Ababa (Nov 2027).</p>
+  </div>
+
+  <!-- LAYER 8 · FOOTER -->
+  <div class="foot">
+    <div>All stories first reported Sunday 22 Nov 2026.</div>
+    <div>
+      <span class="badge mini b-conf">Confirmed</span> on the record&nbsp;
+      <span class="badge mini b-off">Officials</span> officials say&nbsp;
+      <span class="badge mini b-rep">Reported</span> news report&nbsp;
+      <span class="badge mini b-for">Forecast</span> forecast
+    </div>
+    <div>Sources: Reuters · Sky · ATP · ESPNcricinfo · Xinhua · BBC · SES Ukraine · Basarnas · UKMTO · F1/FIA · MSF</div>
+  </div>
+</body>
+</html>
