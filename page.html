@@ -13,32 +13,17 @@
     display:flex; flex-direction:column;
   }
   .serif { font-family:'Playfair Display','Georgia','Liberation Serif','Times New Roman',serif; }
-  /* ---------- Layer 1: masthead ---------- */
+  /* ---------- masthead ---------- */
   .meta { display:flex; justify-content:space-between; align-items:baseline;
     font-size:9.5px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; }
   .meta .l { color:#B91C1C; }
   .meta .r { color:#0F172A; }
-  .date { font-size:60px; font-weight:900; text-align:center; color:#0F172A;
-    letter-spacing:-0.8px; line-height:1.02; margin:3px 0 6px 0; }
+  .date { font-size:58px; font-weight:900; text-align:center; color:#0F172A;
+    letter-spacing:-0.8px; line-height:1.02; margin:2px 0 5px 0; }
   .mast-rule { border-bottom:2px solid #0F172A; }
   .strap { text-align:center; font-size:10.5px; font-weight:800; letter-spacing:0.7px;
     color:#991B1B; text-transform:uppercase; padding:4px 0 5px 0; }
-  /* ---------- Layer 2: UTC strip ---------- */
-  .utc { display:flex; border-bottom:1px solid #C8BFA8; padding:4px 0 5px 0; }
-  .utc .lab { width:54px; flex:none; background:#B91C1C; color:#FFF; font-size:7.8px;
-    font-weight:800; text-align:center; padding:3px 4px; line-height:1.15; border-radius:2px;
-    display:flex; align-items:center; justify-content:center; }
-  .utc .cell { flex:1; text-align:center; border-left:1px solid #D4CBB8; padding:0 2px; }
-  .utc .t { font-size:10.5px; font-weight:700; color:#991B1B; }
-  .utc .e { font-size:8.6px; color:#334155; margin-top:1px; }
-  /* ---------- Layer 3: numbers strip ---------- */
-  .nums { display:flex; background:#F2ECE1; border-bottom:1px solid #C8BFA8; padding:5px 0 6px 0; }
-  .nums .lab { width:54px; flex:none; font-size:7.5px; font-weight:800; color:#991B1B;
-    line-height:1.12; display:flex; align-items:center; justify-content:center; text-align:center; }
-  .nums .cell { flex:1; text-align:center; border-left:1px solid #D4CBB8; padding:0 2px; }
-  .nums .f { font-size:15.5px; font-weight:800; color:#0F172A; }
-  .nums .c { font-size:8.6px; color:#475569; margin-top:1px; }
-  /* ---------- shared card bits ---------- */
+  /* ---------- shared bits ---------- */
   .badge { font-size:7.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.4px;
     padding:1.5px 5px; border-radius:2px; white-space:nowrap; }
   .b-conf { background:#ECFDF5; border:1px solid #15803D; color:#166534; }
@@ -51,30 +36,49 @@
   .am { background:#B91C1C; } .af { background:#B45309; } .oc { background:#0E7490; }
   .c-eu { color:#1D4ED8; } .c-me { color:#6D28D9; } .c-as { color:#047857; }
   .c-am { color:#B91C1C; } .c-af { color:#B45309; } .c-oc { color:#0E7490; }
-  /* ---------- Layer 4: leads ---------- */
-  .leads { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:10px 0 9px 0; }
-  .lead .scene { width:100%; height:119px; border:1px solid #C8BFA8; background:#EDE6D6; }
   .mrow { display:flex; justify-content:space-between; align-items:center; margin:5px 0 3px 0; }
   .kick { display:flex; align-items:center; gap:5px; font-size:9px; font-weight:800; letter-spacing:0.4px; }
   .kick .dot { width:15px; height:15px; font-size:9.5px; }
-  .lead h2 { font-size:16px; font-weight:800; line-height:1.12; color:#0F172A; }
+  /* ---------- hero row ---------- */
+  .hero-row { display:flex; gap:14px; padding:8px 0 8px 0; border-bottom:1px solid #C8BFA8; }
+  .hero { flex:1; }
+  .hero .scene { width:100%; height:102px; border:1px solid #C8BFA8; background:#EDE6D6; display:block; }
+  .hero h1 { font-size:27px; font-weight:900; line-height:1.05; color:#0F172A; margin-top:5px; }
+  .hero p { font-size:11px; line-height:1.38; color:#1E293B; margin-top:4px; }
+  .rail { width:296px; flex:none; border-left:2px solid #0F172A; padding-left:12px; }
+  .rail .rh { font-size:9.5px; font-weight:800; color:#991B1B; letter-spacing:0.8px; margin-bottom:2px; }
+  .fig { display:flex; align-items:baseline; gap:8px; padding:4.5px 0; border-bottom:1px solid #D4CBB8; }
+  .fig:last-child { border-bottom:none; }
+  .fig b { font-size:19px; font-weight:800; color:#0F172A; white-space:nowrap; }
+  .fig span { font-size:8.6px; color:#475569; line-height:1.25; }
+  /* ---------- UTC strip ---------- */
+  .utc { display:flex; border-bottom:1px solid #C8BFA8; padding:4px 0 5px 0; }
+  .utc .lab { width:54px; flex:none; background:#B91C1C; color:#FFF; font-size:7.8px;
+    font-weight:800; text-align:center; padding:3px 4px; line-height:1.15; border-radius:2px;
+    display:flex; align-items:center; justify-content:center; }
+  .utc .cell { flex:1; text-align:center; border-left:1px solid #D4CBB8; padding:0 2px; }
+  .utc .t { font-size:10.5px; font-weight:700; color:#991B1B; }
+  .utc .e { font-size:8.6px; color:#334155; margin-top:1px; }
+  /* ---------- leads ---------- */
+  .leads { display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:8px 0 8px 0; }
+  .lead .scene { width:100%; height:74px; border:1px solid #C8BFA8; background:#EDE6D6; display:block; }
+  .lead h2 { font-size:17.5px; font-weight:800; line-height:1.12; color:#0F172A; }
   .lead p { font-size:9.6px; line-height:1.34; color:#334155; margin-top:3px; }
-  /* ---------- Layer 5: tier-2 cards ---------- */
-  .tier2 { border-top:1px solid #C8BFA8; padding-top:9px;
-    display:grid; grid-template-columns:repeat(5,1fr); column-gap:10px; row-gap:11px; }
-  .card .scene { width:100%; height:67px; border:1px solid #C8BFA8; }
+  /* ---------- cards ---------- */
+  .tier2 { border-top:1px solid #C8BFA8; padding-top:8px;
+    display:grid; grid-template-columns:repeat(4,1fr); column-gap:11px; row-gap:8px; }
+  .card .scene { width:100%; height:38px; border:1px solid #C8BFA8; display:block; }
   .card .mrow { margin:4px 0 2px 0; }
   .card .kick { font-size:8.2px; gap:4px; }
   .card .kick .dot { width:13.5px; height:13.5px; font-size:8.5px; }
-  .card h3 { font-size:11.8px; font-weight:800; line-height:1.14; color:#0F172A; }
-  .card p { font-size:8.9px; line-height:1.28; color:#475569; margin-top:2px; }
-  /* ---------- Layer 6: map + briefs ---------- */
-  .tier3 { border-top:1.5px solid #991B1B; padding-top:8px; margin-top:9px;
+  .card h3 { font-size:12px; font-weight:800; line-height:1.14; color:#0F172A; }
+  .card p { font-size:9.2px; line-height:1.3; color:#475569; margin-top:2px; }
+  /* ---------- map + briefs ---------- */
+  .tier3 { border-top:1.5px solid #991B1B; padding-top:7px; margin-top:8px;
     display:grid; grid-template-columns:245px 1fr; gap:14px; }
   .t3h { font-size:9.5px; font-weight:800; color:#991B1B; letter-spacing:0.6px; margin-bottom:5px; }
-  .mapbox { width:245px; height:142px; background:#DDE5ED; border:1px solid #C8BFA8; }
-  .legend { font-size:8.4px; font-weight:700; color:#1E293B; line-height:1.6; margin-top:5px; }
-  .briefs { display:grid; grid-template-columns:repeat(3,1fr); column-gap:10px; row-gap:5px; }
+  .mapbox { width:245px; height:96px; background:#DDE5ED; border:1px solid #C8BFA8; }
+  .legend { font-size:8.4px; font-weight:700; color:#1E293B; line-height:1.6; margin-top:4px; }
   .brief { display:flex; align-items:center; gap:5px; font-size:9.8px; line-height:1.2;
     white-space:nowrap; overflow:hidden; }
   .brief .dot { width:14px; height:14px; font-size:8.5px; background:#FFFFFF; }
@@ -86,20 +90,19 @@
   .brief .dot.oc { color:#0E7490; border:1.5px solid #0E7490; }
   .brief b { font-weight:800; }
   .brief span { color:#1E293B; }
-  /* ---------- Layer 7: date check ---------- */
-  .dcheck { margin-top:9px; padding:8px 8px; background:#F2ECE1; border-top:1px solid #C8BFA8;
+  /* ---------- date check + footer ---------- */
+  .dcheck { margin-top:8px; padding:7px 8px; background:#F2ECE1; border-top:1px solid #C8BFA8;
     border-bottom:1px solid #C8BFA8; display:flex; align-items:center; gap:8px; }
   .dcheck .tag { background:#B91C1C; color:#FFF; font-size:8px; font-weight:800; padding:3px 6px;
     border-radius:2px; white-space:nowrap; letter-spacing:0.5px; }
   .dcheck p { font-size:9px; line-height:1.34; color:#334155; }
-  /* ---------- Layer 8: footer ---------- */
   .foot { display:flex; justify-content:space-between; align-items:center; padding-top:5px;
     font-size:9px; color:#334155; margin-top:auto; border-top:1px solid #D4CBB8; white-space:nowrap; }
   .foot .mini { font-size:7.8px; padding:1.5px 5px; }
 </style>
 </head>
 <body>
-  <!-- LAYER 1 · MASTHEAD -->
+  <!-- MASTHEAD -->
   <div class="meta">
     <div class="l">The World on One Page</div>
     <div class="r">37 Stories · 7 Regions · 10 Fields · Every One From This Sunday</div>
@@ -108,7 +111,54 @@
   <div class="mast-rule"></div>
   <div class="strap">COP31 ends with no deal · Liverpool 4–0 in Pochettino's debut · Alcaraz takes the ATP Finals</div>
 
-  <!-- LAYER 2 · THE DAY IN UTC -->
+  <!-- HERO + NUMBERS RAIL -->
+  <div class="hero-row">
+    <div class="hero">
+      <svg class="scene" viewBox="0 0 656 140" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FDE68A"/><stop offset="1" stop-color="#F5EFE0"/>
+          </linearGradient>
+        </defs>
+        <rect width="656" height="140" fill="url(#sky)"/>
+        <rect width="656" height="22" fill="#0F172A"/>
+        <text x="12" y="15" font-family="Liberation Sans" font-size="10" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">ANTALYA · FINAL PLENARY</text>
+        <text x="644" y="15" font-family="Liberation Sans" font-size="10" font-weight="800" fill="#F59E0B" text-anchor="end">COP31</text>
+        <path d="M0 122 Q120 108 260 118 T656 112 V140 H0 Z" fill="#0E7490" opacity="0.85"/>
+        <path d="M470 96 h186 v26 h-186 z" fill="#1E293B"/>
+        <path d="M500 96 a63 30 0 0 1 126 0 z" fill="#334155"/>
+        <rect x="558" y="58" width="10" height="14" fill="#334155"/>
+        <g fill="#F8FAFC" opacity="0.9"><rect x="486" y="104" width="10" height="7"/><rect x="508" y="104" width="10" height="7"/><rect x="530" y="104" width="10" height="7"/><rect x="596" y="104" width="10" height="7"/><rect x="618" y="104" width="10" height="7"/></g>
+        <g><rect x="36" y="34" width="17" height="12" fill="#B91C1C"/><rect x="36" y="34" width="2.5" height="52" fill="#475569"/><rect x="62" y="34" width="17" height="12" fill="#1D4ED8"/><rect x="62" y="34" width="2.5" height="52" fill="#475569"/><rect x="88" y="34" width="17" height="12" fill="#047857"/><rect x="88" y="34" width="2.5" height="52" fill="#475569"/><rect x="114" y="34" width="17" height="12" fill="#F59E0B"/><rect x="114" y="34" width="2.5" height="52" fill="#475569"/></g>
+        <g><rect x="428" y="34" width="15" height="11" fill="#6D28D9"/><rect x="440" y="34" width="2.5" height="48" fill="#475569"/><rect x="404" y="34" width="15" height="11" fill="#0E7490"/><rect x="416" y="34" width="2.5" height="48" fill="#475569"/></g>
+        <rect x="196" y="32" width="176" height="76" fill="#FFFFFF"/>
+        <rect x="196" y="32" width="176" height="76" fill="none" stroke="#0F172A" stroke-width="2.5"/>
+        <g stroke="#94A3B8" stroke-width="3"><line x1="214" y1="48" x2="330" y2="48"/><line x1="214" y1="60" x2="354" y2="60"/><line x1="214" y1="72" x2="318" y2="72"/><line x1="214" y1="84" x2="342" y2="84"/><line x1="214" y1="96" x2="300" y2="96"/></g>
+        <line x1="222" y1="42" x2="346" y2="102" stroke="#B91C1C" stroke-width="7"/>
+        <line x1="346" y1="42" x2="222" y2="102" stroke="#B91C1C" stroke-width="7"/>
+        <g fill="#334155"><circle cx="52" cy="106" r="6"/><circle cx="86" cy="110" r="6"/><circle cx="120" cy="106" r="6"/><circle cx="154" cy="110" r="6"/><circle cx="404" cy="108" r="6"/><circle cx="436" cy="104" r="6"/></g>
+        <g fill="#64748B"><path d="M38 126 l7 -13 h14 l7 13 z"/><path d="M106 126 l7 -13 h14 l7 13 z"/><path d="M390 124 l7 -13 h14 l7 13 z"/></g>
+        <rect x="196" y="114" width="176" height="16" fill="#991B1B"/><text x="284" y="126" font-family="Liberation Sans" font-size="10" font-weight="800" fill="#FFF" text-anchor="middle" letter-spacing="1">NO TEXT ADOPTED</text>
+      </svg>
+      <div class="mrow">
+        <div class="kick c-eu"><span class="dot eu">1</span>EUROPE · ANTALYA, TÜRKIYE</div>
+        <span class="badge b-rep">Reported · Reuters</span>
+      </div>
+      <h1 class="serif">COP31 ends with no deal</h1>
+      <p>Kurum concedes: “There is no agreement on this text.” The draft, silent on fossil fuels, is rejected after 44 hours of overtime — the first COP with no cover decision since The Hague in 2000.</p>
+    </div>
+    <div class="rail">
+      <div class="rh">THE DAY IN NUMBERS</div>
+      <div class="fig"><b class="serif">NO DEAL</b><span>COP31 adopts nothing at Antalya</span></div>
+      <div class="fig"><b class="serif">186 / 161</b><span>drones fired at Ukraine / downed</span></div>
+      <div class="fig"><b class="serif">98.79%</b><span>Hong Kong turnout, a record</span></div>
+      <div class="fig"><b class="serif">720/9</b><span>India's highest total in NZ</span></div>
+      <div class="fig"><b class="serif">4–0</b><span>Liverpool over Man Utd, Anfield</span></div>
+      <div class="fig"><b class="serif">6-2 7-6(7)</b><span>Alcaraz over Zverev, Turin</span></div>
+    </div>
+  </div>
+
+  <!-- THE DAY IN UTC -->
   <div class="utc">
     <div class="lab">THE DAY<br>IN UTC</div>
     <div class="cell"><div class="t serif">Overnight</div><div class="e">186 drones; Dymer hit</div></div>
@@ -120,62 +170,28 @@
     <div class="cell"><div class="t serif">Evening</div><div class="e">Antalya: no deal</div></div>
   </div>
 
-  <!-- LAYER 3 · THE DAY IN NUMBERS -->
-  <div class="nums">
-    <div class="lab">THE DAY<br>IN<br>NUMBERS</div>
-    <div class="cell"><div class="f serif">NO DEAL</div><div class="c">COP31 adopts nothing at Antalya</div></div>
-    <div class="cell"><div class="f serif">186 / 161</div><div class="c">drones fired at Ukraine / downed</div></div>
-    <div class="cell"><div class="f serif">98.79%</div><div class="c">Hong Kong turnout, a record</div></div>
-    <div class="cell"><div class="f serif">720/9</div><div class="c">India's highest total in NZ</div></div>
-    <div class="cell"><div class="f serif">4–0</div><div class="c">Liverpool over Man Utd, Anfield</div></div>
-    <div class="cell"><div class="f serif">6-2 7-6(7)</div><div class="c">Alcaraz over Zverev, Turin</div></div>
-  </div>
-
-  <!-- LAYER 4 · TOP 3 LEADS -->
+  <!-- SUPPORTING LEADS -->
   <div class="leads">
     <div class="lead">
-      <svg class="scene" viewBox="0 0 321 104" preserveAspectRatio="none">
-        <rect width="321" height="104" fill="#EDE6D6"/>
-        <rect width="321" height="20" fill="#0F172A"/>
-        <text x="10" y="14" font-family="Liberation Sans" font-size="9" font-weight="800" fill="#FFFFFF" letter-spacing="1">ANTALYA · FINAL PLENARY</text>
-        <text x="311" y="14" font-family="Liberation Sans" font-size="9" font-weight="800" fill="#F59E0B" text-anchor="end">COP31</text>
-        <rect x="94" y="27" width="132" height="46" fill="#1E293B"/>
-        <rect x="94" y="27" width="132" height="46" fill="none" stroke="#0F172A" stroke-width="2"/>
-        <line x1="112" y1="37" x2="208" y2="63" stroke="#B91C1C" stroke-width="6"/>
-        <line x1="208" y1="37" x2="112" y2="63" stroke="#B91C1C" stroke-width="6"/>
-        <g><rect x="28" y="30" width="13" height="9" fill="#B91C1C"/><rect x="28" y="30" width="2" height="34" fill="#475569"/><rect x="46" y="30" width="13" height="9" fill="#1D4ED8"/><rect x="46" y="30" width="2" height="34" fill="#475569"/><rect x="64" y="30" width="13" height="9" fill="#047857"/><rect x="64" y="30" width="2" height="34" fill="#475569"/></g>
-        <g><rect x="280" y="30" width="13" height="9" fill="#F59E0B"/><rect x="291" y="30" width="2" height="34" fill="#475569"/><rect x="262" y="30" width="13" height="9" fill="#6D28D9"/><rect x="273" y="30" width="2" height="34" fill="#475569"/><rect x="244" y="30" width="13" height="9" fill="#0E7490"/><rect x="255" y="30" width="2" height="34" fill="#475569"/></g>
-        <g fill="#334155"><circle cx="48" cy="82" r="5.5"/><circle cx="78" cy="86" r="5.5"/><circle cx="108" cy="82" r="5.5"/><circle cx="138" cy="86" r="5.5"/><circle cx="168" cy="82" r="5.5"/><circle cx="198" cy="86" r="5.5"/><circle cx="228" cy="82" r="5.5"/><circle cx="258" cy="86" r="5.5"/><circle cx="282" cy="82" r="5.5"/></g>
-        <g fill="#64748B"><path d="M36 104 l6 -12 h12 l6 12 z"/><path d="M96 104 l6 -12 h12 l6 12 z"/><path d="M156 104 l6 -12 h12 l6 12 z"/><path d="M216 104 l6 -12 h12 l6 12 z"/><path d="M270 104 l6 -12 h12 l6 12 z"/></g>
-        <rect x="118" y="76" width="86" height="13" fill="#991B1B"/><text x="161" y="86" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">NO TEXT ADOPTED</text>
-      </svg>
-      <div class="mrow">
-        <div class="kick c-eu"><span class="dot eu">1</span>EUROPE · ANTALYA</div>
-        <span class="badge b-rep">Reported · Reuters</span>
-      </div>
-      <h2 class="serif">COP31 ends with no deal</h2>
-      <p>Kurum concedes: “There is no agreement on this text.” The draft, silent on fossil fuels, is rejected — a first since The Hague in 2000; the rest rolls to COP32.</p>
-    </div>
-    <div class="lead">
-      <svg class="scene" viewBox="0 0 321 104" preserveAspectRatio="none">
-        <rect width="321" height="104" fill="#131C2E"/>
-        <path d="M34 8 a9 9 0 1 0 6 16 a11 11 0 1 1 -6 -16" fill="#E2E8F0"/>
-        <g fill="#F8FAFC"><circle cx="90" cy="9" r="1.2"/><circle cx="200" cy="12" r="1.4"/><circle cx="280" cy="8" r="1.2"/><circle cx="150" cy="18" r="1"/><circle cx="246" cy="18" r="1.1"/><circle cx="64" cy="22" r="1"/></g>
-        <polygon points="196,104 236,30 252,30 226,104" fill="#FDE68A" opacity="0.35"/>
-        <polygon points="52,104 90,40 104,40 88,104" fill="#FDE68A" opacity="0.3"/>
-        <rect x="118" y="38" width="64" height="66" fill="#1E293B"/>
-        <polygon points="118,38 150,20 182,38" fill="#0B1220"/>
-        <g fill="#FBBF24"><rect x="128" y="48" width="9" height="11"/><rect x="146" y="48" width="9" height="11"/><rect x="128" y="68" width="9" height="11"/><rect x="164" y="68" width="9" height="11"/></g>
-        <rect x="157" y="47" width="12" height="14" fill="#0B1220"/>
-        <path d="M124 84 l14 -8 M140 96 l12 -10" stroke="#0B1220" stroke-width="2.4"/>
-        <rect x="262" y="52" width="42" height="52" fill="#16233A"/>
-        <g fill="#FBBF24"><rect x="270" y="60" width="8" height="10"/><rect x="288" y="78" width="8" height="10"/></g>
-        <g fill="#0B1220"><rect x="270" y="78" width="8" height="10"/></g>
-        <g fill="#24344E"><polygon points="96,104 112,90 128,104"/><polygon points="176,104 194,88 214,104"/><polygon points="226,104 240,94 254,104"/></g>
-        <g stroke="#94A3B8" stroke-width="2" fill="none"><line x1="240" y1="104" x2="240" y2="30"/><line x1="240" y1="36" x2="204" y2="48"/><line x1="204" y1="48" x2="204" y2="58"/></g>
-        <rect x="194" y="58" width="20" height="6" fill="#475569" transform="rotate(-8 204 61)"/>
-        <g fill="#E2E8F0"><path d="M52 26 l10 4 -10 4 -3 -4 z"/><path d="M262 20 l10 4 -10 4 -3 -4 z"/><path d="M150 8 l8 3 -8 3 -2 -3 z"/></g>
-        <rect x="8" y="82" width="98" height="13" fill="#047857"/><text x="57" y="92" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">BOY OF 7 · OUT ALIVE</text>
+      <svg class="scene" viewBox="0 0 490 92" preserveAspectRatio="none">
+        <rect width="490" height="92" fill="#131C2E"/>
+        <path d="M40 6 a9 9 0 1 0 7 15 a11 11 0 1 1 -7 -15" fill="#E2E8F0"/>
+        <g fill="#F8FAFC"><circle cx="120" cy="8" r="1.3"/><circle cx="230" cy="11" r="1.5"/><circle cx="330" cy="7" r="1.3"/><circle cx="420" cy="14" r="1.2"/><circle cx="180" cy="17" r="1"/><circle cx="290" cy="19" r="1.1"/><circle cx="90" cy="22" r="1"/></g>
+        <polygon points="270,92 318,22 336,22 306,92" fill="#FDE68A" opacity="0.35"/>
+        <polygon points="66,92 112,32 128,32 108,92" fill="#FDE68A" opacity="0.3"/>
+        <rect x="168" y="30" width="76" height="62" fill="#1E293B"/>
+        <polygon points="168,30 206,12 244,30" fill="#0B1220"/>
+        <g fill="#FBBF24"><rect x="179" y="40" width="10" height="12"/><rect x="198" y="40" width="10" height="12"/><rect x="179" y="60" width="10" height="12"/><rect x="217" y="60" width="10" height="12"/></g>
+        <rect x="208" y="39" width="14" height="16" fill="#0B1220"/>
+        <path d="M174 76 l16 -9 M192 88 l14 -11" stroke="#0B1220" stroke-width="2.6"/>
+        <rect x="356" y="42" width="56" height="50" fill="#16233A"/>
+        <g fill="#FBBF24"><rect x="366" y="51" width="9" height="11"/><rect x="390" y="70" width="9" height="11"/></g>
+        <rect x="366" y="70" width="9" height="11" fill="#0B1220"/>
+        <g fill="#24344E"><polygon points="130,92 150,76 170,92"/><polygon points="240,92 262,74 286,92"/><polygon points="300,92 318,80 338,92"/><polygon points="420,92 436,82 452,92"/></g>
+        <g stroke="#94A3B8" stroke-width="2.2" fill="none"><line x1="330" y1="92" x2="330" y2="22"/><line x1="330" y1="29" x2="288" y2="42"/><line x1="288" y1="42" x2="288" y2="53"/></g>
+        <rect x="277" y="53" width="23" height="7" fill="#475569" transform="rotate(-8 288 56)"/>
+        <g fill="#E2E8F0"><path d="M64 22 l11 4 -11 4 -3 -4 z"/><path d="M368 14 l11 4 -11 4 -3 -4 z"/><path d="M212 5 l9 3 -9 3 -2 -3 z"/></g>
+        <rect x="10" y="72" width="118" height="14" fill="#047857"/><text x="69" y="82" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">BOY OF 7 · OUT ALIVE</text>
       </svg>
       <div class="mrow">
         <div class="kick c-eu"><span class="dot eu">2</span>EUROPE · KYIV REGION</div>
@@ -185,21 +201,21 @@
       <p>186 drones overnight, 72 of them jet-powered; 161 downed, 18 places hit. In Dymer the boy is freed after some 14 hours; 14 people remain unaccounted for.</p>
     </div>
     <div class="lead">
-      <svg class="scene" viewBox="0 0 321 104" preserveAspectRatio="none">
-        <rect width="321" height="104" fill="#F59E0B" opacity="0.35"/>
-        <circle cx="238" cy="56" r="17" fill="#F97316" opacity="0.85"/>
-        <path d="M0 58 h321 l0 -5 -60 3 -70 -4 -80 4 -60 -3 -51 2 z" fill="#78716C" opacity="0.55"/>
-        <rect y="58" width="321" height="46" fill="#0E7490"/>
-        <g stroke="#FFF" stroke-width="1" opacity="0.5"><line x1="20" y1="72" x2="90" y2="72"/><line x1="180" y1="84" x2="260" y2="84"/><line x1="60" y1="94" x2="150" y2="94"/><line x1="236" y1="66" x2="292" y2="66"/></g>
-        <circle cx="66" cy="34" r="7" fill="#334155"/>
-        <path d="M66 41 L58 58 L74 58 Z" fill="#334155"/>
-        <path d="M59 34 a10 10 0 0 1 14 0" fill="none" stroke="#334155" stroke-width="2.4"/>
-        <g fill="none" stroke="#991B1B" stroke-width="2.4"><path d="M76 30 a14 14 0 0 1 10 12"/><path d="M82 22 a24 24 0 0 1 16 20"/><path d="M88 14 a34 34 0 0 1 22 28"/></g>
-        <path d="M286 10 q-52 8 -120 26" fill="none" stroke="#FFF" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.8"/>
-        <path d="M292 26 q-44 4 -104 18" fill="none" stroke="#FFF" stroke-width="1.3" stroke-dasharray="3 4" opacity="0.6"/>
-        <g fill="#0F172A"><rect x="216" y="66" width="66" height="9"/><polygon points="226,66 236,58 262,58 272,66"/><rect x="244" y="50" width="5" height="9"/></g>
-        <g fill="#1E293B"><rect x="24" y="76" width="46" height="7"/><polygon points="30,76 36,70 58,70 64,76"/></g>
-        <rect x="196" y="8" width="112" height="13" fill="#6D28D9"/><text x="252" y="18" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">CLAIM vs DENIAL</text>
+      <svg class="scene" viewBox="0 0 490 92" preserveAspectRatio="none">
+        <rect width="490" height="92" fill="#F59E0B" opacity="0.32"/>
+        <circle cx="352" cy="48" r="19" fill="#F97316" opacity="0.85"/>
+        <path d="M0 50 h490 l0 -5 -90 3 -110 -4 -120 4 -90 -3 -80 2 z" fill="#78716C" opacity="0.55"/>
+        <rect y="50" width="490" height="42" fill="#0E7490"/>
+        <g stroke="#FFF" stroke-width="1" opacity="0.5"><line x1="26" y1="63" x2="120" y2="63"/><line x1="240" y1="74" x2="350" y2="74"/><line x1="84" y1="83" x2="200" y2="83"/><line x1="330" y1="57" x2="410" y2="57"/></g>
+        <circle cx="86" cy="28" r="8" fill="#334155"/>
+        <path d="M86 36 L76 50 L96 50 Z" fill="#334155"/>
+        <path d="M78 28 a11 11 0 0 1 16 0" fill="none" stroke="#334155" stroke-width="2.6"/>
+        <g fill="none" stroke="#991B1B" stroke-width="2.6"><path d="M98 24 a16 16 0 0 1 12 14"/><path d="M106 15 a27 27 0 0 1 19 23"/><path d="M114 6 a38 38 0 0 1 25 32"/></g>
+        <path d="M448 6 q-70 8 -168 24" fill="none" stroke="#FFF" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.85"/>
+        <path d="M456 22 q-60 4 -146 17" fill="none" stroke="#FFF" stroke-width="1.4" stroke-dasharray="4 4" opacity="0.6"/>
+        <g fill="#0F172A"><rect x="300" y="58" width="84" height="10"/><polygon points="312,58 324,49 356,49 368,58"/><rect x="334" y="40" width="6" height="10"/></g>
+        <g fill="#1E293B"><rect x="36" y="66" width="58" height="8"/><polygon points="44,66 51,59 79,59 86,66"/></g>
+        <rect x="330" y="6" width="128" height="14" fill="#6D28D9"/><text x="394" y="17" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">CLAIM vs DENIAL</text>
       </svg>
       <div class="mrow">
         <div class="kick c-me"><span class="dot me">3</span>MIDDLE EAST · BAHRAIN</div>
@@ -210,71 +226,59 @@
     </div>
   </div>
 
-  <!-- LAYER 5 · TIER 2: STORIES 4-13 -->
+  <!-- TIER 2: STORIES 4-11 -->
   <div class="tier2">
     <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#ECFDF5"/><rect x="14" y="18" width="46" height="32" fill="#FFF" stroke="#047857" stroke-width="2"/><rect x="20" y="24" width="34" height="3" fill="#047857"/><rect x="30" y="8" width="14" height="14" fill="#FFF" stroke="#047857" stroke-width="1.4" transform="rotate(8 37 15)"/><path d="M24 40 l6 6 l12 -13" stroke="#047857" stroke-width="3.4" fill="none"/><g fill="#334155"><circle cx="112" cy="42" r="4"/><circle cx="130" cy="44" r="4"/><circle cx="148" cy="42" r="4"/><circle cx="166" cy="44" r="4"/></g><g fill="#64748B"><path d="M104 56 a8 7 0 0 1 16 0 z"/><path d="M122 56 a8 7 0 0 1 16 0 z"/><path d="M140 56 a8 7 0 0 1 16 0 z"/><path d="M158 56 a8 7 0 0 1 16 0 z"/></g><rect x="86" y="20" width="84" height="13" fill="#047857"/><text x="128" y="30" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">723 OF 856 SEATS</text></svg>
+      <svg class="scene" viewBox="0 0 242 48" preserveAspectRatio="none"><rect width="242" height="48" fill="#ECFDF5"/><rect x="18" y="14" width="54" height="30" fill="#FFF" stroke="#047857" stroke-width="2"/><rect x="25" y="19" width="40" height="3.5" fill="#047857"/><rect x="36" y="5" width="16" height="16" fill="#FFF" stroke="#047857" stroke-width="1.4" transform="rotate(8 44 13)"/><path d="M29 35 l7 7 l14 -15" stroke="#047857" stroke-width="3.6" fill="none"/><g fill="#334155"><circle cx="128" cy="36" r="4.4"/><circle cx="150" cy="38" r="4.4"/><circle cx="172" cy="36" r="4.4"/><circle cx="194" cy="38" r="4.4"/><circle cx="216" cy="36" r="4.4"/></g><g fill="#64748B"><path d="M119 48 a9 8 0 0 1 18 0 z"/><path d="M141 48 a9 8 0 0 1 18 0 z"/><path d="M163 48 a9 8 0 0 1 18 0 z"/><path d="M185 48 a9 8 0 0 1 18 0 z"/><path d="M207 48 a9 8 0 0 1 18 0 z"/></g><rect x="104" y="14" width="102" height="14" fill="#047857"/><text x="155" y="24" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">723 OF 856 SEATS</text></svg>
       <div class="mrow"><div class="kick c-as"><span class="dot as">4</span>HONG KONG</div><span class="badge b-rep">Reported · Press</span></div>
       <h3 class="serif">Hong Kong elects its Election Committee</h3>
       <p>Record turnout of 98.79%: 5,640 voters fill 723 of 856 seats; two by lot.</p>
     </div>
     <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#FEF3C7"/><rect x="70" y="6" width="44" height="44" fill="#FDE68A"/><line x1="92" y1="10" x2="92" y2="46" stroke="#B45309" stroke-width="2"/><circle cx="130" cy="18" r="5" fill="#B91C1C"/><rect x="8" y="34" width="30" height="5" fill="#92400E" transform="rotate(-24 45 36)"/><g fill="#92400E"><rect x="146" y="28" width="3.4" height="17"/><rect x="152" y="28" width="3.4" height="17"/><rect x="158" y="28" width="3.4" height="17"/><rect x="146" y="26" width="15" height="2.4"/></g><g><circle cx="16" cy="51" r="2.6" fill="#1D4ED8"/><circle cx="28" cy="52" r="2.6" fill="#B91C1C"/><circle cx="40" cy="51" r="2.6" fill="#047857"/><circle cx="52" cy="52" r="2.6" fill="#6D28D9"/><circle cx="64" cy="51" r="2.6" fill="#B45309"/><circle cx="76" cy="52" r="2.6" fill="#0E7490"/><circle cx="88" cy="51" r="2.6" fill="#334155"/><circle cx="100" cy="52" r="2.6" fill="#1D4ED8"/><circle cx="112" cy="51" r="2.6" fill="#B91C1C"/><circle cx="124" cy="52" r="2.6" fill="#047857"/></g><rect x="8" y="6" width="88" height="13" fill="#B45309"/><text x="52" y="16" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">720/9 DECLARED</text></svg>
+      <svg class="scene" viewBox="0 0 242 48" preserveAspectRatio="none"><rect width="242" height="48" fill="#FEF3C7"/><rect x="92" y="4" width="56" height="40" fill="#FDE68A"/><line x1="120" y1="7" x2="120" y2="41" stroke="#B45309" stroke-width="2.2"/><circle cx="168" cy="14" r="5.5" fill="#B91C1C"/><rect x="10" y="28" width="34" height="5.5" fill="#92400E" transform="rotate(-24 55 30)"/><g fill="#92400E"><rect x="192" y="22" width="3.8" height="19"/><rect x="199" y="22" width="3.8" height="19"/><rect x="206" y="22" width="3.8" height="19"/><rect x="192" y="20" width="18" height="2.6"/></g><g><circle cx="18" cy="43" r="2.8" fill="#1D4ED8"/><circle cx="32" cy="44" r="2.8" fill="#B91C1C"/><circle cx="46" cy="43" r="2.8" fill="#047857"/><circle cx="60" cy="44" r="2.8" fill="#6D28D9"/><circle cx="74" cy="43" r="2.8" fill="#B45309"/><circle cx="88" cy="44" r="2.8" fill="#0E7490"/><circle cx="102" cy="43" r="2.8" fill="#334155"/><circle cx="116" cy="44" r="2.8" fill="#1D4ED8"/><circle cx="130" cy="43" r="2.8" fill="#B91C1C"/><circle cx="144" cy="44" r="2.8" fill="#047857"/><circle cx="158" cy="43" r="2.8" fill="#6D28D9"/><circle cx="172" cy="44" r="2.8" fill="#B45309"/></g><rect x="10" y="4" width="100" height="14" fill="#B45309"/><text x="60" y="14" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">720/9 DECLARED</text></svg>
       <div class="mrow"><div class="kick c-oc"><span class="dot oc">5</span>NEW ZEALAND</div><span class="badge b-conf">Confirmed · ESPNcricinfo</span></div>
       <h3 class="serif">India declare on 720/9</h3>
       <p>Rahul 136, Pant 128; 50+ for every one of the first seven stands. NZ 119/2.</p>
     </div>
     <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#1E293B"/><path d="M8 44 Q70 8 120 30 T182 22" stroke="#F8FAFC" stroke-width="5" fill="none"/><path d="M8 51 Q70 15 120 37 T182 29" stroke="#475569" stroke-width="2" fill="none"/><rect x="38" y="30" width="17" height="8" rx="3" fill="#B91C1C"/><rect x="128" y="18" width="17" height="8" rx="3" fill="#F59E0B"/><g fill="#0F172A"><rect x="6" y="46" width="30" height="4"/><rect x="6" y="41" width="24" height="4"/><rect x="6" y="36" width="18" height="4"/></g><g stroke="#F8FAFC" stroke-width="1.6"><line x1="166" y1="34" x2="166" y2="50"/><line x1="158" y1="36" x2="174" y2="36"/></g><g><rect x="160" y="38" width="3" height="3" fill="#FFF"/><rect x="163" y="38" width="3" height="3" fill="#0F172A"/><rect x="166" y="38" width="3" height="3" fill="#FFF"/><rect x="160" y="41" width="3" height="3" fill="#0F172A"/><rect x="163" y="41" width="3" height="3" fill="#FFF"/><rect x="166" y="41" width="3" height="3" fill="#0F172A"/></g><rect x="42" y="6" width="100" height="13" fill="#B91C1C"/><text x="92" y="16" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">35 LEAD CHANGES</text></svg>
+      <svg class="scene" viewBox="0 0 242 48" preserveAspectRatio="none"><rect width="242" height="48" fill="#1E293B"/><path d="M10 38 Q92 6 158 26 T240 18" stroke="#F8FAFC" stroke-width="5.5" fill="none"/><path d="M10 45 Q92 13 158 33 T240 25" stroke="#475569" stroke-width="2.2" fill="none"/><rect x="50" y="25" width="19" height="9" rx="3.5" fill="#B91C1C"/><rect x="168" y="14" width="19" height="9" rx="3.5" fill="#F59E0B"/><g fill="#0F172A"><rect x="8" y="40" width="34" height="4.5"/><rect x="8" y="35" width="27" height="4.5"/><rect x="8" y="30" width="20" height="4.5"/></g><g stroke="#F8FAFC" stroke-width="1.8"><line x1="218" y1="28" x2="218" y2="44"/><line x1="209" y1="30" x2="227" y2="30"/></g><g><rect x="211" y="32" width="3.4" height="3.4" fill="#FFF"/><rect x="214.4" y="32" width="3.4" height="3.4" fill="#0F172A"/><rect x="217.8" y="32" width="3.4" height="3.4" fill="#FFF"/><rect x="211" y="35.4" width="3.4" height="3.4" fill="#0F172A"/><rect x="214.4" y="35.4" width="3.4" height="3.4" fill="#FFF"/><rect x="217.8" y="35.4" width="3.4" height="3.4" fill="#0F172A"/></g><rect x="56" y="4" width="112" height="14" fill="#B91C1C"/><text x="112" y="14" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">35 LEAD CHANGES</text></svg>
       <div class="mrow"><div class="kick c-am"><span class="dot am">6</span>LAS VEGAS</div><span class="badge b-conf">Confirmed · FIA</span></div>
       <h3 class="serif">Verstappen takes Las Vegas</h3>
       <p>By 0.639s; 35 lead changes. Piastri 17th to 3rd; Antonelli 6th on a penalty.</p>
     </div>
     <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#047857"/><line x1="92" y1="4" x2="92" y2="52" stroke="#FFF" stroke-width="2"/><circle cx="92" cy="28" r="11" fill="none" stroke="#FFF" stroke-width="2"/><rect x="4" y="14" width="26" height="28" fill="none" stroke="#FFF" stroke-width="1.6"/><rect x="154" y="14" width="26" height="28" fill="none" stroke="#FFF" stroke-width="1.6"/><g stroke="#FFF" stroke-width="2.2"><line x1="168" y1="20" x2="168" y2="40"/><line x1="160" y1="20" x2="176" y2="20"/></g><circle cx="52" cy="34" r="6" fill="#FFF"/><g fill="#0F172A"><circle cx="50" cy="32" r="1.3"/><circle cx="55" cy="35" r="1.3"/><circle cx="49" cy="37" r="1.3"/></g><rect x="118" y="8" width="58" height="13" fill="#0F172A"/><text x="147" y="18" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">4–0 ANFIELD</text></svg>
+      <svg class="scene" viewBox="0 0 242 48" preserveAspectRatio="none"><rect width="242" height="48" fill="#047857"/><line x1="121" y1="3" x2="121" y2="45" stroke="#FFF" stroke-width="2.2"/><circle cx="121" cy="24" r="12" fill="none" stroke="#FFF" stroke-width="2.2"/><rect x="5" y="11" width="30" height="26" fill="none" stroke="#FFF" stroke-width="1.8"/><rect x="207" y="11" width="30" height="26" fill="none" stroke="#FFF" stroke-width="1.8"/><g stroke="#FFF" stroke-width="2.4"><line x1="222" y1="16" x2="222" y2="36"/><line x1="213" y1="16" x2="231" y2="16"/></g><circle cx="66" cy="29" r="6.5" fill="#FFF"/><g fill="#0F172A"><circle cx="64" cy="27" r="1.4"/><circle cx="69" cy="30" r="1.4"/><circle cx="63" cy="32" r="1.4"/></g><rect x="146" y="5" width="66" height="14" fill="#0F172A"/><text x="179" y="15" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">4–0 ANFIELD</text></svg>
       <div class="mrow"><div class="kick c-eu"><span class="dot eu">7</span>ANFIELD</div><span class="badge b-rep">Reported · Press</span></div>
       <h3 class="serif">Liverpool rout United 4–0</h3>
       <p>Yoro off 8'; Szoboszlai, Wirtz, Ngumoha, Muñoz score. United stay 19th.</p>
     </div>
     <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#2563EB"/><rect x="58" y="6" width="68" height="44" fill="none" stroke="#FFF" stroke-width="1.2" opacity="0.75"/><line x1="0" y1="28" x2="184" y2="28" stroke="#FFF" stroke-width="2.6"/><line x1="92" y1="6" x2="92" y2="50" stroke="#FFF" stroke-width="1.4" stroke-dasharray="4 3"/><path d="M104 12 q20 2 32 10" fill="none" stroke="#FDE047" stroke-width="1.4" stroke-dasharray="3 3"/><circle cx="140" cy="24" r="5" fill="#FDE047"/><g stroke="#0F172A" stroke-width="2.6" fill="none"><line x1="30" y1="50" x2="30" y2="36"/><line x1="30" y1="38" x2="40" y2="28"/></g><circle cx="30" cy="31" r="4" fill="#0F172A"/><line x1="38" y1="30" x2="46" y2="42" stroke="#0F172A" stroke-width="2.2"/><rect x="20" y="8" width="66" height="13" fill="#0F172A"/><text x="53" y="18" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">A 5–0 WEEK</text></svg>
+      <svg class="scene" viewBox="0 0 242 48" preserveAspectRatio="none"><rect width="242" height="48" fill="#2563EB"/><rect x="76" y="4" width="90" height="40" fill="none" stroke="#FFF" stroke-width="1.3" opacity="0.75"/><line x1="0" y1="24" x2="242" y2="24" stroke="#FFF" stroke-width="2.8"/><line x1="121" y1="4" x2="121" y2="44" stroke="#FFF" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M136 9 q26 2 42 9" fill="none" stroke="#FDE047" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="182" cy="20" r="5.5" fill="#FDE047"/><g stroke="#0F172A" stroke-width="2.8" fill="none"><line x1="38" y1="44" x2="38" y2="30"/><line x1="38" y1="32" x2="49" y2="22"/></g><circle cx="38" cy="25" r="4.4" fill="#0F172A"/><line x1="47" y1="24" x2="56" y2="37" stroke="#0F172A" stroke-width="2.4"/><rect x="24" y="5" width="76" height="14" fill="#0F172A"/><text x="62" y="15" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">A 5–0 WEEK</text></svg>
       <div class="mrow"><div class="kick c-eu"><span class="dot eu">8</span>TURIN</div><span class="badge b-conf">Confirmed · ATP</span></div>
       <h3 class="serif">Alcaraz takes the ATP Finals</h3>
       <p>6-2 7-6(7) over Zverev: maiden title, a 5–0 week, record $5.17m prize.</p>
     </div>
     <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#F1F5F9"/><rect x="16" y="26" width="66" height="24" fill="#64748B"/><polygon points="16,26 34,14 52,26 66,14 82,26" fill="#475569"/><rect x="92" y="18" width="8" height="32" fill="#475569"/><path d="M96 16 q6 -8 0 -13 q-6 5 0 13" fill="#94A3B8" opacity="0.7"/><rect x="112" y="12" width="6" height="38" fill="#475569"/><path d="M115 10 q5 -6 0 -10 q-5 4 0 10" fill="#94A3B8" opacity="0.55"/><polygon points="6,50 34,38 40,42 14,54" fill="#FDE68A" opacity="0.5"/><g fill="#F59E0B"><path d="M20 46 a5 5 0 0 1 10 0 z"/><path d="M36 48 a5 5 0 0 1 10 0 z"/><path d="M52 46 a5 5 0 0 1 10 0 z"/></g><g fill="#334155"><rect x="126" y="46" width="34" height="7"/><rect x="134" y="40" width="12" height="6"/><circle cx="133" cy="54" r="2.6"/><circle cx="153" cy="54" r="2.6"/></g><rect x="106" y="34" width="72" height="13" fill="#334155"/><text x="142" y="44" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">OUT 06:30 WIB</text></svg>
+      <svg class="scene" viewBox="0 0 242 48" preserveAspectRatio="none"><rect width="242" height="48" fill="#F1F5F9"/><rect x="20" y="21" width="84" height="23" fill="#64748B"/><polygon points="20,21 42,10 64,21 82,10 106,21" fill="#475569"/><rect x="118" y="14" width="9" height="30" fill="#475569"/><path d="M122 12 q7 -9 0 -15 q-7 6 0 15" fill="#94A3B8" opacity="0.7"/><rect x="146" y="9" width="7" height="35" fill="#475569"/><path d="M149 7 q6 -7 0 -12 q-6 5 0 12" fill="#94A3B8" opacity="0.55"/><polygon points="8,44 42,31 49,36 18,48" fill="#FDE68A" opacity="0.5"/><g fill="#F59E0B"><path d="M26 40 a5.5 5.5 0 0 1 11 0 z"/><path d="M46 42 a5.5 5.5 0 0 1 11 0 z"/><path d="M66 40 a5.5 5.5 0 0 1 11 0 z"/></g><g fill="#334155"><rect x="164" y="39" width="40" height="8"/><rect x="174" y="32" width="14" height="7"/><circle cx="173" cy="48" r="3"/><circle cx="196" cy="48" r="3"/></g><rect x="140" y="24" width="84" height="14" fill="#334155"/><text x="182" y="34" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">OUT 06:30 WIB</text></svg>
       <div class="mrow"><div class="kick c-as"><span class="dot as">9</span>CIKANDE</div><span class="badge b-rep">Reported · Basarnas</span></div>
       <h3 class="serif">Cikande: the search goes on</h3>
       <p>Out at 06:30 WIB; 24 body bags by nightfall, 32 missing, toll unconfirmed.</p>
     </div>
     <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#FFF7ED"/><g stroke="#FDBA74" stroke-width="1"><line x1="0" y1="50" x2="184" y2="50"/><line x1="30" y1="56" x2="52" y2="44"/><line x1="70" y1="56" x2="84" y2="44"/><line x1="120" y1="56" x2="126" y2="44"/></g><rect x="116" y="6" width="38" height="6" fill="#FFF" stroke="#B45309" stroke-width="1.6"/><path d="M121 12 v9 M149 12 v9" stroke="#B45309" stroke-width="2"/><path d="M121 21 h28 M124 21 l3 8 M135 21 v9 M146 21 l-3 8" stroke="#EA580C" stroke-width="1.2" fill="none"/><path d="M14 30 q18 -16 34 -12" fill="none" stroke="#FDBA74" stroke-width="1.6" stroke-dasharray="3 3"/><circle cx="52" cy="16" r="7" fill="#EA580C"/><path d="M46 12 a8 8 0 0 1 12 7 M47 21 a8 8 0 0 0 11 -6" stroke="#9A3412" stroke-width="1.2" fill="none"/><g stroke="#0F172A" stroke-width="2.4" fill="none"><line x1="160" y1="52" x2="160" y2="38"/><line x1="160" y1="40" x2="170" y2="30"/></g><circle cx="160" cy="33" r="3.6" fill="#0F172A"/><rect x="14" y="36" width="52" height="13" fill="#B45309"/><text x="40" y="46" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">50 POINTS</text></svg>
-      <div class="mrow"><div class="kick c-am"><span class="dot am">10</span>NEW ORLEANS</div><span class="badge b-rep">Reported · Press</span></div>
-      <h3 class="serif">Wembanyama's 50 sinks New Orleans</h3>
-      <p>50 points, 19 rebounds and 5 blocks in a 114–91 Spurs win.</p>
-    </div>
-    <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#F5F3FF"/><g fill="#334155"><path d="M6 56 v-12 l7 -6 7 6 v12 z"/><path d="M24 56 v-12 l7 -6 7 6 v12 z"/><path d="M42 56 v-12 l7 -6 7 6 v12 z"/></g><rect x="11" y="47" width="4" height="5" fill="#FBBF24"/><rect x="29" y="47" width="4" height="5" fill="#1E293B"/><rect x="47" y="47" width="4" height="5" fill="#1E293B"/><path d="M30 50 L44 14 L58 50 M37 32 h14" stroke="#6D28D9" stroke-width="3" fill="none"/><path d="M110 50 L124 14 L138 50 M117 32 h14" stroke="#6D28D9" stroke-width="3" fill="none"/><path d="M152 52 L161 26 L170 52 M156 40 h10" stroke="#A78BFA" stroke-width="2.2" fill="none"/><line x1="44" y1="18" x2="124" y2="18" stroke="#6D28D9" stroke-width="1.6"/><line x1="124" y1="18" x2="161" y2="29" stroke="#A78BFA" stroke-width="1.2"/><polygon points="88,10 78,28 88,28 82,44 98,24 89,24" fill="#F59E0B"/><rect x="140" y="6" width="40" height="13" fill="#6D28D9"/><text x="160" y="16" font-family="Liberation Sans" font-size="7.5" font-weight="800" fill="#FFF" text-anchor="middle">2H CUTS</text></svg>
-      <div class="mrow"><div class="kick c-me"><span class="dot me">11</span>IRAN</div><span class="badge b-off">Officials · Govt</span></div>
+      <svg class="scene" viewBox="0 0 242 48" preserveAspectRatio="none"><rect width="242" height="48" fill="#F5F3FF"/><g fill="#334155"><path d="M8 48 v-13 l8 -7 8 7 v13 z"/><path d="M30 48 v-13 l8 -7 8 7 v13 z"/><path d="M52 48 v-13 l8 -7 8 7 v13 z"/></g><rect x="14" y="39" width="4.5" height="5.5" fill="#FBBF24"/><rect x="36" y="39" width="4.5" height="5.5" fill="#1E293B"/><rect x="58" y="39" width="4.5" height="5.5" fill="#1E293B"/><path d="M96 44 L114 8 L132 44 M105 27 h18" stroke="#6D28D9" stroke-width="3.4" fill="none"/><path d="M150 44 L168 8 L186 44 M159 27 h18" stroke="#6D28D9" stroke-width="3.4" fill="none"/><path d="M204 46 L215 20 L226 46 M210 34 h11" stroke="#A78BFA" stroke-width="2.4" fill="none"/><line x1="114" y1="12" x2="168" y2="12" stroke="#6D28D9" stroke-width="1.8"/><line x1="168" y1="12" x2="215" y2="23" stroke="#A78BFA" stroke-width="1.3"/><polygon points="80,6 68,26 79,26 71,44 90,21 80,21" fill="#F59E0B"/><rect x="176" y="4" width="46" height="14" fill="#6D28D9"/><text x="199" y="14" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">2H CUTS</text></svg>
+      <div class="mrow"><div class="kick c-me"><span class="dot me">10</span>IRAN</div><span class="badge b-off">Officials · Govt</span></div>
       <h3 class="serif">Iran begins rationing power</h3>
       <p>Rolling two-hour cuts begin as rationing starts.</p>
     </div>
     <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#FEF2F2"/><rect x="10" y="14" width="52" height="38" fill="#FFF" stroke="#CBD5E1" stroke-width="1.6"/><g fill="#E2E8F0"><rect x="16" y="30" width="8" height="8"/><rect x="28" y="30" width="8" height="8"/><rect x="40" y="30" width="8" height="8"/><rect x="16" y="42" width="8" height="8"/><rect x="40" y="42" width="8" height="8"/></g><rect x="31" y="17" width="10" height="4" fill="#B91C1C"/><rect x="34" y="14" width="4" height="10" fill="#B91C1C"/><rect x="76" y="12" width="62" height="30" fill="#0F172A"/><path d="M82 27 h10 l4 -8 6 14 4 -6 h10 l4 -8 6 12 4 -4 h4" stroke="#22C55E" stroke-width="2" fill="none"/><rect x="120" y="44" width="52" height="13" fill="#334155"/><text x="146" y="54" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">STABLE</text></svg>
-      <div class="mrow"><div class="kick c-am"><span class="dot am">12</span>BRASÍLIA</div><span class="badge b-rep">Reported · Press</span></div>
+      <svg class="scene" viewBox="0 0 242 48" preserveAspectRatio="none"><rect width="242" height="48" fill="#FEF2F2"/><rect x="14" y="10" width="64" height="34" fill="#FFF" stroke="#CBD5E1" stroke-width="1.8"/><g fill="#E2E8F0"><rect x="21" y="25" width="9" height="9"/><rect x="35" y="25" width="9" height="9"/><rect x="49" y="25" width="9" height="9"/><rect x="21" y="37" width="9" height="7"/><rect x="49" y="37" width="9" height="7"/></g><rect x="41" y="13" width="11" height="4.5" fill="#B91C1C"/><rect x="44.5" y="9.5" width="4.5" height="11" fill="#B91C1C"/><rect x="98" y="8" width="80" height="28" fill="#0F172A"/><path d="M105 22 h12 l5 -9 7 16 5 -7 h13 l5 -9 7 14 5 -5 h6" stroke="#22C55E" stroke-width="2.2" fill="none"/><rect x="152" y="36" width="62" height="14" fill="#334155"/><text x="183" y="46" font-family="Liberation Sans" font-size="8.5" font-weight="800" fill="#FFF" text-anchor="middle">STABLE</text></svg>
+      <div class="mrow"><div class="kick c-am"><span class="dot am">11</span>BRASÍLIA</div><span class="badge b-rep">Reported · Press</span></div>
       <h3 class="serif">Bolsonaro in intensive care</h3>
       <p>The former president is treated for a bowel obstruction and is stable.</p>
     </div>
-    <div class="card">
-      <svg class="scene" viewBox="0 0 184 56" preserveAspectRatio="none"><rect width="184" height="56" fill="#EFF6FF"/><rect y="38" width="184" height="18" fill="#0E7490"/><g stroke="#FFF" stroke-width="1" opacity="0.55"><line x1="14" y1="46" x2="52" y2="46"/><line x1="120" y1="50" x2="168" y2="50"/></g><rect x="52" y="28" width="76" height="10" fill="#334155"/><rect x="82" y="20" width="16" height="8" fill="#475569"/><path d="M104 20 q5 -9 0 -15 q-6 6 0 15" fill="#F97316"/><path d="M112 22 q4 -7 0 -11 q-4 5 0 11" fill="#FBBF24"/><g fill="#94A3B8" opacity="0.8"><ellipse cx="118" cy="4" rx="7" ry="3"/><ellipse cx="126" cy="0" rx="9" ry="3.4"/></g><g fill="#B45309"><rect x="16" y="42" width="26" height="5"/><polygon points="20,42 24,37 36,37 40,42"/></g><g stroke="#FFF" stroke-width="1" opacity="0.7"><line x1="6" y1="50" x2="16" y2="50"/></g><g stroke="#0F172A" stroke-width="1.8"><line x1="146" y1="10" x2="172" y2="10"/><line x1="159" y1="13" x2="159" y2="16"/></g><rect x="152" y="13" width="14" height="6" rx="3" fill="#0F172A"/><rect x="10" y="8" width="66" height="13" fill="#0E7490"/><text x="43" y="18" font-family="Liberation Sans" font-size="8" font-weight="800" fill="#FFF" text-anchor="middle">16 CREW OFF</text></svg>
-      <div class="mrow"><div class="kick c-eu"><span class="dot eu">13</span>THE BALTIC</div><span class="badge b-rep">Reported · Press</span></div>
-      <h3 class="serif">Tanker Sparta II still burning</h3>
-      <p>All 16 crew are safely off; Finland suspects a Ukrainian strike.</p>
-    </div>
   </div>
 
-  <!-- LAYER 6 · MAP + BRIEFS 14-37 -->
+  <!-- MAP + BRIEFS 12-37 -->
   <div class="tier3">
     <div>
       <div class="t3h">WHERE IT HAPPENED</div>
@@ -298,10 +302,8 @@
           <circle cx="110" cy="25" r="5.5" fill="#1D4ED8"/><text x="110" y="27.5" font-size="6.5">7</text>
           <circle cx="117" cy="33" r="5.5" fill="#1D4ED8"/><text x="117" y="35.5" font-size="6.5">8</text>
           <circle cx="187" cy="66" r="5.5" fill="#047857"/><text x="187" y="68.5" font-size="6.5">9</text>
-          <circle cx="54" cy="41" r="5.5" fill="#B91C1C"/><text x="54" y="43.5" font-size="6.5">10</text>
-          <circle cx="158" cy="38" r="5.5" fill="#6D28D9"/><text x="158" y="40.5" font-size="6.5">11</text>
-          <circle cx="82" cy="73" r="5.5" fill="#B91C1C"/><text x="82" y="75.5" font-size="6.5">12</text>
-          <circle cx="123" cy="15" r="5.5" fill="#1D4ED8"/><text x="123" y="17.5" font-size="6.5">13</text>
+          <circle cx="158" cy="38" r="5.5" fill="#6D28D9"/><text x="158" y="40.5" font-size="6.5">10</text>
+          <circle cx="82" cy="73" r="5.5" fill="#B91C1C"/><text x="82" y="75.5" font-size="6.5">11</text>
         </g>
         <g>
           <circle cx="197" cy="42" r="3.5" fill="#047857"/><circle cx="72" cy="66" r="3.5" fill="#B91C1C"/>
@@ -327,47 +329,49 @@
     <div>
       <div class="t3h">ALSO ON SUNDAY 22 NOVEMBER</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);column-gap:10px;">
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div class="brief"><span class="dot as">14</span><b class="c-as">Manipur:</b><span>toll 18; 1,130 screened</span></div>
-          <div class="brief"><span class="dot am">15</span><b class="c-am">Peru count:</b><span>1 dead, 853 displaced</span></div>
-          <div class="brief"><span class="dot am">16</span><b class="c-am">FBI:</b><span>probes hack of crime database</span></div>
-          <div class="brief"><span class="dot me">17</span><b class="c-me">Gaza:</b><span>four die in aid-vehicle strikes</span></div>
-          <div class="brief"><span class="dot eu">18</span><b class="c-eu">Vatican:</b><span>1,300 poor lunch with Leo XIV</span></div>
-          <div class="brief"><span class="dot as">19</span><b class="c-as">Delhi:</b><span>Nepal PM's first visit lands</span></div>
-          <div class="brief"><span class="dot eu">20</span><b class="c-eu">Estonia:</b><span>shuts 5 Russia crossings Dec 1</span></div>
-          <div class="brief"><span class="dot eu">21</span><b class="c-eu">Denmark:</b><span>expels a Russian attaché</span></div>
+        <div style="display:flex;flex-direction:column;gap:4.8px;">
+          <div class="brief"><span class="dot as">12</span><b class="c-as">Manipur:</b><span>toll 18; 1,130 screened</span></div>
+          <div class="brief"><span class="dot am">13</span><b class="c-am">Peru count:</b><span>1 dead, 853 displaced</span></div>
+          <div class="brief"><span class="dot am">14</span><b class="c-am">FBI:</b><span>probes hack of crime database</span></div>
+          <div class="brief"><span class="dot me">15</span><b class="c-me">Gaza:</b><span>four die in aid-vehicle strikes</span></div>
+          <div class="brief"><span class="dot eu">16</span><b class="c-eu">Vatican:</b><span>1,300 poor lunch with Leo XIV</span></div>
+          <div class="brief"><span class="dot as">17</span><b class="c-as">Delhi:</b><span>Nepal PM's first visit lands</span></div>
+          <div class="brief"><span class="dot eu">18</span><b class="c-eu">Estonia:</b><span>shuts 5 Russia crossings Dec 1</span></div>
+          <div class="brief"><span class="dot eu">19</span><b class="c-eu">Denmark:</b><span>expels a Russian attaché</span></div>
+          <div class="brief"><span class="dot af">20</span><b class="c-af">Somalia:</b><span>expels the UAE envoy</span></div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div class="brief"><span class="dot af">22</span><b class="c-af">Somalia:</b><span>expels the UAE envoy</span></div>
-          <div class="brief"><span class="dot af">23</span><b class="c-af">El-Fasher:</b><span>MSF counts the missing</span></div>
-          <div class="brief"><span class="dot eu">24</span><b class="c-eu">Zelenskyy:</b><span>bridge strikes “a fair response”</span></div>
-          <div class="brief"><span class="dot as">25</span><b class="c-as">Beijing:</b><span>hits back at US carrier ban</span></div>
-          <div class="brief"><span class="dot as">26</span><b class="c-as">Ladakh:</b><span>70% vote, first since 2019</span></div>
-          <div class="brief"><span class="dot as">27</span><b class="c-as">Seoul:</b><span>minister quits in AI scandal</span></div>
-          <div class="brief"><span class="dot as">28</span><b class="c-as">Fukushima:</b><span>snow strands 1,500</span></div>
-          <div class="brief"><span class="dot oc">29</span><b class="c-oc">BepiColombo:</b><span>reaches Mercury orbit</span></div>
+        <div style="display:flex;flex-direction:column;gap:4.8px;">
+          <div class="brief"><span class="dot af">21</span><b class="c-af">El-Fasher:</b><span>MSF counts the missing</span></div>
+          <div class="brief"><span class="dot eu">22</span><b class="c-eu">Zelenskyy:</b><span>bridge strikes “a fair response”</span></div>
+          <div class="brief"><span class="dot as">23</span><b class="c-as">Beijing:</b><span>hits back at US carrier ban</span></div>
+          <div class="brief"><span class="dot as">24</span><b class="c-as">Ladakh:</b><span>70% vote, first since 2019</span></div>
+          <div class="brief"><span class="dot as">25</span><b class="c-as">Seoul:</b><span>minister quits in AI scandal</span></div>
+          <div class="brief"><span class="dot as">26</span><b class="c-as">Fukushima:</b><span>snow strands 1,500</span></div>
+          <div class="brief"><span class="dot oc">27</span><b class="c-oc">BepiColombo:</b><span>reaches Mercury orbit</span></div>
+          <div class="brief"><span class="dot eu">28</span><b class="c-eu">Rugby:</b><span>England 37–12 New Zealand</span></div>
+          <div class="brief"><span class="dot eu">29</span><b class="c-eu">Arsenal:</b><span>held 2–2 by Newcastle</span></div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div class="brief"><span class="dot am">30</span><b class="c-am">Rugby:</b><span>England 37–12 New Zealand</span></div>
-          <div class="brief"><span class="dot eu">31</span><b class="c-eu">Arsenal:</b><span>held 2–2 by Newcastle</span></div>
-          <div class="brief"><span class="dot am">32</span><b class="c-am">Columbus Crew:</b><span>beat Messi's Miami 3–0</span></div>
-          <div class="brief"><span class="dot eu">33</span><b class="c-eu">Russia:</b><span>170 drones downed — CLAIM</span></div>
-          <div class="brief"><span class="dot me">34</span><b class="c-me">Saudi:</b><span>downs Houthi missile — CLAIM</span></div>
-          <div class="brief"><span class="dot am">35</span><b class="c-am">Markets:</b><span>gold $5,555; Bitcoin $60k+</span></div>
-          <div class="brief"><span class="dot af">36</span><b class="c-af">Khartoum:</b><span>drone strikes reported</span></div>
-          <div class="brief"><span class="dot eu">37</span><b class="c-eu">Riemann:</b><span>AI proof claimed — REPORTED</span></div>
+        <div style="display:flex;flex-direction:column;gap:4.8px;">
+          <div class="brief"><span class="dot am">30</span><b class="c-am">Columbus Crew:</b><span>beat Messi's Miami 3–0</span></div>
+          <div class="brief"><span class="dot eu">31</span><b class="c-eu">Russia:</b><span>170 drones downed — CLAIM</span></div>
+          <div class="brief"><span class="dot me">32</span><b class="c-me">Saudi:</b><span>downs Houthi missile — CLAIM</span></div>
+          <div class="brief"><span class="dot am">33</span><b class="c-am">Markets:</b><span>gold $5,555; Bitcoin $60k+</span></div>
+          <div class="brief"><span class="dot af">34</span><b class="c-af">Khartoum:</b><span>drone strikes reported</span></div>
+          <div class="brief"><span class="dot eu">35</span><b class="c-eu">Riemann:</b><span>AI proof claimed — REPORTED</span></div>
+          <div class="brief"><span class="dot am">36</span><b class="c-am">Wembanyama:</b><span>50 points sink New Orleans</span></div>
+          <div class="brief"><span class="dot eu">37</span><b class="c-eu">Baltic:</b><span>tanker Sparta II still burning</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- LAYER 7 · DATE CHECK -->
+  <!-- DATE CHECK -->
   <div class="dcheck">
     <div class="tag">DATE CHECK</div>
     <p><b>Left out on purpose, first reported before Sunday:</b> the ICJ's Myanmar ruling (Thu 19 Nov) · EU–Indonesia CEPA signed in Brussels (Sat 21) · ‘El Chapo Isidro’ captured (Fri 20) · Bayelsa funeral boat capsized (Fri 20) · Geneva's killer-robot talks ended (Sat) · the 400-drone barrage was Thu–Fri night. <b>Not yet:</b> the COP's unresolved items roll to COP32 in Addis Ababa (Nov 2027).</p>
   </div>
 
-  <!-- LAYER 8 · FOOTER -->
+  <!-- FOOTER -->
   <div class="foot">
     <div>First reported Sunday 22 Nov 2026.</div>
     <div>
