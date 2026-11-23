@@ -18,8 +18,8 @@ CW = W - 2 * M              # content width = 976
 # ---- palette -------------------------------------------------------------
 PAPER = (250, 246, 234)     # cream paper
 BAND = (12, 52, 40)         # deep emerald (masthead band)
-INK = (18, 36, 29)          # deep green-black ink
-INK2 = (56, 70, 62)         # muted ink
+INK = (24, 27, 44)          # navy-black ink
+INK2 = (72, 74, 88)         # muted ink
 RED = (190, 30, 38)         # accent red
 HAIR = (150, 152, 138)      # hairline
 CREAM_DIM = (214, 206, 182)  # dim cream on the band
@@ -132,16 +132,16 @@ FIGURES = [
     ("6-2 7-6(7)", "Alcaraz over Zverev in\nthe Turin final"),
 ]
 
-REGIONS = [("EUROPE", 12), ("ASIA", 8), ("MIDDLE EAST", 6), ("N. AMERICA", 5),
-           ("AFRICA", 3), ("S. AMERICA", 2), ("OCEANIA & SPACE", 3)]
+REGIONS = [("EUROPE", 12), ("ASIA", 8), ("MIDDLE EAST", 4), ("N. AMERICA", 5),
+           ("AFRICA", 2), ("S. AMERICA", 2), ("OCEANIA & SPACE", 2)]
 
 TIMELINE = [
-    ("OVERNIGHT", "186 drones over Ukraine; 161 downed, Dymer hit"),
-    ("06:30 WIB", "Cikande fire out after some 14 hours"),
-    ("14:30 UTC", "Cikande count: 24 body bags, 32 missing"),
-    ("16:30 UTC", "Liverpool 4\u20130 Man United \u2014 full time"),
-    ("17:00 UTC", "Alcaraz champion in Turin, 6-2 7-6(7)"),
-    ("EVENING", "Antalya plenary collapses \u2014 no deal"),
+    ("OVERNIGHT", "186 drones; Dymer hit"),
+    ("06:30 WIB", "Cikande fire out"),
+    ("14:30 UTC", "24 body bags counted"),
+    ("16:30 UTC", "Liverpool 4\u20130 United"),
+    ("17:00 UTC", "Alcaraz champion"),
+    ("EVENING", "Antalya: no deal"),
 ]
 
 LEADS = [
@@ -165,20 +165,20 @@ LEADS = [
 # (num, location, tag, headline, deck, art-key)
 CARDS = [
     (4, "HONG KONG", "REPORTED", "Hong Kong elects its Election Committee",
-     "Final turnout a record 98.79%: 5,640 voters fill 723 of 856 "
-     "seats; two seats by lot.", "ballot"),
+     "Record turnout of 98.79%: 5,640 voters fill 723 of 856 seats; "
+     "two by lot.", "ballot"),
     (5, "NEW ZEALAND", "REPORTED", "India declare on 720/9",
-     "Rahul 136, Pant 128; a first: 50+ stands for all seven first "
-     "wickets. NZ 119/2.", "cricket"),
+     "Rahul 136, Pant 128; 50+ for every one of the first seven "
+     "stands. NZ 119/2.", "cricket"),
     (6, "LAS VEGAS", "REPORTED", "Verstappen takes Las Vegas",
-     "By 0.639s, after 35 lead changes. Piastri 17th to 3rd; a penalty "
-     "put Antonelli 6th.", "race"),
+     "By 0.639s; 35 lead changes. Piastri 17th to 3rd; Antonelli 6th "
+     "on a penalty.", "race"),
     (7, "ANFIELD, LIVERPOOL", "REPORTED", "Liverpool rout United 4\u20130",
-     "Yoro off at 8' in Pochettino's debut; Szoboszlai, Wirtz, "
-     "Ngumoha, Mu\u00f1oz. United 19th.", "football"),
+     "Yoro off 8'; Szoboszlai, Wirtz, Ngumoha, Mu\u00f1oz score. "
+     "United stay 19th.", "football"),
     (8, "TURIN", "REPORTED", "Alcaraz takes the ATP Finals",
-     "6-2 7-6(7) over No.1 Zverev: maiden title, a 5\u20130 week, "
-     "three set points saved, $5.17m.", "tennis"),
+     "6-2 7-6(7) over Zverev: maiden title, a 5\u20130 week, record "
+     "$5.17m prize.", "tennis"),
     (9, "CIKANDE, BANTEN", "REPORTED", "Cikande: the search goes on",
      "Out at 06:30 WIB; 24 body bags by nightfall, 32 missing, "
      "toll unconfirmed.", "factory"),
@@ -193,37 +193,31 @@ CARDS = [
     (13, "THE BALTIC", "REPORTED", "Tanker Sparta II still burning",
      "All 16 crew are safely off; Finland suspects a Ukrainian strike.",
      "ship"),
-    (14, "GAZA", "REPORTED", "Four die as fire hits a food-aid vehicle",
-     "Three killed in Tel al-Hawa and one in Jabalia.", "aid"),
-    (15, "THE VATICAN", "REPORTED", "1,300 poor guests lunch with Leo XIV",
-     "The Pope hosts lunch for the World Day of the Poor.", "pope"),
 ]
 
 ALSO = [
-    (16, "Manipur", "toll settles at 18; 1,130 screened"),
-    (17, "Peru count", "1 dead, 853 displaced after Friday's M6.7"),
-    (18, "FBI", "probes a hack of its crime database"),
-    (19, "Khartoum", "homes struck by drones"),
-    (20, "Hamas", "seeks urgent talks on Gaza"),
-    (21, "Delhi", "Nepal's PM Shah lands, on his first visit"),
-    (22, "Estonia", "shuts five Russia crossings on 1 Dec"),
-    (23, "Denmark", "expels a Russian attach\u00e9"),
-    (24, "Somalia", "expels the UAE envoy"),
-    (25, "El-Fasher", "MSF counts the missing"),
-    (26, "Zelenskyy", "bridge strikes \u201ca fair response\u201d"),
-    (27, "Beijing", "hits back at the US carrier ban"),
-    (28, "Ladakh", "70% vote in first polls since 2019"),
-    (29, "Seoul", "minister quits in AI-cheating scandal"),
-    (30, "Fukushima", "snow strands 1,500 in one village"),
-    (31, "BepiColombo", "reaches Mercury orbit"),
-    (32, "Rugby", "England 37\u201312 New Zealand"),
-    (33, "Arsenal", "held 2\u20132 by Newcastle"),
-    (34, "Columbus Crew", "beat Messi's Miami 3\u20130"),
-    (35, "Russia", "says 170 Ukrainian drones downed \u2014 CLAIM"),
-    (36, "Saudi", "downs a Houthi missile \u2014 CLAIM"),
-    (37, "Riemann", "AI \u2018helps prove\u2019 the hypothesis"),
-    (38, "Melbourne", "marks 70 years since the 1956 Games"),
-    (39, "Markets", "gold near $5,555; Bitcoin over $60,000"),
+    (14, "Manipur", "toll settles at 18; 1,130 screened"),
+    (15, "Peru count", "1 dead, 853 displaced after Friday's M6.7"),
+    (16, "FBI", "probes a hack of its crime database"),
+    (17, "Gaza", "four die in strikes on a food-aid vehicle"),
+    (18, "Vatican", "1,300 poor guests lunch with Leo XIV"),
+    (19, "Delhi", "Nepal's PM Shah lands, on his first visit"),
+    (20, "Estonia", "shuts five Russia crossings on 1 Dec"),
+    (21, "Denmark", "expels a Russian attach\u00e9"),
+    (22, "Somalia", "expels the UAE envoy"),
+    (23, "El-Fasher", "MSF counts the missing"),
+    (24, "Zelenskyy", "bridge strikes \u201ca fair response\u201d"),
+    (25, "Beijing", "hits back at the US carrier ban"),
+    (26, "Ladakh", "70% vote in first polls since 2019"),
+    (27, "Seoul", "minister quits in AI-cheating scandal"),
+    (28, "Fukushima", "snow strands 1,500 in one village"),
+    (29, "BepiColombo", "reaches Mercury orbit"),
+    (30, "Rugby", "England 37\u201312 New Zealand"),
+    (31, "Arsenal", "held 2\u20132 by Newcastle"),
+    (32, "Columbus Crew", "beat Messi's Miami 3\u20130"),
+    (33, "Russia", "says 170 Ukrainian drones downed \u2014 CLAIM"),
+    (34, "Saudi", "downs a Houthi missile \u2014 CLAIM"),
+    (35, "Markets", "gold near $5,555; Bitcoin over $60,000"),
 ]
 
 DATECHECK = ("NOT SUNDAY \u2014 SO NOT ON THIS PAGE:  the ICJ's Myanmar ruling "
@@ -263,14 +257,14 @@ def render_art(fn, w, h, tint):
 def art_cop(x, y, w, h):
     # the Antalya hall: a big screen carrying the rejected text, flags
     # along the wall, and the delegates' table below
-    d.rectangle([x, y, x + w, y + 30], fill=(238, 214, 168))
+    d.rectangle([x, y, x + w, y + 52], fill=(238, 214, 168))
     # the screen: the draft itself, crossed out
-    sx0, sy0, sx1, sy1 = x + 108, y + 5, x + 200, y + 42
+    sx0, sy0, sx1, sy1 = x + 108, y + 8, x + 200, y + 62
     d.rectangle([sx0, sy0, sx1, sy1], fill=(24, 34, 54))
-    d.rectangle([sx0 + 10, sy0 + 7, sx0 + 34, sy0 + 30],
+    d.rectangle([sx0 + 10, sy0 + 8, sx0 + 38, sy0 + 48],
                 fill=(252, 250, 244))
     for r_ in range(3):
-        d.line([(sx0 + 14, sy0 + 12 + r_ * 6), (sx0 + 30, sy0 + 12 + r_ * 6)],
+        d.line([(sx0 + 14, sy0 + 15 + r_ * 9), (sx0 + 34, sy0 + 15 + r_ * 9)],
                fill=INK2, width=1)
     d.line([(sx0 + 6, sy0 + 4), (sx1 - 6, sy1 - 4)], fill=RED, width=4)
     d.line([(sx1 - 6, sy0 + 4), (sx0 + 6, sy1 - 4)], fill=RED, width=4)
@@ -278,26 +272,26 @@ def art_cop(x, y, w, h):
     cols = [RED, GOLD, (52, 96, 66), INK, (84, 104, 128)]
     for i, c in enumerate(cols):
         fx = x + 14 + i * 17
-        d.line([(fx, y + 8), (fx, y + 30)], fill=INK, width=2)
-        d.rectangle([fx, y + 8, fx + 11, y + 16], fill=c)
+        d.line([(fx, y + 8), (fx, y + 52)], fill=INK, width=2)
+        d.rectangle([fx, y + 8, fx + 11, y + 19], fill=c)
         fx2 = x + w - 25 - (4 - i) * 17
-        d.line([(fx2, y + 8), (fx2, y + 30)], fill=INK, width=2)
-        d.rectangle([fx2, y + 8, fx2 + 11, y + 16], fill=c)
+        d.line([(fx2, y + 8), (fx2, y + 52)], fill=INK, width=2)
+        d.rectangle([fx2, y + 8, fx2 + 11, y + 19], fill=c)
     # delegates' table: seven heads, papers, three hands raised
     tx0, tx1, ty = x + 14, x + w - 52, y + h - 6
     d.rectangle([tx0, ty - 7, tx1, ty], fill=INK)
     for i in range(7):
         hx = tx0 + 10 + i * 30
-        d.ellipse([hx, ty - 19, hx + 10, ty - 9], fill=INK)
-        d.rectangle([hx - 2, ty - 9, hx + 12, ty - 7], fill=INK2)
+        d.ellipse([hx, ty - 21, hx + 11, ty - 10], fill=INK)
+        d.rectangle([hx - 2, ty - 10, hx + 13, ty - 7], fill=INK2)
         d.rectangle([hx + 1, ty - 6, hx + 9, ty - 3],
                     fill=(252, 250, 244))
     for i in (0, 3, 5):
         hx = tx0 + 10 + i * 30
-        d.line([(hx + 13, ty - 10), (hx + 19, ty - 21)], fill=INK, width=2)
-        d.ellipse([hx + 17, ty - 24, hx + 22, ty - 19], fill=INK)
+        d.line([(hx + 14, ty - 11), (hx + 20, ty - 23)], fill=INK, width=2)
+        d.ellipse([hx + 18, ty - 26, hx + 23, ty - 21], fill=INK)
     # the chair's gavel at the head of the table
-    gx, gy = tx1 + 6, ty - 22
+    gx, gy = tx1 + 6, ty - 24
     d.line([(gx, gy + 12), (gx + 9, gy)], fill=INK, width=3)
     d.rectangle([gx + 6, gy - 5, gx + 15, gy + 2], fill=INK)
     d.rectangle([gx + 2, gy + 13, gx + 16, gy + 16], fill=INK2)
@@ -309,7 +303,7 @@ def art_drone(x, y, w, h):
     d.rectangle([x, y, x + w, y + h], fill=(22, 30, 52))
     for i in range(26):
         sx_ = x + (i * 53) % (w - 8) + 4
-        sy_ = y + (i * 31) % 34 + 2
+        sy_ = y + (i * 37) % 54 + 2
         d.ellipse([sx_, sy_, sx_ + 2, sy_ + 2], fill=(232, 234, 240))
     d.ellipse([x + w - 44, y + 6, x + w - 26, y + 24], fill=(238, 226, 170))
     # searchlight beams sweeping up from the rescue line
@@ -318,8 +312,8 @@ def art_drone(x, y, w, h):
     d.polygon([(x + 292, y + h), (x + 196, y + 10), (x + 208, y + 8)],
               fill=(216, 202, 142))
     pale = (198, 204, 214)
-    for (cx, cy, s) in [(52, 18, 1.0), (128, 12, 1.0), (205, 20, 1.0),
-                        (88, 34, 0.6), (172, 36, 0.6)]:
+    for (cx, cy, s) in [(52, 20, 1.0), (128, 14, 1.0), (205, 24, 1.0),
+                        (88, 44, 0.6), (172, 48, 0.6)]:
         cx, cy = x + cx, y + cy
         d.line([(cx - 13 * s, cy - 8 * s), (cx + 13 * s, cy + 8 * s)],
                fill=pale, width=2)
@@ -330,14 +324,14 @@ def art_drone(x, y, w, h):
     # the broken block: lit windows, a collapsed corner, fire at its foot
     bx, by = x + 14, y + h
     dark = (8, 12, 22)
-    d.polygon([(bx, by), (bx, by - 46), (bx + 26, by - 46),
-               (bx + 34, by - 32), (bx + 56, by - 38), (bx + 56, by)],
+    d.polygon([(bx, by), (bx, by - 64), (bx + 26, by - 64),
+               (bx + 34, by - 48), (bx + 56, by - 56), (bx + 56, by)],
               fill=dark)
-    for (wx_, wy_) in [(8, -38), (34, -30), (8, -24), (40, -16)]:
+    for (wx_, wy_) in [(8, -54), (34, -46), (8, -38), (40, -28), (8, -22)]:
         d.rectangle([bx + wx_, by + wy_, bx + wx_ + 9, by + wy_ + 7],
                     fill=(255, 170, 60))
-    d.polygon([(bx + 56, by - 26), (bx + 84, by - 12), (bx + 86, by - 6),
-               (bx + 56, by - 16)], fill=(40, 48, 66))
+    d.polygon([(bx + 56, by - 42), (bx + 86, by - 24), (bx + 88, by - 17),
+               (bx + 56, by - 32)], fill=(40, 48, 66))
     d.polygon([(bx + 62, by), (bx + 88, by - 14), (bx + 114, by)],
               fill=(40, 48, 66))
     d.polygon([(bx + 96, by), (bx + 116, by - 9), (bx + 136, by)],
@@ -398,13 +392,13 @@ def art_radar(x, y, w, h):
         for t in range(21):
             tt = t / 20
             px = sx + (ex - sx) * tt
-            py = sy + (y + 30 - sy) * tt - 9 * math.sin(tt * math.pi)
+            py = sy + (y + 52 - sy) * tt - 12 * math.sin(tt * math.pi)
             pts.append((px, py))
         d.line(pts, fill=RED, width=2)
         d.polygon([(pts[-1][0], pts[-1][1]), (pts[-1][0] - 9, pts[-1][1] - 1),
                    (pts[-1][0] - 2, pts[-1][1] - 8)], fill=RED)
     # the shield of the denial, smaller, at the right
-    sx, sy = x + w - 44, y + 20
+    sx, sy = x + w - 44, y + 36
     d.polygon([(sx, sy), (sx + 26, sy), (sx + 26, sy + 15), (sx + 13, sy + 27),
                (sx, sy + 15)], outline=INK, width=3)
     d.line([(sx + 7, sy + 11), (sx + 11, sy + 16), (sx + 20, sy + 6)],
@@ -624,8 +618,8 @@ MAP_ROWS = [
 PINS = {
     6: (0.115, 0.30), 10: (0.160, 0.40), 12: (0.250, 0.68),
     7: (0.452, 0.17), 13: (0.508, 0.14), 8: (0.470, 0.235),
-    15: (0.484, 0.275), 2: (0.538, 0.20), 1: (0.540, 0.295),
-    14: (0.556, 0.33), 3: (0.582, 0.355), 11: (0.590, 0.295),
+    2: (0.538, 0.20), 1: (0.540, 0.295),
+    3: (0.582, 0.355), 11: (0.590, 0.295),
     9: (0.752, 0.60), 4: (0.778, 0.375), 5: (0.955, 0.86),
 }
 
@@ -657,151 +651,147 @@ def draw_map(x, y, w, h):
 warn = []
 
 # ---- masthead band ---------------------------------------------------------
-d.rectangle([0, 0, W, 106], fill=BAND)
-_name = "T H E   S U N D A Y   L E D G E R"
-_nf = F("pf8", 20)
-_nb = d.textbbox((0, 0), _name, font=_nf)
-d.text(((W - tw(_name, _nf)) / 2 - _nb[0], 13 - _nb[1]), _name, font=_nf,
-       fill=(238, 232, 210))
-d.line([(M, 38), (W - M, 38)], fill=GOLD, width=1)
+_kick = "SUNDAY'S WORLD NEWS \u00b7 ONE PICTURE"
+_kf = F("bold", 11.5)
+d.text((M, 10), _kick, font=_kf, fill=RED)
+_right = "THE SUNDAY LEDGER \u00b7 35 STORIES \u00b7 7 REGIONS"
+d.text((W - M - tw(_right, _kf), 10), _right, font=_kf, fill=INK)
 _date = "Sunday 22 November 2026"
-_df = F("pf9", 54)
+_df = F("pf9", 72)
 _db = d.textbbox((0, 0), _date, font=_df)
-_dtop = min(41, 101 - (_db[3] - _db[1]))
+_dtop = min(30, 114 - (_db[3] - _db[1]))
 d.text(((W - tw(_date, _df)) / 2 - _db[0], _dtop - _db[1]), _date, font=_df,
-       fill=(247, 242, 228))
-d.line([(0, 104), (W, 104)], fill=RED, width=2)
-
-center(111, "39 STORIES \u00b7 7 REGIONS \u00b7 EVERY ONE DATED SUNDAY "
-            "22 NOVEMBER 2026", F("bold", 13), INK)
+       fill=INK)
+d.line([(0, 122), (W, 122)], fill=RED, width=3)
 
 # ---- strapline --------------------------------------------------------------
-hrule(129)
-center(133, STRAPLINE, F("bold", 15), RED)
-hrule(153)
+center(131, STRAPLINE, F("bold", 14.5), RED)
+hrule(152)
 
 # ---- figures band -----------------------------------------------------------
-fy = 156
-cellw = CW / 6
+uy = 158
+d.rectangle([M, uy, M + 86, uy + 40], fill=RED)
+d.text((M + 8, uy + 6), "THE DAY", font=F("bold", 10.5),
+       fill=(252, 250, 244))
+d.text((M + 8, uy + 21), "IN UTC", font=F("bold", 10.5),
+       fill=(252, 250, 244))
+uw = (W - M - (M + 98)) / 6
+for i, (tm, txt) in enumerate(TIMELINE):
+    cx = M + 98 + i * uw
+    d.text((cx, uy + 2), tm, font=F("bold", 12.5), fill=RED)
+    d.text((cx, uy + 21), txt, font=F("sans", 10.5), fill=INK)
+hrule(206)
+
+# ---- the day in numbers -------------------------------------------------------
+ny = 212
+d.rectangle([M, ny, M + 86, ny + 52], fill=RED)
+d.text((M + 8, ny + 12), "THE DAY", font=F("bold", 10.5),
+       fill=(252, 250, 244))
+d.text((M + 8, ny + 27), "IN NUMBERS", font=F("bold", 10.5),
+       fill=(252, 250, 244))
+cellw = (W - M - (M + 98)) / 6
 for i, (num, lab) in enumerate(FIGURES):
-    cx = M + i * cellw
-    nf = F("pf8", 24 if len(num) <= 7 else 21)
-    d.text((cx + (cellw - tw(num, nf)) / 2, fy), num, font=nf, fill=INK)
-    lf = F("sans", 10)
+    cx = M + 98 + i * cellw
+    nf = F("pf8", 25 if len(num) <= 7 else 22)
+    d.text((cx + 2, ny), num, font=nf, fill=INK)
+    lf = F("sans", 9.5)
     if i == 1:
-        ln = "fired at Ukraine · downed"
-        d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 28), ln, font=lf,
-               fill=INK2)
-        bw = cellw - 18
-        d.rectangle([cx + 9, fy + 41, cx + 9 + bw, fy + 44], fill=INK2)
-        d.rectangle([cx + 9, fy + 47, cx + 9 + bw * 161 / 186, fy + 50],
+        ln = "fired at Ukraine \u00b7 downed"
+        d.text((cx + 2, ny + 30), ln, font=lf, fill=INK2)
+        bw = cellw - 12
+        d.rectangle([cx + 2, ny + 42, cx + 2 + bw, ny + 45], fill=INK2)
+        d.rectangle([cx + 2, ny + 48, cx + 2 + bw * 161 / 186, ny + 51],
                     fill=(52, 120, 80))
     elif i == 2:
         ln = "Hong Kong's final turnout"
-        d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 28), ln, font=lf,
-               fill=INK2)
-        bw = cellw - 18
-        d.rectangle([cx + 9, fy + 41, cx + 9 + bw, fy + 44], fill=HAIR)
-        d.rectangle([cx + 9, fy + 41, cx + 9 + bw * 0.9879, fy + 44],
+        d.text((cx + 2, ny + 30), ln, font=lf, fill=INK2)
+        bw = cellw - 12
+        d.rectangle([cx + 2, ny + 42, cx + 2 + bw, ny + 45], fill=HAIR)
+        d.rectangle([cx + 2, ny + 42, cx + 2 + bw * 0.9879, ny + 45],
                     fill=RED)
     else:
         for j, ln in enumerate(lab.split("\n")):
-            d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 28 + j * 11), ln,
-                   font=lf, fill=INK2)
+            d.text((cx + 2, ny + 30 + j * 11), ln, font=lf, fill=INK2)
     if i:
-        d.line([(cx, fy + 2), (cx, fy + 44)], fill=HAIR, width=1)
-hrule(208)
+        d.line([(cx, ny + 2), (cx, ny + 46)], fill=HAIR, width=1)
+hrule(272)
 
 # ---- region strip -----------------------------------------------------------
-seg = "  \u00b7  ".join(f"{name} {n}" for name, n in REGIONS)
-pre = "WHERE THE DAY HAPPENED \u2014  "
-pf_, bf = F("bold", 12), F("bold", 12)
-total = tw(pre, pf_) + tw(seg, bf)
-sx = (W - total) / 2
-d.text((sx, 212), pre, font=pf_, fill=RED)
-d.text((sx + tw(pre, pf_), 212), seg, font=bf, fill=INK)
-hrule(229)
+seg = ""  # region counts now ride in the ALSO heading below
 
 # ---- timeline ---------------------------------------------------------------
-d.text((M, 234), "THE DAY IN UTC", font=F("bold", 11.5), fill=RED)
-tl_w = CW / 3
-for i, (tm, txt) in enumerate(TIMELINE):
-    cx = M + (i % 3) * tl_w
-    cy = 249 + (i // 3) * 14
-    d.text((cx, cy), tm, font=F("bold", 11), fill=RED)
-    d.text((cx + tw(tm, F("bold", 11)) + 6, cy), txt, font=F("sans", 11),
-           fill=INK)
-hrule(280)
-
-# ---- leads ------------------------------------------------------------------
-ly = 286
+ly = 280
 lead_w = 309
 for i, L in enumerate(LEADS):
     x = M + i * (lead_w + 24.5)
-    img.paste(render_art(LEAD_ART[i], lead_w, 76, L["tint"]), (int(x), ly))
-    ry = ly + 82
+    img.paste(render_art(LEAD_ART[i], lead_w, 120, L["tint"]), (int(x), ly))
+    ry = ly + 126
     numb(x, ry, L["n"], r=8)
     d.text((x + 22, ry + 1), L["loc"], font=F("bold", 11.5), fill=INK)
     cw_ = int(tw(L["tag"], F("bold", 8))) + 10
     chip(x + lead_w - cw_, ry, L["tag"], RED if L["tag"] == "CLAIM" else INK)
-    hy = ry + 20
-    lines = wrap(L["head"], F("pf7", 18), lead_w)
+    hy = ry + 21
+    lines = wrap(L["head"], F("pf7", 22), lead_w)
     if len(lines) > 2:
         warn.append(f"lead {L['n']} headline {len(lines)} lines")
     for ln in lines[:2]:
-        d.text((x, hy), ln, font=F("pf7", 18), fill=INK)
-        hy += 21
-    dy = hy + 3
+        d.text((x, hy), ln, font=F("pf7", 22), fill=INK)
+        hy += 25
+    dy = hy + 4
     dlines = wrap(L["deck"], F("sans", 11), lead_w)
-    if len(dlines) > 4:
+    if len(dlines) > 3:
         warn.append(f"lead {L['n']} deck {len(dlines)} lines")
-    for ln in dlines[:4]:
+    for ln in dlines[:3]:
         d.text((x, dy), ln, font=F("sans", 11), fill=INK)
-        dy += 13
-hrule(472)
+        dy += 13.5
+hrule(528)
 
 # ---- cards ------------------------------------------------------------------
-cy0 = 478
-card_w, card_h = 238, 102
+cy0 = 534
+card_w, card_h = 188, 110
 for idx, (n, loc, tag, head, deck, art) in enumerate(CARDS):
-    x = M + (idx % 4) * (card_w + 8)
-    y = cy0 + (idx // 4) * (card_h + 4)
+    x = M + (idx % 5) * (card_w + 9)
+    y = cy0 + (idx // 5) * (card_h + 6)
     img.paste(render_art(lambda ax, ay, aw, ah, k=art: scene(k, ax, ay, aw, ah),
-                         card_w, 26, [TINT, TINT2, TINT3, TINT4][idx % 4]),
+                         card_w, 32, [TINT, TINT2, TINT3, TINT4][idx % 4]),
               (int(x), y))
-    ry = y + 30
+    ry = y + 37
     numb(x, ry, n, r=7)
-    d.text((x + 18, ry + 1), loc, font=F("bold", 9.5), fill=INK)
+    d.text((x + 18, ry + 1), loc, font=F("bold", 9), fill=INK)
     cw_ = int(tw(tag, F("bold", 8))) + 10
     chip(x + card_w - cw_, ry, tag, INK)
-    hy = y + 46
-    hlines = wrap(head, F("bold", 13), card_w)
+    hy = y + 53
+    hlines = wrap(head, F("bold", 12.5), card_w)
     if len(hlines) > 2:
         warn.append(f"card {n} headline {len(hlines)} lines")
     for ln in hlines[:2]:
-        d.text((x, hy), ln, font=F("bold", 13), fill=INK)
+        d.text((x, hy), ln, font=F("bold", 12.5), fill=INK)
         hy += 14.5
-    dy = y + 76
-    dlines = wrap(deck, F("sans", 10), card_w)
+    dy = y + 84
+    dlines = wrap(deck, F("sans", 9.5), card_w)
     if len(dlines) > 2:
         warn.append(f"card {n} deck {len(dlines)} lines: {deck[:40]}...")
     for ln in dlines[:2]:
-        d.text((x, dy), ln, font=F("sans", 10), fill=INK)
-        dy += 12.5
-hrule(792)
+        d.text((x, dy), ln, font=F("sans", 9.5), fill=INK)
+        dy += 12
+hrule(764)
 
 # ---- bottom band: map + ALSO -------------------------------------------------
-by = 798
+by = 770
 d.text((M, by), "THE DAY MAPPED", font=F("bold", 11.5), fill=RED)
 d.text((M + tw("THE DAY MAPPED", F("bold", 11.5)) + 8, by),
        "\u2014 pins match story numbers", font=F("sans", 10), fill=INK2)
-draw_map(M, by + 16, 292, 104)
+draw_map(M, by + 18, 292, 118)
 ax = M + 316
 d.text((ax, by), "ALSO ON SUNDAY", font=F("bold", 11.5), fill=RED)
+d.text((ax + tw("ALSO ON SUNDAY", F("bold", 11.5)) + 10, by + 1),
+       "EUROPE 12 \u00b7 ASIA 8 \u00b7 MIDDLE EAST 4 \u00b7 N. AMERICA 5 "
+       "\u00b7 AFRICA 2 \u00b7 S. AMERICA 2 \u00b7 OCEANIA & SPACE 2",
+       font=F("sans", 9), fill=INK2)
 acol_w = (W - M - ax - 14) / 2
 for i, (n, lead, rest) in enumerate(ALSO):
-    cx = ax + (i // 12) * (acol_w + 14)
-    cy = by + 16 + (i % 12) * 11
+    cx = ax + (i // 11) * (acol_w + 14)
+    cy = by + 18 + int((i % 11) * 13.5)
     nf = F("bold", 10)
     d.text((cx, cy), str(n), font=nf, fill=RED)
     x2 = cx + tw(str(n), nf) + 4
@@ -812,16 +802,16 @@ for i, (n, lead, rest) in enumerate(ALSO):
         warn.append(f"also {n} overflows column")
 
 # ---- date check ---------------------------------------------------------------
-dy0 = 946
-d.rectangle([M, dy0, W - M, dy0 + 46], outline=RED, width=2)
-d.text((M + 12, dy0 + 7), "DATE", font=F("pf7", 13), fill=RED)
-d.text((M + 12, dy0 + 23), "CHECK", font=F("pf7", 13), fill=RED)
+dy0 = 944
+d.rectangle([M, dy0, W - M, dy0 + 44], outline=RED, width=2)
+d.text((M + 12, dy0 + 6), "DATE", font=F("pf7", 13), fill=RED)
+d.text((M + 12, dy0 + 21), "CHECK", font=F("pf7", 13), fill=RED)
 block(M + 84, dy0 + 5, DATECHECK, F("sans", 10), INK, W - M - (M + 84) - 10,
       leading=1.3)
 
 # ---- footer -------------------------------------------------------------------
-center(996, SOURCES, F("sans", 9.5), INK2)
-center(1009, KEYLINE, F("sans", 9.5), INK2)
+center(994, SOURCES, F("sans", 9.5), INK2)
+center(1007, KEYLINE, F("sans", 9.5), INK2)
 
 img.save(OUT, format="JPEG", quality=88)
 print("saved", OUT, os.path.getsize(OUT), "bytes")
