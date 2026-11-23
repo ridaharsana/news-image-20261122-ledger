@@ -16,17 +16,24 @@ M = 24                      # page margin
 CW = W - 2 * M              # content width = 976
 
 # ---- palette -------------------------------------------------------------
-PAPER = (247, 242, 228)     # cream paper
-BAND = (14, 30, 24)         # deep green-black (masthead band)
+PAPER = (250, 246, 234)     # cream paper
+BAND = (12, 52, 40)         # deep emerald (masthead band)
 INK = (18, 36, 29)          # deep green-black ink
 INK2 = (74, 88, 80)         # muted ink
-RED = (176, 32, 40)         # accent red
+RED = (190, 30, 38)         # accent red
 HAIR = (150, 152, 138)      # hairline
 CREAM_DIM = (214, 206, 182)  # dim cream on the band
-TINT = (236, 229, 208)      # pale art tint (sand)
-TINT2 = (224, 230, 222)     # pale art tint (sage)
-TINT3 = (241, 227, 214)     # pale art tint (rose)
-GOLD = (198, 164, 92)
+TINT = (243, 224, 178)      # pale art tint (warm sand)
+TINT2 = (196, 226, 205)     # pale art tint (mint)
+TINT3 = (246, 203, 182)     # pale art tint (peach)
+TINT4 = (203, 226, 244)     # pale art tint (sky)
+GOLD = (206, 158, 60)
+SKY = (172, 210, 238)       # scene sky
+SEA = (110, 168, 212)       # scene sea
+GREEN = (96, 168, 96)       # scene grass
+BRICK = (198, 96, 62)       # scene brick
+SLATE = (94, 114, 154)      # scene slate blue
+SAND2 = (224, 182, 116)     # scene sand block
 
 FONT_DIR = os.path.expanduser("~/.fonts")
 LIB = "/usr/share/fonts/truetype/liberation"
@@ -279,6 +286,7 @@ def art_cop(x, y, w, h):
 def art_drone(x, y, w, h):
     # three drones over a broken block; rubble, a rescue crane, and a
     # rescuer's lamp in the wreckage
+    d.rectangle([x, y, x + w, y + 42], fill=(188, 204, 216))
     for (cx, cy) in [(x + 52, y + 18), (x + 128, y + 12), (x + 205, y + 20)]:
         d.line([(cx - 13, cy - 8), (cx + 13, cy + 8)], fill=INK, width=3)
         d.line([(cx - 13, cy + 8), (cx + 13, cy - 8)], fill=INK, width=3)
@@ -326,6 +334,7 @@ def art_radar(x, y, w, h):
     # kept inside the panel, the denial's shield, and tankers on the water
     import math
     gy = y + h - 16                     # ground line; sea below it
+    d.rectangle([x, gy, x + w, y + h], fill=SEA)
 
     def dish(cx, big):
         my = gy                           # mast foot
@@ -373,7 +382,7 @@ def art_radar(x, y, w, h):
         d.rectangle([hx + 30 * s, gy - 6, hx + 35 * s, gy + 3], fill=INK)
     for wx_ in range(int(x) + 10, int(x + w) - 12, 26):
         d.arc([wx_, gy + 9, wx_ + 12, gy + 15], start=0, end=180,
-              fill=INK2, width=1)
+              fill=(252, 250, 244), width=1)
 
 
 LEAD_ART = [art_cop, art_drone, art_radar]
@@ -388,8 +397,9 @@ def scene(kind, x, y, w, h):
         d.rectangle([fx - 3, fy - 7, fx + 3, fy], fill=INK)
 
     if kind == "ballot":
-        for bx, bh in [(10, 13), (28, 17), (48, 11)]:
-            d.rectangle([x + bx, gy - bh, x + bx + 12, gy], fill=INK2)
+        for (bx, bh), bc in zip([(10, 13), (28, 17), (48, 11)],
+                                [SLATE, BRICK, SAND2]):
+            d.rectangle([x + bx, gy - bh, x + bx + 12, gy], fill=bc)
             d.rectangle([x + bx + 3, gy - bh + 4, x + bx + 6, gy - bh + 7],
                         fill=GOLD)
         d.rectangle([x + 148, gy - 10, x + 176, gy], fill=INK)
@@ -399,6 +409,7 @@ def scene(kind, x, y, w, h):
         for i in range(3):
             figure(x + 200 + i * 13, gy)
     elif kind == "cricket":
+        d.rectangle([x + 4, gy, x + w - 4, gy + 3], fill=GREEN)
         d.ellipse([x + 198, y + 3, x + 210, y + 15], fill=GOLD)
         for sx_ in (28, 34, 40):
             d.rectangle([x + sx_, gy - 12, x + sx_ + 2, gy], fill=GOLD,
@@ -412,7 +423,7 @@ def scene(kind, x, y, w, h):
         d.line([(x + 8, gy), (x + w - 8, gy)], fill=INK2, width=1)
     elif kind == "race":
         for bx, bh in [(8, 10), (24, 15), (42, 8)]:
-            d.rectangle([x + bx, gy - bh, x + bx + 11, gy], fill=INK2)
+            d.rectangle([x + bx, gy - bh, x + bx + 11, gy], fill=SLATE)
         for cxx, col in [(x + 86, INK), (x + 140, RED)]:
             d.polygon([(cxx, gy - 6), (cxx + 10, gy - 10), (cxx + 30, gy - 10),
                        (cxx + 40, gy - 6), (cxx + 40, gy - 3), (cxx, gy - 3)],
@@ -427,6 +438,7 @@ def scene(kind, x, y, w, h):
                                  x + 212 + i * 6, y + 8 + j * 6], fill=INK)
         d.line([(x + 206, y + 2), (x + 206, gy)], fill=INK, width=2)
     elif kind == "football":
+        d.rectangle([x + 4, gy, x + w - 4, gy + 3], fill=GREEN)
         d.arc([x + 30, y - 6, x + 150, y + 34], start=180, end=360,
               fill=INK, width=2)
         for fx in (44, 128):
@@ -439,6 +451,7 @@ def scene(kind, x, y, w, h):
                   outline=INK)
         d.line([(x + 8, gy), (x + w - 8, gy)], fill=(52, 96, 66), width=2)
     elif kind == "tennis":
+        d.rectangle([x + 4, gy, x + w - 4, gy + 3], fill=GREEN)
         d.line([(x + 20, gy - 8), (x + w - 20, gy - 8)], fill=INK, width=2)
         for nx in range(28, w - 24, 12):
             d.line([(x + nx, gy - 8), (x + nx, gy)], fill=INK2, width=1)
@@ -452,11 +465,12 @@ def scene(kind, x, y, w, h):
         d.ellipse([x + w // 2 - 2, gy - 21, x + w // 2 + 2, gy - 17],
                   fill=(168, 178, 74))
     elif kind == "factory":
-        d.rectangle([x + 20, gy - 12, x + 84, gy], fill=INK)
-        d.rectangle([x + 66, gy - 20, x + 74, gy - 12], fill=INK)
+        d.rectangle([x + 20, gy - 12, x + 84, gy], fill=BRICK)
+        d.rectangle([x + 66, gy - 20, x + 74, gy - 12], fill=BRICK)
         for r_ in range(2):
             d.ellipse([x + 62 + r_ * 7, gy - 27 + r_ * 2,
-                       x + 70 + r_ * 7, gy - 21 + r_ * 2], fill=INK2)
+                       x + 70 + r_ * 7, gy - 21 + r_ * 2],
+                      fill=(176, 178, 170))
         d.polygon([(x + 34, gy - 13), (x + 39, gy - 5), (x + 35, gy - 2),
                    (x + 29, gy - 7)], fill=RED)
         d.polygon([(x + 35, gy - 10), (x + 38, gy - 5), (x + 35, gy - 3),
@@ -483,8 +497,9 @@ def scene(kind, x, y, w, h):
                    fill=INK, width=2)
         d.arc([x + 46, gy - 24, x + 98, gy - 8], start=20, end=160,
               fill=INK, width=1)
-        for hx, lit in [(168, True), (192, False), (216, True)]:
-            d.rectangle([x + hx, gy - 9, x + hx + 14, gy], fill=INK)
+        for hx, lit, hc in [(168, True, BRICK), (192, False, SLATE),
+                            (216, True, SAND2)]:
+            d.rectangle([x + hx, gy - 9, x + hx + 14, gy], fill=hc)
             d.rectangle([x + hx + 4, gy - 7, x + hx + 8, gy - 3],
                         fill=GOLD if lit else INK2)
     elif kind == "medical":
@@ -504,6 +519,7 @@ def scene(kind, x, y, w, h):
         figure(x + 206, gy)
         figure(x + 220, gy)
     elif kind == "ship":
+        d.rectangle([x, gy + 1, x + w, y + h], fill=SEA)
         d.polygon([(x + 60, gy - 4), (x + 190, gy - 4), (x + 178, gy + 3),
                    (x + 70, gy + 3)], fill=INK)
         d.rectangle([x + 84, gy - 10, x + 150, gy - 4], fill=INK2)
@@ -516,7 +532,7 @@ def scene(kind, x, y, w, h):
         d.ellipse([x + 158, gy - 29, x + 170, gy - 22], fill=INK2)
         for wx_ in range(16, w - 20, 30):
             d.arc([x + wx_, gy + 1, x + wx_ + 14, gy + 6], start=0, end=180,
-                  fill=INK2, width=1)
+                  fill=(252, 250, 244), width=1)
     elif kind == "aid":
         d.rectangle([x + 24, gy - 13, x + 76, gy - 2], fill=(252, 250, 244),
                     outline=INK, width=2)
@@ -526,8 +542,8 @@ def scene(kind, x, y, w, h):
                    (x + 76, gy - 2)], fill=INK2)
         d.ellipse([x + 32, gy - 3, x + 39, gy + 3], fill=INK)
         d.ellipse([x + 78, gy - 3, x + 85, gy + 3], fill=INK)
-        d.rectangle([x + 140, gy - 8, x + 158, gy], fill=INK2)
-        d.rectangle([x + 143, gy - 14, x + 155, gy - 8], fill=INK2)
+        d.rectangle([x + 140, gy - 8, x + 158, gy], fill=SAND2)
+        d.rectangle([x + 143, gy - 14, x + 155, gy - 8], fill=SAND2)
         d.rectangle([x + 147, gy - 12, x + 151, gy - 6], fill=RED)
         figure(x + 196, gy)
         d.rectangle([x + 200, gy - 10, x + 212, gy - 4], fill=INK2)
@@ -589,7 +605,7 @@ def draw_map(x, y, w, h):
                 cx = x + ci * cw_ + cw_ / 2
                 cy = y + ri * ch_ + ch_ / 2
                 d.ellipse([cx - 1.6, cy - 1.6, cx + 1.6, cy + 1.6],
-                          fill=(172, 176, 154))
+                          fill=(126, 166, 110))
     for n, (fx, fy) in PINS.items():
         px, py = x + fx * w, y + fy * h
         r = 8.5
@@ -690,7 +706,7 @@ card_w, card_h = 238, 102
 for idx, (n, loc, tag, head, deck, art) in enumerate(CARDS):
     x = M + (idx % 4) * (card_w + 8)
     y = cy0 + (idx // 4) * (card_h + 4)
-    panel(x, y, card_w, 26, [TINT, TINT2, TINT3][idx % 3])
+    panel(x, y, card_w, 26, [TINT, TINT2, TINT3, TINT4][idx % 4])
     scene(art, x, y, card_w, 26)
     ry = y + 30
     numb(x, ry, n, r=7)
