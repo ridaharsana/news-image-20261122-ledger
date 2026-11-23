@@ -211,7 +211,7 @@ ALSO = [
     (31, "BepiColombo", "reaches Mercury orbit"),
     (32, "Rugby", "England 37\u201312 New Zealand"),
     (33, "Arsenal", "held 2\u20132 by Newcastle"),
-    (34, "Miami", "Crew beat Messi's side 3\u20130"),
+    (34, "Columbus Crew", "beat Messi's Miami 3\u20130"),
     (35, "Russia", "says 170 Ukrainian drones downed \u2014 CLAIM"),
     (36, "Saudi", "downs a Houthi missile \u2014 CLAIM"),
     (37, "Riemann", "AI \u2018helps prove\u2019 the hypothesis"),
@@ -242,17 +242,28 @@ def panel(x, y, w, h, tint):
 
 
 def art_cop(x, y, w, h):
-    # sun, a row of flags, a long table, and the rejected text under a red X
+    # sun, a row of flags, the delegates' table with heads and a gavel,
+    # and the rejected text under a red X
     d.ellipse([x + w - 52, y + 8, x + w - 24, y + 36], fill=GOLD)
     cols = [RED, GOLD, (52, 96, 66), INK, (84, 104, 128)]
     for i, c in enumerate(cols):
         fx = x + 18 + i * 26
         d.line([(fx, y + 14), (fx, y + 44)], fill=INK, width=2)
         d.rectangle([fx, y + 14, fx + 15, y + 25], fill=c)
-    d.rectangle([x + 14, y + h - 20, x + w - 90, y + h - 8], fill=INK)
+    # delegates' table: a long table, a row of heads above it, papers
+    tx0, tx1, ty = x + 14, x + w - 90, y + h - 8
+    d.rectangle([tx0, ty - 7, tx1, ty], fill=INK)
     for i in range(6):
-        d.rectangle([x + 26 + i * 30, y + h - 30, x + 38 + i * 30,
-                     y + h - 20], fill=INK2)
+        hx = tx0 + 12 + i * 30
+        d.ellipse([hx, ty - 19, hx + 10, ty - 9], fill=INK)
+        d.rectangle([hx - 2, ty - 9, hx + 12, ty - 7], fill=INK2)
+        d.rectangle([hx + 1, ty - 6, hx + 9, ty - 3],
+                    fill=(252, 250, 244))
+    # the chair's gavel, raised at the head of the table
+    gx, gy = tx1 + 8, ty - 22
+    d.line([(gx, gy + 12), (gx + 9, gy)], fill=INK, width=3)
+    d.rectangle([gx + 6, gy - 5, gx + 15, gy + 2], fill=INK)
+    d.rectangle([gx + 2, gy + 13, gx + 16, gy + 16], fill=INK2)
     dx, dy = x + w - 74, y + 30
     d.rectangle([dx, dy, dx + 44, dy + 34], fill=(252, 250, 244),
                 outline=INK, width=2)
@@ -261,7 +272,8 @@ def art_cop(x, y, w, h):
 
 
 def art_drone(x, y, w, h):
-    # three drones over a broken block; a rescuer's lamp in the rubble
+    # three drones over a broken block; rubble, a rescue crane, and a
+    # rescuer's lamp in the wreckage
     for (cx, cy) in [(x + 52, y + 18), (x + 128, y + 12), (x + 205, y + 20)]:
         d.line([(cx - 13, cy - 8), (cx + 13, cy + 8)], fill=INK, width=3)
         d.line([(cx - 13, cy + 8), (cx + 13, cy - 8)], fill=INK, width=3)
@@ -273,8 +285,21 @@ def art_drone(x, y, w, h):
         for c_ in range(2):
             d.rectangle([bx + 8 + c_ * 26, by - 36 + r_ * 13,
                          bx + 18 + c_ * 26, by - 28 + r_ * 13], fill=TINT2)
+    # snapped floor slabs leaning out of the broken cross-section
+    d.polygon([(bx + 58, by - 38), (bx + 88, by - 20), (bx + 90, by - 14),
+               (bx + 58, by - 28)], fill=INK2)
+    d.polygon([(bx + 58, by - 24), (bx + 80, by - 8), (bx + 82, by - 3),
+               (bx + 58, by - 14)], fill=INK2)
     d.polygon([(bx + 66, by), (bx + 92, by - 16), (bx + 118, by)], fill=INK2)
     d.polygon([(bx + 100, by), (bx + 120, by - 10), (bx + 140, by)], fill=INK2)
+    # rescue crane: mast, jib and a hook line over the rubble
+    mx = x + w - 96
+    d.line([(mx, by), (mx, y + 16)], fill=INK, width=3)
+    d.line([(mx, y + 16), (mx + 62, y + 24)], fill=INK, width=3)
+    d.line([(mx, y + 16), (mx - 14, by)], fill=INK2, width=1)
+    d.line([(mx + 48, y + 22), (mx + 48, by - 18)], fill=INK, width=1)
+    d.line([(mx + 43, by - 18), (mx + 53, by - 18)], fill=INK, width=2)
+    d.rectangle([mx - 8, by - 3, mx + 8, by], fill=INK)
     lx, ly = x + w - 56, y + h - 26
     d.ellipse([lx - 9, ly - 9, lx + 9, ly + 9], fill=GOLD)
     for a in range(0, 360, 45):
@@ -285,34 +310,58 @@ def art_drone(x, y, w, h):
 
 
 def art_radar(x, y, w, h):
-    # a Patriot radar, incoming arcs, and the shield of the denial
-    # a Patriot radar: a proper dish bowl on a stand, facing the sky
-    cx, cy = x + 62, y + h - 14
-    d.pieslice([cx - 34, cy - 58, cx + 26, cy - 8], start=205, end=335,
-               fill=INK)
-    d.ellipse([cx - 6, cy - 40, cx + 2, cy - 32], fill=GOLD)
-    d.line([(cx - 4, cy - 36), (cx - 4, cy - 24)], fill=INK, width=2)
-    d.line([(cx - 4, cy - 24), (cx - 14, cy)], fill=INK, width=4)
-    d.line([(cx - 4, cy - 24), (cx + 10, cy)], fill=INK, width=4)
-    for r_ in (16, 26, 36):
-        d.arc([cx + 18, cy - 62 - r_ // 3, cx + 18 + r_, cy - 62 + r_ // 2],
-              start=200, end=320, fill=INK2, width=2)
+    # TWO Patriot radar dishes on masts, signal arcs, incoming tracks
+    # kept inside the panel, the denial's shield, and tankers on the water
     import math
-    for (sx, sy) in [(x + w - 30, y + 6), (x + w - 74, y + 2)]:
+    gy = y + h - 16                     # ground line; sea below it
+
+    def dish(cx, big):
+        my = gy                           # mast foot
+        d.polygon([(cx - 9, my), (cx - 2, my - 26), (cx + 2, my - 26),
+                   (cx + 9, my)], fill=INK)
+        d.rectangle([cx - 13, my - 29, cx + 13, my - 25], fill=INK)
+        r = 17 if big else 13
+        ccx, ccy = cx + 5, my - 29 - r + 4
+        d.pieslice([ccx - r, ccy - r, ccx + r, ccy + r], start=140, end=320,
+                   fill=INK)
+        d.ellipse([ccx - 3, ccy - 3, ccx + 3, ccy + 3], fill=GOLD)
+        d.line([(ccx, ccy), (ccx + 10, ccy - 9)], fill=INK, width=2)
+        for rr in (8, 14, 20):
+            d.arc([ccx + 8, ccy - rr, ccx + 8 + rr + 8, ccy + rr],
+                  start=250, end=40, fill=INK2, width=2)
+        return ccx, ccy
+
+    dish(x + 46, True)
+    dish(x + 116, False)
+    # incoming tracks: flat arcs that stay inside the panel
+    for (sx, sy, ex) in [(x + w - 16, y + 4, x + 196),
+                         (x + w - 60, y + 2, x + 224)]:
         pts = []
         for t in range(21):
             tt = t / 20
-            px = sx + (x + 150 - sx) * tt
-            py = sy + (y + 44 - sy) * tt - 26 * math.sin(tt * math.pi)
+            px = sx + (ex - sx) * tt
+            py = sy + (y + 30 - sy) * tt - 9 * math.sin(tt * math.pi)
             pts.append((px, py))
         d.line(pts, fill=RED, width=2)
         d.polygon([(pts[-1][0], pts[-1][1]), (pts[-1][0] - 9, pts[-1][1] - 1),
                    (pts[-1][0] - 2, pts[-1][1] - 8)], fill=RED)
-    sx, sy = x + w - 58, y + h - 44
-    d.polygon([(sx, sy), (sx + 34, sy), (sx + 34, sy + 20), (sx + 17, sy + 36),
-               (sx, sy + 20)], outline=INK, width=3)
-    d.line([(sx + 9, sy + 15), (sx + 15, sy + 22), (sx + 26, sy + 8)],
+    # the shield of the denial, smaller, at the right
+    sx, sy = x + w - 44, y + 22
+    d.polygon([(sx, sy), (sx + 26, sy), (sx + 26, sy + 15), (sx + 13, sy + 27),
+               (sx, sy + 15)], outline=INK, width=3)
+    d.line([(sx + 7, sy + 11), (sx + 11, sy + 16), (sx + 20, sy + 6)],
            fill=(52, 96, 66), width=3)
+    # the water, and two tankers on it
+    d.line([(x + 4, gy), (x + w - 4, gy)], fill=INK2, width=1)
+    for (hx, s) in [(x + 168, 1.0), (x + 238, 0.8)]:
+        hw = 44 * s
+        d.polygon([(hx, gy + 3), (hx + hw, gy + 3), (hx + hw - 6, gy + 10),
+                   (hx + 5, gy + 10)], fill=INK)
+        d.rectangle([hx + 8 * s, gy - 3, hx + 26 * s, gy + 3], fill=INK2)
+        d.rectangle([hx + 30 * s, gy - 6, hx + 35 * s, gy + 3], fill=INK)
+    for wx_ in range(int(x) + 10, int(x + w) - 12, 26):
+        d.arc([wx_, gy + 9, wx_ + 12, gy + 15], start=0, end=180,
+              fill=INK2, width=1)
 
 
 LEAD_ART = [art_cop, art_drone, art_radar]
