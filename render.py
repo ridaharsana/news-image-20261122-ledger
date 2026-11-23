@@ -19,7 +19,7 @@ CW = W - 2 * M              # content width = 976
 PAPER = (250, 246, 234)     # cream paper
 BAND = (12, 52, 40)         # deep emerald (masthead band)
 INK = (18, 36, 29)          # deep green-black ink
-INK2 = (74, 88, 80)         # muted ink
+INK2 = (56, 70, 62)         # muted ink
 RED = (190, 30, 38)         # accent red
 HAIR = (150, 152, 138)      # hairline
 CREAM_DIM = (214, 206, 182)  # dim cream on the band
@@ -165,23 +165,23 @@ LEADS = [
 # (num, location, tag, headline, deck, art-key)
 CARDS = [
     (4, "HONG KONG", "REPORTED", "Hong Kong elects its Election Committee",
-     "Record final turnout, 98.79%: 5,640 voters fill 723 of 856 seats; "
-     "two seats decided by lot.", "ballot"),
+     "Final turnout a record 98.79%: 5,640 voters fill 723 of 856 "
+     "seats; two seats by lot.", "ballot"),
     (5, "NEW ZEALAND", "REPORTED", "India declare on 720/9",
-     "Rahul 136, Pant 128; first innings ever with 50+ stands for all "
-     "seven first wickets. NZ 119/2.", "cricket"),
+     "Rahul 136, Pant 128; a first: 50+ stands for all seven first "
+     "wickets. NZ 119/2.", "cricket"),
     (6, "LAS VEGAS", "REPORTED", "Verstappen takes Las Vegas",
-     "By 0.639s, after 35 lead changes. Piastri 17th to 3rd; Antonelli's "
-     "pole became a 6th-place start.", "race"),
+     "By 0.639s, after 35 lead changes. Piastri 17th to 3rd; a penalty "
+     "put Antonelli 6th.", "race"),
     (7, "ANFIELD, LIVERPOOL", "REPORTED", "Liverpool rout United 4\u20130",
-     "Pochettino's debut: Yoro off at 8', then Szoboszlai, Wirtz, "
-     "Ngumoha and Mu\u00f1oz. United stay 19th.", "football"),
+     "Yoro off at 8' in Pochettino's debut; Szoboszlai, Wirtz, "
+     "Ngumoha, Mu\u00f1oz. United 19th.", "football"),
     (8, "TURIN", "REPORTED", "Alcaraz takes the ATP Finals",
-     "6-2 7-6(7) over world No.1 Zverev: a maiden title, a 5\u20130 week, "
+     "6-2 7-6(7) over No.1 Zverev: maiden title, a 5\u20130 week, "
      "three set points saved, $5.17m.", "tennis"),
     (9, "CIKANDE, BANTEN", "REPORTED", "Cikande: the search goes on",
-     "Out at 06:30 WIB after ~14 hours; 24 body bags by nightfall, "
-     "32 missing, toll unconfirmed.", "factory"),
+     "Out at 06:30 WIB; 24 body bags by nightfall, 32 missing, "
+     "toll unconfirmed.", "factory"),
     (10, "NEW ORLEANS", "REPORTED", "Wembanyama's 50 sinks New Orleans",
      "50 points, 19 rebounds and 5 blocks in a 114\u201391 Spurs win.",
      "basket"),
@@ -276,7 +276,7 @@ def art_cop(x, y, w, h):
     d.line([(gx, gy + 12), (gx + 9, gy)], fill=INK, width=3)
     d.rectangle([gx + 6, gy - 5, gx + 15, gy + 2], fill=INK)
     d.rectangle([gx + 2, gy + 13, gx + 16, gy + 16], fill=INK2)
-    dx, dy = x + w - 74, y + 30
+    dx, dy = x + w - 74, y + 26
     d.rectangle([dx, dy, dx + 44, dy + 34], fill=(252, 250, 244),
                 outline=INK, width=2)
     d.line([(dx + 7, dy + 6), (dx + 37, dy + 28)], fill=RED, width=4)
@@ -629,23 +629,23 @@ center(44, "Sunday 22 November 2026", F("pf9", 54), (247, 242, 228))
 d.line([(0, 104), (W, 104)], fill=RED, width=2)
 
 center(111, "39 STORIES \u00b7 7 REGIONS \u00b7 EVERY ONE DATED SUNDAY "
-            "22 NOVEMBER 2026", F("bold", 12), INK)
+            "22 NOVEMBER 2026", F("bold", 13), INK)
 
 # ---- strapline --------------------------------------------------------------
 hrule(129)
-center(133, STRAPLINE, F("bold", 14), RED)
+center(133, STRAPLINE, F("bold", 15), RED)
 hrule(153)
 
 # ---- figures band -----------------------------------------------------------
-fy = 158
+fy = 156
 cellw = CW / 6
 for i, (num, lab) in enumerate(FIGURES):
     cx = M + i * cellw
-    nf = F("pf8", 22 if len(num) <= 7 else 19)
+    nf = F("pf8", 24 if len(num) <= 7 else 21)
     d.text((cx + (cellw - tw(num, nf)) / 2, fy), num, font=nf, fill=INK)
-    lf = F("sans", 9)
+    lf = F("sans", 10)
     for j, ln in enumerate(lab.split("\n")):
-        d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 27 + j * 11), ln,
+        d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 28 + j * 11), ln,
                font=lf, fill=INK2)
     if i:
         d.line([(cx, fy + 2), (cx, fy + 44)], fill=HAIR, width=1)
@@ -654,7 +654,7 @@ hrule(208)
 # ---- region strip -----------------------------------------------------------
 seg = "  \u00b7  ".join(f"{name} {n}" for name, n in REGIONS)
 pre = "WHERE THE DAY HAPPENED \u2014  "
-pf_, bf = F("bold", 11), F("bold", 11)
+pf_, bf = F("bold", 12), F("bold", 12)
 total = tw(pre, pf_) + tw(seg, bf)
 sx = (W - total) / 2
 d.text((sx, 214), pre, font=pf_, fill=RED)
@@ -662,13 +662,13 @@ d.text((sx + tw(pre, pf_), 214), seg, font=bf, fill=INK)
 hrule(232)
 
 # ---- timeline ---------------------------------------------------------------
-d.text((M, 238), "THE DAY IN UTC", font=F("bold", 10.5), fill=RED)
+d.text((M, 238), "THE DAY IN UTC", font=F("bold", 11.5), fill=RED)
 tl_w = CW / 3
 for i, (tm, txt) in enumerate(TIMELINE):
     cx = M + (i % 3) * tl_w
     cy = 254 + (i // 3) * 15
-    d.text((cx, cy), tm, font=F("bold", 10), fill=RED)
-    d.text((cx + tw(tm, F("bold", 10)) + 6, cy), txt, font=F("sans", 10),
+    d.text((cx, cy), tm, font=F("bold", 11), fill=RED)
+    d.text((cx + tw(tm, F("bold", 11)) + 6, cy), txt, font=F("sans", 11),
            fill=INK)
 hrule(288)
 
@@ -677,27 +677,27 @@ ly = 294
 lead_w = 309
 for i, L in enumerate(LEADS):
     x = M + i * (lead_w + 24.5)
-    panel(x, ly, lead_w, 68, L["tint"])
-    LEAD_ART[i](x, ly, lead_w, 68)
-    ry = ly + 74
+    panel(x, ly, lead_w, 62, L["tint"])
+    LEAD_ART[i](x, ly, lead_w, 62)
+    ry = ly + 68
     numb(x, ry, L["n"], r=8)
-    d.text((x + 22, ry + 1), L["loc"], font=F("bold", 10.5), fill=INK)
+    d.text((x + 22, ry + 1), L["loc"], font=F("bold", 11.5), fill=INK)
     cw_ = int(tw(L["tag"], F("bold", 8))) + 10
     chip(x + lead_w - cw_, ry, L["tag"], RED if L["tag"] == "CLAIM" else INK)
     hy = ry + 20
-    lines = wrap(L["head"], F("pf7", 17), lead_w)
+    lines = wrap(L["head"], F("pf7", 18), lead_w)
     if len(lines) > 2:
         warn.append(f"lead {L['n']} headline {len(lines)} lines")
     for ln in lines[:2]:
-        d.text((x, hy), ln, font=F("pf7", 17), fill=INK)
-        hy += 21
+        d.text((x, hy), ln, font=F("pf7", 18), fill=INK)
+        hy += 22
     dy = hy + 3
-    dlines = wrap(L["deck"], F("sans", 10.5), lead_w)
+    dlines = wrap(L["deck"], F("sans", 11), lead_w)
     if len(dlines) > 4:
         warn.append(f"lead {L['n']} deck {len(dlines)} lines")
     for ln in dlines[:4]:
-        d.text((x, dy), ln, font=F("sans", 10.5), fill=INK)
-        dy += 13
+        d.text((x, dy), ln, font=F("sans", 11), fill=INK)
+        dy += 13.75
 hrule(472)
 
 # ---- cards ------------------------------------------------------------------
@@ -710,57 +710,57 @@ for idx, (n, loc, tag, head, deck, art) in enumerate(CARDS):
     scene(art, x, y, card_w, 26)
     ry = y + 30
     numb(x, ry, n, r=7)
-    d.text((x + 18, ry + 1), loc, font=F("bold", 8.5), fill=INK)
+    d.text((x + 18, ry + 1), loc, font=F("bold", 9.5), fill=INK)
     cw_ = int(tw(tag, F("bold", 8))) + 10
     chip(x + card_w - cw_, ry, tag, INK)
     hy = y + 46
-    hlines = wrap(head, F("bold", 12), card_w)
+    hlines = wrap(head, F("bold", 13), card_w)
     if len(hlines) > 2:
         warn.append(f"card {n} headline {len(hlines)} lines")
     for ln in hlines[:2]:
-        d.text((x, hy), ln, font=F("bold", 12), fill=INK)
-        hy += 14
+        d.text((x, hy), ln, font=F("bold", 13), fill=INK)
+        hy += 14.5
     dy = y + 76
-    dlines = wrap(deck, F("sans", 9.5), card_w)
+    dlines = wrap(deck, F("sans", 10), card_w)
     if len(dlines) > 2:
         warn.append(f"card {n} deck {len(dlines)} lines: {deck[:40]}...")
     for ln in dlines[:2]:
-        d.text((x, dy), ln, font=F("sans", 9.5), fill=INK)
-        dy += 11.5
+        d.text((x, dy), ln, font=F("sans", 10), fill=INK)
+        dy += 12.5
 hrule(792)
 
 # ---- bottom band: map + ALSO -------------------------------------------------
 by = 798
-d.text((M, by), "THE DAY MAPPED", font=F("bold", 10.5), fill=RED)
-d.text((M + tw("THE DAY MAPPED", F("bold", 10.5)) + 8, by),
-       "\u2014 pins match story numbers", font=F("sans", 9.5), fill=INK2)
+d.text((M, by), "THE DAY MAPPED", font=F("bold", 11.5), fill=RED)
+d.text((M + tw("THE DAY MAPPED", F("bold", 11.5)) + 8, by),
+       "\u2014 pins match story numbers", font=F("sans", 10), fill=INK2)
 draw_map(M, by + 16, 292, 104)
 ax = M + 316
-d.text((ax, by), "ALSO ON SUNDAY", font=F("bold", 10.5), fill=RED)
+d.text((ax, by), "ALSO ON SUNDAY", font=F("bold", 11.5), fill=RED)
 acol_w = (W - M - ax - 14) / 2
 for i, (n, lead, rest) in enumerate(ALSO):
     cx = ax + (i // 12) * (acol_w + 14)
     cy = by + 16 + (i % 12) * 11
-    nf = F("bold", 9.5)
+    nf = F("bold", 10)
     d.text((cx, cy), str(n), font=nf, fill=RED)
     x2 = cx + tw(str(n), nf) + 4
-    d.text((x2, cy), lead, font=F("bold", 9.5), fill=INK)
-    x3 = x2 + tw(lead, F("bold", 9.5)) + 3
-    d.text((x3, cy), rest, font=F("sans", 9.5), fill=INK)
+    d.text((x2, cy), lead, font=F("bold", 10), fill=INK)
+    x3 = x2 + tw(lead, F("bold", 10)) + 3
+    d.text((x3, cy), rest, font=F("sans", 10), fill=INK)
     if x3 + tw(rest, F("sans", 9.5)) > cx + acol_w:
         warn.append(f"also {n} overflows column")
 
 # ---- date check ---------------------------------------------------------------
-dy0 = 950
-d.rectangle([M, dy0, W - M, dy0 + 42], outline=RED, width=2)
-d.text((M + 12, dy0 + 6), "DATE", font=F("pf7", 13), fill=RED)
-d.text((M + 12, dy0 + 22), "CHECK", font=F("pf7", 13), fill=RED)
-block(M + 84, dy0 + 5, DATECHECK, F("sans", 9.5), INK, W - M - (M + 84) - 10,
+dy0 = 946
+d.rectangle([M, dy0, W - M, dy0 + 46], outline=RED, width=2)
+d.text((M + 12, dy0 + 7), "DATE", font=F("pf7", 13), fill=RED)
+d.text((M + 12, dy0 + 23), "CHECK", font=F("pf7", 13), fill=RED)
+block(M + 84, dy0 + 5, DATECHECK, F("sans", 10), INK, W - M - (M + 84) - 10,
       leading=1.3)
 
 # ---- footer -------------------------------------------------------------------
-center(996, SOURCES, F("sans", 9), INK2)
-center(1009, KEYLINE, F("sans", 9), INK2)
+center(996, SOURCES, F("sans", 9.5), INK2)
+center(1009, KEYLINE, F("sans", 9.5), INK2)
 
 img.save(OUT, format="JPEG", quality=88)
 print("saved", OUT, os.path.getsize(OUT), "bytes")
