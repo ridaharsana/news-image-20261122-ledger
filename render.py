@@ -261,111 +261,136 @@ def render_art(fn, w, h, tint):
 
 
 def art_cop(x, y, w, h):
-    # sun, a row of flags, the delegates' table with heads and a gavel,
-    # and the rejected text under a red X
-    d.ellipse([x + w - 52, y + 8, x + w - 24, y + 36], fill=GOLD)
+    # the Antalya hall: a big screen carrying the rejected text, flags
+    # along the wall, and the delegates' table below
+    d.rectangle([x, y, x + w, y + 30], fill=(238, 214, 168))
+    # the screen: the draft itself, crossed out
+    sx0, sy0, sx1, sy1 = x + 108, y + 5, x + 200, y + 42
+    d.rectangle([sx0, sy0, sx1, sy1], fill=(24, 34, 54))
+    d.rectangle([sx0 + 10, sy0 + 7, sx0 + 34, sy0 + 30],
+                fill=(252, 250, 244))
+    for r_ in range(3):
+        d.line([(sx0 + 14, sy0 + 12 + r_ * 6), (sx0 + 30, sy0 + 12 + r_ * 6)],
+               fill=INK2, width=1)
+    d.line([(sx0 + 6, sy0 + 4), (sx1 - 6, sy1 - 4)], fill=RED, width=4)
+    d.line([(sx1 - 6, sy0 + 4), (sx0 + 6, sy1 - 4)], fill=RED, width=4)
+    # flags along the wall, on both sides of the screen
     cols = [RED, GOLD, (52, 96, 66), INK, (84, 104, 128)]
     for i, c in enumerate(cols):
-        fx = x + 18 + i * 26
-        d.line([(fx, y + 14), (fx, y + 44)], fill=INK, width=2)
-        d.rectangle([fx, y + 14, fx + 15, y + 25], fill=c)
-    # delegates' table: a long table, a row of heads above it, papers
-    tx0, tx1, ty = x + 14, x + w - 90, y + h - 8
+        fx = x + 14 + i * 17
+        d.line([(fx, y + 8), (fx, y + 30)], fill=INK, width=2)
+        d.rectangle([fx, y + 8, fx + 11, y + 16], fill=c)
+        fx2 = x + w - 25 - (4 - i) * 17
+        d.line([(fx2, y + 8), (fx2, y + 30)], fill=INK, width=2)
+        d.rectangle([fx2, y + 8, fx2 + 11, y + 16], fill=c)
+    # delegates' table: seven heads, papers, three hands raised
+    tx0, tx1, ty = x + 14, x + w - 52, y + h - 6
     d.rectangle([tx0, ty - 7, tx1, ty], fill=INK)
-    for i in range(6):
-        hx = tx0 + 12 + i * 30
+    for i in range(7):
+        hx = tx0 + 10 + i * 30
         d.ellipse([hx, ty - 19, hx + 10, ty - 9], fill=INK)
         d.rectangle([hx - 2, ty - 9, hx + 12, ty - 7], fill=INK2)
         d.rectangle([hx + 1, ty - 6, hx + 9, ty - 3],
                     fill=(252, 250, 244))
-    # three delegates with a hand raised — the vote that failed
-    for i in (0, 2, 4):
-        hx = tx0 + 12 + i * 30
+    for i in (0, 3, 5):
+        hx = tx0 + 10 + i * 30
         d.line([(hx + 13, ty - 10), (hx + 19, ty - 21)], fill=INK, width=2)
         d.ellipse([hx + 17, ty - 24, hx + 22, ty - 19], fill=INK)
-    # the chair's gavel, raised at the head of the table
-    gx, gy = tx1 + 8, ty - 22
+    # the chair's gavel at the head of the table
+    gx, gy = tx1 + 6, ty - 22
     d.line([(gx, gy + 12), (gx + 9, gy)], fill=INK, width=3)
     d.rectangle([gx + 6, gy - 5, gx + 15, gy + 2], fill=INK)
     d.rectangle([gx + 2, gy + 13, gx + 16, gy + 16], fill=INK2)
-    dx, dy = x + w - 74, y + 26
-    d.rectangle([dx, dy, dx + 44, dy + 34], fill=(252, 250, 244),
-                outline=INK, width=2)
-    d.line([(dx + 7, dy + 6), (dx + 37, dy + 28)], fill=RED, width=4)
-    d.line([(dx + 37, dy + 6), (dx + 7, dy + 28)], fill=RED, width=4)
 
 
 def art_drone(x, y, w, h):
-    # three drones over a broken block; rubble, a rescue crane, and a
-    # rescuer's lamp in the wreckage
-    d.rectangle([x, y, x + w, y + 42], fill=(188, 204, 216))
-    for (cx, cy) in [(x + 52, y + 18), (x + 128, y + 12), (x + 205, y + 20)]:
-        d.line([(cx - 13, cy - 8), (cx + 13, cy + 8)], fill=INK, width=3)
-        d.line([(cx - 13, cy + 8), (cx + 13, cy - 8)], fill=INK, width=3)
-        d.rectangle([cx - 6, cy - 4, cx + 6, cy + 4], fill=INK)
-    for (cx, cy) in [(x + 88, y + 33), (x + 178, y + 35)]:
-        d.line([(cx - 8, cy - 5), (cx + 8, cy + 5)], fill=INK, width=2)
-        d.line([(cx - 8, cy + 5), (cx + 8, cy - 5)], fill=INK, width=2)
-        d.rectangle([cx - 4, cy - 2, cx + 4, cy + 2], fill=INK)
-    bx, by = x + 16, y + h - 6
-    d.polygon([(bx, by), (bx, by - 44), (bx + 26, by - 44), (bx + 34, by - 30),
-               (bx + 58, by - 38), (bx + 58, by)], fill=INK)
-    for r_ in range(3):
-        for c_ in range(2):
-            d.rectangle([bx + 8 + c_ * 26, by - 36 + r_ * 13,
-                         bx + 18 + c_ * 26, by - 28 + r_ * 13], fill=TINT2)
-    # snapped floor slabs leaning out of the broken cross-section
-    d.polygon([(bx + 58, by - 38), (bx + 88, by - 20), (bx + 90, by - 14),
-               (bx + 58, by - 28)], fill=INK2)
-    d.polygon([(bx + 58, by - 24), (bx + 80, by - 8), (bx + 82, by - 3),
-               (bx + 58, by - 14)], fill=INK2)
-    d.polygon([(bx + 66, by), (bx + 92, by - 16), (bx + 118, by)], fill=INK2)
-    d.polygon([(bx + 100, by), (bx + 120, by - 10), (bx + 140, by)], fill=INK2)
-    # rescue crane: mast, jib and a hook line over the rubble
-    mx = x + w - 96
-    d.line([(mx, by), (mx, y + 16)], fill=INK, width=3)
-    d.line([(mx, y + 16), (mx + 62, y + 24)], fill=INK, width=3)
-    d.line([(mx, y + 16), (mx - 14, by)], fill=INK2, width=1)
-    d.line([(mx + 48, y + 22), (mx + 48, by - 18)], fill=INK, width=1)
-    d.line([(mx + 43, by - 18), (mx + 53, by - 18)], fill=INK, width=2)
-    d.rectangle([mx - 8, by - 3, mx + 8, by], fill=INK)
+    # Kyiv region at night: searchlights and pale drones over a burning,
+    # broken block in Dymer; a rescue crane at work
+    d.rectangle([x, y, x + w, y + h], fill=(22, 30, 52))
+    for i in range(26):
+        sx_ = x + (i * 53) % (w - 8) + 4
+        sy_ = y + (i * 31) % 34 + 2
+        d.ellipse([sx_, sy_, sx_ + 2, sy_ + 2], fill=(232, 234, 240))
+    d.ellipse([x + w - 44, y + 6, x + w - 26, y + 24], fill=(238, 226, 170))
     # searchlight beams sweeping up from the rescue line
-    d.line([(bx + 128, by - 2), (x + 146, y + 6)], fill=GOLD, width=2)
-    d.line([(bx + 142, by - 2), (x + 196, y + 10)], fill=GOLD, width=2)
-    lx, ly = x + w - 56, y + h - 26
-    d.ellipse([lx - 9, ly - 9, lx + 9, ly + 9], fill=GOLD)
-    for a in range(0, 360, 45):
-        import math
-        d.line([(lx, ly), (lx + 15 * math.cos(math.radians(a)),
-                           ly + 15 * math.sin(math.radians(a)))],
-               fill=GOLD, width=2)
+    d.polygon([(x + 188, y + h), (x + 128, y + 8), (x + 140, y + 6)],
+              fill=(216, 202, 142))
+    d.polygon([(x + 292, y + h), (x + 196, y + 10), (x + 208, y + 8)],
+              fill=(216, 202, 142))
+    pale = (198, 204, 214)
+    for (cx, cy, s) in [(52, 18, 1.0), (128, 12, 1.0), (205, 20, 1.0),
+                        (88, 34, 0.6), (172, 36, 0.6)]:
+        cx, cy = x + cx, y + cy
+        d.line([(cx - 13 * s, cy - 8 * s), (cx + 13 * s, cy + 8 * s)],
+               fill=pale, width=2)
+        d.line([(cx - 13 * s, cy + 8 * s), (cx + 13 * s, cy - 8 * s)],
+               fill=pale, width=2)
+        d.rectangle([cx - 6 * s, cy - 4 * s, cx + 6 * s, cy + 4 * s],
+                    fill=pale)
+    # the broken block: lit windows, a collapsed corner, fire at its foot
+    bx, by = x + 14, y + h
+    dark = (8, 12, 22)
+    d.polygon([(bx, by), (bx, by - 46), (bx + 26, by - 46),
+               (bx + 34, by - 32), (bx + 56, by - 38), (bx + 56, by)],
+              fill=dark)
+    for (wx_, wy_) in [(8, -38), (34, -30), (8, -24), (40, -16)]:
+        d.rectangle([bx + wx_, by + wy_, bx + wx_ + 9, by + wy_ + 7],
+                    fill=(255, 170, 60))
+    d.polygon([(bx + 56, by - 26), (bx + 84, by - 12), (bx + 86, by - 6),
+               (bx + 56, by - 16)], fill=(40, 48, 66))
+    d.polygon([(bx + 62, by), (bx + 88, by - 14), (bx + 114, by)],
+              fill=(40, 48, 66))
+    d.polygon([(bx + 96, by), (bx + 116, by - 9), (bx + 136, by)],
+              fill=(40, 48, 66))
+    # fire at the foot of the block
+    d.polygon([(bx + 18, by), (bx + 24, by - 12), (bx + 29, by)],
+              fill=(232, 110, 40))
+    d.polygon([(bx + 22, by), (bx + 25, by - 8), (bx + 28, by)],
+              fill=(250, 180, 60))
+    d.polygon([(bx + 40, by), (bx + 45, by - 9), (bx + 50, by)],
+              fill=(232, 110, 40))
+    # rescue crane, pale against the night
+    mx = x + w - 88
+    d.line([(mx, by), (mx, y + 18)], fill=pale, width=3)
+    d.line([(mx, y + 18), (mx + 58, y + 26)], fill=pale, width=3)
+    d.line([(mx, y + 18), (mx - 12, by)], fill=(120, 130, 148), width=1)
+    d.line([(mx + 44, y + 24), (mx + 44, by - 16)], fill=pale, width=1)
+    d.line([(mx + 39, by - 16), (mx + 49, by - 16)], fill=pale, width=2)
+    d.rectangle([mx - 8, by - 3, mx + 8, by], fill=pale)
 
 
 def art_radar(x, y, w, h):
-    # TWO Patriot radar dishes on masts, signal arcs, incoming tracks
-    # kept inside the panel, the denial's shield, and tankers on the water
+    # Bahrain at dusk: two Patriot radar dishes on the coast, incoming
+    # tracks overhead, tankers on the water, the shield of the denial
     import math
-    gy = y + h - 16                     # ground line; sea below it
+    bands = [(110, 128, 178), (168, 138, 158), (226, 156, 120),
+             (246, 190, 140)]
+    bh = (h - 16) // 4
+    for i, bc in enumerate(bands):
+        d.rectangle([x, y + i * bh, x + w, y + (i + 1) * bh], fill=bc)
+    gy = y + h - 16                     # coast line; sea below it
     d.rectangle([x, gy, x + w, y + h], fill=SEA)
+    d.polygon([(x, gy), (x + 150, gy), (x + 138, gy - 5), (x, gy - 5)],
+              fill=(30, 34, 40))
 
     def dish(cx, big):
-        my = gy                           # mast foot
-        d.polygon([(cx - 9, my), (cx - 2, my - 26), (cx + 2, my - 26),
+        my = gy - 4                       # mast foot, on the coast
+        d.polygon([(cx - 9, my), (cx - 2, my - 24), (cx + 2, my - 24),
                    (cx + 9, my)], fill=INK)
-        d.rectangle([cx - 13, my - 29, cx + 13, my - 25], fill=INK)
-        r = 17 if big else 13
-        ccx, ccy = cx + 5, my - 29 - r + 4
+        d.rectangle([cx - 13, my - 27, cx + 13, my - 23], fill=INK)
+        r = 14 if big else 11
+        ccx, ccy = cx + 5, my - 27 - r + 4
         d.pieslice([ccx - r, ccy - r, ccx + r, ccy + r], start=140, end=320,
                    fill=INK)
         d.ellipse([ccx - 3, ccy - 3, ccx + 3, ccy + 3], fill=GOLD)
         d.line([(ccx, ccy), (ccx + 10, ccy - 9)], fill=INK, width=2)
-        for rr in (8, 14, 20):
+        for rr in (6, 10, 14):
             d.arc([ccx + 8, ccy - rr, ccx + 8 + rr + 8, ccy + rr],
-                  start=250, end=40, fill=INK2, width=2)
+                  start=250, end=40, fill=(250, 246, 234), width=2)
         return ccx, ccy
 
     dish(x + 46, True)
-    dish(x + 116, False)
+    dish(x + 112, False)
     # incoming tracks: flat arcs that stay inside the panel
     for (sx, sy, ex) in [(x + w - 16, y + 4, x + 196),
                          (x + w - 60, y + 2, x + 224)]:
@@ -379,13 +404,12 @@ def art_radar(x, y, w, h):
         d.polygon([(pts[-1][0], pts[-1][1]), (pts[-1][0] - 9, pts[-1][1] - 1),
                    (pts[-1][0] - 2, pts[-1][1] - 8)], fill=RED)
     # the shield of the denial, smaller, at the right
-    sx, sy = x + w - 44, y + 22
+    sx, sy = x + w - 44, y + 20
     d.polygon([(sx, sy), (sx + 26, sy), (sx + 26, sy + 15), (sx + 13, sy + 27),
                (sx, sy + 15)], outline=INK, width=3)
     d.line([(sx + 7, sy + 11), (sx + 11, sy + 16), (sx + 20, sy + 6)],
            fill=(52, 96, 66), width=3)
     # the water, and two tankers on it
-    d.line([(x + 4, gy), (x + w - 4, gy)], fill=INK2, width=1)
     for (hx, s) in [(x + 168, 1.0), (x + 238, 0.8)]:
         hw = 44 * s
         d.polygon([(hx, gy + 3), (hx + hw, gy + 3), (hx + hw - 6, gy + 10),
@@ -664,9 +688,26 @@ for i, (num, lab) in enumerate(FIGURES):
     nf = F("pf8", 24 if len(num) <= 7 else 21)
     d.text((cx + (cellw - tw(num, nf)) / 2, fy), num, font=nf, fill=INK)
     lf = F("sans", 10)
-    for j, ln in enumerate(lab.split("\n")):
-        d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 28 + j * 11), ln,
-               font=lf, fill=INK2)
+    if i == 1:
+        ln = "fired at Ukraine · downed"
+        d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 28), ln, font=lf,
+               fill=INK2)
+        bw = cellw - 18
+        d.rectangle([cx + 9, fy + 41, cx + 9 + bw, fy + 44], fill=INK2)
+        d.rectangle([cx + 9, fy + 47, cx + 9 + bw * 161 / 186, fy + 50],
+                    fill=(52, 120, 80))
+    elif i == 2:
+        ln = "Hong Kong's final turnout"
+        d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 28), ln, font=lf,
+               fill=INK2)
+        bw = cellw - 18
+        d.rectangle([cx + 9, fy + 41, cx + 9 + bw, fy + 44], fill=HAIR)
+        d.rectangle([cx + 9, fy + 41, cx + 9 + bw * 0.9879, fy + 44],
+                    fill=RED)
+    else:
+        for j, ln in enumerate(lab.split("\n")):
+            d.text((cx + (cellw - tw(ln, lf)) / 2, fy + 28 + j * 11), ln,
+                   font=lf, fill=INK2)
     if i:
         d.line([(cx, fy + 2), (cx, fy + 44)], fill=HAIR, width=1)
 hrule(208)
@@ -677,28 +718,28 @@ pre = "WHERE THE DAY HAPPENED \u2014  "
 pf_, bf = F("bold", 12), F("bold", 12)
 total = tw(pre, pf_) + tw(seg, bf)
 sx = (W - total) / 2
-d.text((sx, 214), pre, font=pf_, fill=RED)
-d.text((sx + tw(pre, pf_), 214), seg, font=bf, fill=INK)
-hrule(232)
+d.text((sx, 212), pre, font=pf_, fill=RED)
+d.text((sx + tw(pre, pf_), 212), seg, font=bf, fill=INK)
+hrule(229)
 
 # ---- timeline ---------------------------------------------------------------
-d.text((M, 238), "THE DAY IN UTC", font=F("bold", 11.5), fill=RED)
+d.text((M, 234), "THE DAY IN UTC", font=F("bold", 11.5), fill=RED)
 tl_w = CW / 3
 for i, (tm, txt) in enumerate(TIMELINE):
     cx = M + (i % 3) * tl_w
-    cy = 254 + (i // 3) * 15
+    cy = 249 + (i // 3) * 14
     d.text((cx, cy), tm, font=F("bold", 11), fill=RED)
     d.text((cx + tw(tm, F("bold", 11)) + 6, cy), txt, font=F("sans", 11),
            fill=INK)
-hrule(288)
+hrule(280)
 
 # ---- leads ------------------------------------------------------------------
-ly = 294
+ly = 286
 lead_w = 309
 for i, L in enumerate(LEADS):
     x = M + i * (lead_w + 24.5)
-    img.paste(render_art(LEAD_ART[i], lead_w, 62, L["tint"]), (int(x), ly))
-    ry = ly + 68
+    img.paste(render_art(LEAD_ART[i], lead_w, 76, L["tint"]), (int(x), ly))
+    ry = ly + 82
     numb(x, ry, L["n"], r=8)
     d.text((x + 22, ry + 1), L["loc"], font=F("bold", 11.5), fill=INK)
     cw_ = int(tw(L["tag"], F("bold", 8))) + 10
@@ -709,14 +750,14 @@ for i, L in enumerate(LEADS):
         warn.append(f"lead {L['n']} headline {len(lines)} lines")
     for ln in lines[:2]:
         d.text((x, hy), ln, font=F("pf7", 18), fill=INK)
-        hy += 22
+        hy += 21
     dy = hy + 3
     dlines = wrap(L["deck"], F("sans", 11), lead_w)
     if len(dlines) > 4:
         warn.append(f"lead {L['n']} deck {len(dlines)} lines")
     for ln in dlines[:4]:
         d.text((x, dy), ln, font=F("sans", 11), fill=INK)
-        dy += 13.75
+        dy += 13
 hrule(472)
 
 # ---- cards ------------------------------------------------------------------
