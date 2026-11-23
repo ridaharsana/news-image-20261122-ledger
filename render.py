@@ -248,6 +248,18 @@ def panel(x, y, w, h, tint):
     d.rectangle([x, y, x + w, y + h], fill=tint)
 
 
+def render_art(fn, w, h, tint):
+    """Draw art on its own layer, clipped to the panel by construction —
+    nothing an art function draws can ever bleed outside its panel."""
+    global d
+    layer = Image.new("RGB", (w, h), tint)
+    saved = d
+    d = ImageDraw.Draw(layer)
+    fn(0, 0, w, h)
+    d = saved
+    return layer
+
+
 def art_cop(x, y, w, h):
     # sun, a row of flags, the delegates' table with heads and a gavel,
     # and the rejected text under a red X
@@ -622,10 +634,18 @@ warn = []
 
 # ---- masthead band ---------------------------------------------------------
 d.rectangle([0, 0, W, 106], fill=BAND)
-center(11, "T H E   S U N D A Y   L E D G E R", F("pf8", 20),
-       (238, 232, 210))
+_name = "T H E   S U N D A Y   L E D G E R"
+_nf = F("pf8", 20)
+_nb = d.textbbox((0, 0), _name, font=_nf)
+d.text(((W - tw(_name, _nf)) / 2 - _nb[0], 13 - _nb[1]), _name, font=_nf,
+       fill=(238, 232, 210))
 d.line([(M, 38), (W - M, 38)], fill=GOLD, width=1)
-center(44, "Sunday 22 November 2026", F("pf9", 54), (247, 242, 228))
+_date = "Sunday 22 November 2026"
+_df = F("pf9", 54)
+_db = d.textbbox((0, 0), _date, font=_df)
+_dtop = min(41, 101 - (_db[3] - _db[1]))
+d.text(((W - tw(_date, _df)) / 2 - _db[0], _dtop - _db[1]), _date, font=_df,
+       fill=(247, 242, 228))
 d.line([(0, 104), (W, 104)], fill=RED, width=2)
 
 center(111, "39 STORIES \u00b7 7 REGIONS \u00b7 EVERY ONE DATED SUNDAY "
@@ -677,8 +697,7 @@ ly = 294
 lead_w = 309
 for i, L in enumerate(LEADS):
     x = M + i * (lead_w + 24.5)
-    panel(x, ly, lead_w, 62, L["tint"])
-    LEAD_ART[i](x, ly, lead_w, 62)
+    img.paste(render_art(LEAD_ART[i], lead_w, 62, L["tint"]), (int(x), ly))
     ry = ly + 68
     numb(x, ry, L["n"], r=8)
     d.text((x + 22, ry + 1), L["loc"], font=F("bold", 11.5), fill=INK)
@@ -706,8 +725,9 @@ card_w, card_h = 238, 102
 for idx, (n, loc, tag, head, deck, art) in enumerate(CARDS):
     x = M + (idx % 4) * (card_w + 8)
     y = cy0 + (idx // 4) * (card_h + 4)
-    panel(x, y, card_w, 26, [TINT, TINT2, TINT3, TINT4][idx % 4])
-    scene(art, x, y, card_w, 26)
+    img.paste(render_art(lambda ax, ay, aw, ah, k=art: scene(k, ax, ay, aw, ah),
+                         card_w, 26, [TINT, TINT2, TINT3, TINT4][idx % 4]),
+              (int(x), y))
     ry = y + 30
     numb(x, ry, n, r=7)
     d.text((x + 18, ry + 1), loc, font=F("bold", 9.5), fill=INK)
